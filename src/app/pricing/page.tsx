@@ -248,33 +248,43 @@ export default function PricingPage() {
               <Package className="h-16 w-16 text-red-600" />
             </div>
 
-            <div className="flex items-center space-x-4 mb-4">
-            <SelectProvinces
-  all={true}
-  value={selectedProvince.value}
-  onChange={(selected) => {
-    if (selected) {
-      setSelectedProvince({ value: selected.value, name: selected.provinceName });
-    } else {
-      setSelectedProvince({ value: undefined, name: null });
-    }
-  }}
-/>
-
-              <div className="text-red-600">
-                <ArrowRight className="h-6 w-6" />
+            <div className="flex justify-center space-x-4 mb-4">
+              <div className="flex flex-col items-center">
+                <h2 className="mb-4">ເລືອກແຂວງຕົ້ນທາງ</h2>
+                <SelectProvinces
+                  all={true}
+                  value={selectedProvince.value || "ເລືອກແຂວງ"}
+                  onChange={(selected) => {
+                    if (selected) {
+                      setSelectedProvince({ value: selected.value, name: selected.provinceName });
+                    } else {
+                      setSelectedProvince({ value: undefined, name: null });
+                    }
+                  }}
+                />
               </div>
 
-              {/* <Select>
-                <SelectTrigger className="w-full border border-red-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
-                  ເລືອກປາຍທາງ
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="hdy">1</SelectItem>
-                  <SelectItem value="kkc">2</SelectItem>
-                  <SelectItem value="urt">3</SelectItem>
-                </SelectContent>
-              </Select> */}
+
+              <div className="flex flex-col items-center text-red-600">
+                <ArrowRight className="h-6 w-6 mb-8" />
+              </div>
+
+              <div className="flex flex-col items-center">
+                <h2 className="mb-4">ເລືອກແຂວງປາຍທາງ</h2>
+                <SelectProvinces
+                  all={true}
+                  value={selectedProvince.value || "ເລືອກແຂວງ"}
+                  onChange={(selected) => {
+                    if (selected) {
+                      setSelectedProvince({ value: selected.value, name: selected.provinceName });
+                    } else {
+                      setSelectedProvince({ value: undefined, name: null });
+                    }
+                  }}
+                />
+
+              </div>
+
             </div>
             <div className="flex items-center space-x-4 mb-4">
               <input

@@ -81,7 +81,7 @@ export default function SelectProvinces({
         </SelectTrigger>
         <SelectContent
           className="bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto"
-          position="popper"
+          position="item-aligned"
         >
           {items.map((item) => (
             <SelectItem

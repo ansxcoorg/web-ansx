@@ -17,7 +17,6 @@ export default function PackagePrice() {
     fetchData({
       variables: {
         where: {
-          isExtra: { ne: 0 },
         },
       },
     });
