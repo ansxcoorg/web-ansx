@@ -30,10 +30,10 @@ export default function NewsPage() {
   const [limit] = useState(7);
   const [totalPages, setTotalPages] = useState(1);
 
-  const [fetchData, { data }] = useLazyQuery(Schema.news , {
-    fetchPolicy: "cache-and-network",});
+  const [fetchData, { data }] = useLazyQuery(Schema.news, {
+    fetchPolicy: "cache-and-network",
+  });
 
-    
   useEffect(() => {
     fetchData({
       variables: {
@@ -42,7 +42,7 @@ export default function NewsPage() {
         skip: (page - 1) * limit,
       },
     });
-  }, [fetchData, page , limit]);
+  }, [fetchData, page, limit]);
   useEffect(() => {
     console.log("API Response:", data);
     if (data) {
@@ -66,7 +66,6 @@ export default function NewsPage() {
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">ຂ່າວສານ ແລະ ກິດຈະກຳ</h1>
 
-      {/* Search Box */}
       <div className="mb-8 max-w-lg">
         <div className="relative">
           <Input
@@ -79,8 +78,6 @@ export default function NewsPage() {
           <Search className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
         </div>
       </div>
-
-      {/* Featured News */}
 
       <div className="mb-12">
         {newsItems?.[0] ? (
@@ -132,10 +129,12 @@ export default function NewsPage() {
         )}
       </div>
 
-      {/* News Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {newsItems?.slice(1)?.map((news, index) => (
-          <Card key={index} className="overflow-hidden hover:shadow-lg hover:scale-105 transition-transform duration-300">
+          <Card
+            key={index}
+            className="overflow-hidden hover:shadow-lg hover:scale-105 transition-transform duration-300"
+          >
             <div className="relative h-48 w-full">
               <Image
                 src={`https://storage.googleapis.com/ansx/website/images/${news?.image}`}

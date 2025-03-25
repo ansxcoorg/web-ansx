@@ -79,4 +79,46 @@ export default class Schema {
       }
     }
   `;
+
+  static communities = gql`
+    query Communities($skip: Int, $limit: Int, $where: CommunityWhereInput) {
+      communities(skip: $skip, limit: $limit, where: $where) {
+        total
+        data {
+          id
+          catalog {
+            id
+            title
+          }
+          title
+          description
+          image
+          subImages
+          videos
+          files
+          isVideo
+          isPublic
+          createdAt
+          updatedAt
+          createdBy {
+            id
+            firstName
+            lastName
+          }
+        }
+      }
+    }
+  `;
+  static provinces = gql`
+    query Query($skip: Int, $limit: Int, $where: ProvinceWhereInput) {
+      provinces(skip: $skip, limit: $limit, where: $where) {
+        total
+        data {
+          id_state
+          provinceCode
+          provinceName
+        }
+      }
+    }
+  `;
 }

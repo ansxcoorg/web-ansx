@@ -5,6 +5,7 @@ import { useLazyQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import Schema from "../../apollo/index";
 import { currency } from "@/lib/utils";
+import Link from "next/link";
 
 export default function PackagePrice() {
   const [showAll, setShowAll] = useState<any[]>();
@@ -15,7 +16,9 @@ export default function PackagePrice() {
   useEffect(() => {
     fetchData({
       variables: {
-        where: {},
+        where: {
+          isExtra: { ne: 0 },
+        },
       },
     });
   }, [fetchData]);
@@ -50,9 +53,11 @@ export default function PackagePrice() {
         </table>
       </div>
       <div className="text-center mt-8">
-        <Button className="bg-red-600 hover:bg-red-700">
-          ເບິ່ງລາຄາບໍລິການທັງໝົດ
-        </Button>
+        <Link href="/pricing">
+          <Button className="bg-red-600 hover:bg-red-700">
+            ເບິ່ງລາຄາບໍລິການທັງໝົດ
+          </Button>
+        </Link>
       </div>
     </>
   );

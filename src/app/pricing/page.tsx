@@ -1,11 +1,31 @@
 "use client";
 
-import { useState } from "react";
-import { Search, Filter, Package } from "lucide-react";
+import { useEffect, useState } from "react";
+import {
+  Search,
+  Filter,
+  Package,
+  DollarSign,
+  Box,
+  ArrowRight,
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useLazyQuery } from "@apollo/client";
+import Schema from "../../apollo/index";
+import { currency } from "@/lib/utils";
+import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@radix-ui/react-select";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import SelectProvinces from "@/components/ui/selectProvinces";
 
 interface PricingItem {
   id: number;
@@ -13,68 +33,149 @@ interface PricingItem {
   price: string;
 }
 
-// Pricing data
-const standardPricing: PricingItem[] = [
-  { id: 1, item: "ຫີບຫໍ່ / ກ່ອງຂະໜາດ 8 ກກ", price: "80,000" },
-  { id: 2, item: "ຫີບຫໍ່ / ກ່ອງຂະໜາດ 6 ກກ", price: "60,000" },
-  { id: 3, item: "ຫີບຫໍ່ / ກ່ອງຂະໜາດ 4 ກກ", price: "40,000" },
-  { id: 4, item: "ຫີບຫໍ່ / ກ່ອງຂະໜາດ 2 ກກ", price: "20,000" },
-  { id: 5, item: "ຫີບຫໍ່ / ກ່ອງຂະໜາດ 1 ກກ", price: "10,000" },
-  { id: 6, item: "ກະເປົາ 1 ໜ່ວຍ", price: "150,000" },
-  { id: 7, item: "ລົດຈັກຂະໜາດ 16-20 ນິ້ວ", price: "180,000" },
-  { id: 8, item: "ລົດຈັກຂະໜາດ 11-15 ນິ້ວ", price: "150,000" },
-  { id: 9, item: "ລົດຖີບ WAVE 100 / WAVE I", price: "650,000" },
-  { id: 10, item: "ເຄື່ອງໃຊ້ໄຟຟ້າ (251 - 350 cm)", price: "350,000" },
-];
-
-const electronicsAndDevices: PricingItem[] = [
-  { id: 11, item: "ເຄື່ອງໃຊ້ໄຟຟ້າ (251 - 350 cm)", price: "350,000" },
-  { id: 12, item: "ເຄື່ອງໃຊ້ໄຟຟ້າ (ຈາກ 201 - 250 cm)", price: "250,000" },
-  { id: 13, item: "ເຄື່ອງໃຊ້ໄຟຟ້າ (100 - 200 cm)", price: "150,000" },
-  { id: 14, item: "ໂທລະສັບມືຖື (61kg-80kg)", price: "500,000" },
-  { id: 15, item: "ໂທລະສັບມືຖື (51kg-60kg)", price: "350,000" },
-];
-
-const furnitureAndLarge: PricingItem[] = [
-  { id: 16, item: "ໂຊຟາຊຸດ (ໃຫຍ່) 2 ຊຸດ", price: "130,000" },
-  { id: 17, item: "ຕູ້ເຢັນຂະໜາດ 1 ຊຸດ", price: "80,000" },
-  { id: 18, item: "ເຄື່ອງຊັກຜ້າ 10 ກິໂລ", price: "100,000" },
-  { id: 19, item: "ເຄື່ອງຊັກຜ້າ 8 ກິໂລ", price: "80,000" },
-  { id: 20, item: "ເຄື່ອງຊັກຜ້າ 6 ກິໂລ", price: "60,000" },
-];
-
-const vehiclesAndParts: PricingItem[] = [
-  { id: 21, item: "ລົດຖີບ (ໃຫຍ່) 1 ຄັນ", price: "120,000" },
-  { id: 22, item: "ລົດຖີບ 4 ຄັນ", price: "40,000" },
-  { id: 23, item: "ລົດຖີບ 2 ຄັນ", price: "20,000" },
-  { id: 24, item: "ລົດຈັກ (251 - 350 cm)", price: "400,000" },
-  { id: 25, item: "ມໍເຕີໄຊ (ໃຫຍ່) (201-250cm)", price: "350,000" },
-];
-
-const specialPackages: PricingItem[] = [
-  { id: 26, item: "ລາຄາສິນຄ້າພິເສດ (150,000)", price: "150,000" },
-  { id: 27, item: "ລາຄາສິນຄ້າພິເສດ (100,000)", price: "100,000" },
-  { id: 28, item: "ລາຄາສິນຄ້າພິເສດ (500,000)", price: "500,000" },
-  { id: 29, item: "ລາຄາສິນຄ້າພິເສດ (450,000)", price: "450,000" },
-  { id: 30, item: "ລາຄາສິນຄ້າພິເສດ (400,000)", price: "400,000" },
-];
-
 export default function PricingPage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [itemsPrice, setItemsPrice] = useState<any[]>();
+  const [totalPrice, setTotalPrice] = useState<any[]>();
+  const [getWidth, setGetWidth] = useState("");
+  const [getWeight, setGetWeight] = useState("");
+  const [priceItem, setPriceItem] = useState<number | null>(null);
+  const [selectedProvince, setSelectedProvince] = useState<{
+    value: string | undefined;
+    name: string | null;
+  }>({ value: undefined, name: null });
 
-  const filterPricing = (items: PricingItem[]) => {
-    if (!searchQuery.trim()) return items;
 
-    return items.filter((item) =>
-      item.item.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+  const [skip, setSkip] = useState(0);
+  const [limit, setLimit] = useState(10);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [fetchData, { data }] = useLazyQuery(Schema.packagesPrice, {
+    fetchPolicy: "cache-and-network",
+  });
+
+  useEffect(() => {
+    const query = searchParams.get("searchQuery") || "";
+    setSearchQuery(query);
+  }, [searchParams]);
+
+  useEffect(() => {
+    fetchData({
+      variables: {
+        where: {
+          title: searchQuery ? searchQuery : undefined,
+        },
+        skip: skip,
+        limit: limit,
+      },
+    });
+  }, [skip, limit, fetchData, searchQuery]);
+
+  useEffect(() => {
+    if (data) {
+      setItemsPrice(data?.ans_category?.data || []);
+      setTotalPrice(data?.ans_category?.total || 0);
+    }
+  }, [data]);
+
+  const loadMoreBranches = () => {
+    setSkip(skip + limit);
+    setLimit(limit + 10);
+  };
+
+  const filteredItemsPrice = itemsPrice?.filter((Price) =>
+    Price.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const updateSearchQuery = (query: string) => {
+    const newParams = new URLSearchParams(searchParams);
+    if (query) {
+      newParams.set("searchQuery", query);
+    } else {
+      newParams.delete("searchQuery");
+    }
+    window.history.pushState({}, "", `${pathname}?${newParams.toString()}`);
+    setSearchQuery(query);
+  };
+
+  const calculator = ({
+    width,
+    weight,
+    transferToProvince,
+    checkFree,
+  }: {
+    width: number;
+    weight: number;
+    transferToProvince?: number;
+    checkFree?: boolean;
+  }) => {
+    const priceOfCm = 200;
+    const priceOfKg = 1900;
+    const startPrice = 8000;
+    let totalPrices = 0;
+
+    if (checkFree) {
+      return 0;
+    }
+
+    if (weight === 1 && width < 45) {
+      totalPrices = startPrice;
+    } else {
+      const percent = width * priceOfCm + weight * priceOfKg;
+      totalPrices = percent + (percent * 15) / 100;
+    }
+
+    if (transferToProvince === 1) {
+      const percent = 40;
+      totalPrices += totalPrices * (percent / 100);
+    }
+
+    return Math.floor(totalPrices / 1000) * 1000;
+  };
+
+  const calculatePrice = () => {
+    if (!getWidth || !getWeight) {
+      alert("ປ້ອນຂະໜາດນ້ຳໜັກກ່ອນ");
+      return;
+    }
+
+    const width = parseInt(getWidth);
+    const weight = parseInt(getWeight);
+
+    if (width <= 0 || width > 350 || weight <= 0 || weight > 80) {
+      alert("ຂະໜາດນ້ຳໜັກບໍ່ຖືກຕ້ອງ");
+      return;
+    }
+
+    const calculatedPrice = calculator({
+      width,
+      weight,
+      checkFree: false,
+    });
+
+    setPriceItem(calculatedPrice);
   };
 
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">ລາຄາຄ່າບໍລິການ</h1>
 
-      {/* Search Box */}
+      <div className="mb-8 bg-red-50 border border-red-100 rounded-lg p-6">
+        <h2 className="text-xl font-semibold mb-3 text-red-600 flex items-center">
+          <Package className="h-5 w-5 mr-2" />
+          ບໍລິການເກັບເງິນປາຍທາງ (COD)
+        </h2>
+        <p className="text-gray-700 mb-3">
+          ຄ່າບໍລິການເກັບເງິນປາຍທາງພຽງແຕ່ 1,000 ກີບ ຕໍ່ການສົ່ງແຕ່ລະຄັ້ງ,
+          ໂອນເງິນພາຍໃນ 1-2 ວັນທຳການ
+        </p>
+        <Link href="https://app.anousith.express/login">
+          <Button className="bg-red-600 hover:bg-red-700">
+            ລົງທະບຽນໃຊ້ບໍລິການ
+          </Button>
+        </Link>
+      </div>
+
       <div className="flex flex-col md:flex-row gap-4 mb-8">
         <div className="relative flex-grow">
           <Input
@@ -82,40 +183,28 @@ export default function PricingPage() {
             placeholder="ຄົ້ນຫາລາຄາສິນຄ້າ..."
             className="w-full bg-gray-50 pr-10"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => updateSearchQuery(e.target.value)}
           />
           <Search className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
         </div>
-        <Button variant="outline" className="flex items-center">
-          <Filter className="h-4 w-4 mr-2" />
-          ກັ່ນຕອງ
-        </Button>
-      </div>
-
-      {/* COD Info Box */}
-      <div className="mb-8 bg-red-50 border border-red-100 rounded-lg p-6">
-        <h2 className="text-xl font-semibold mb-3 text-red-600 flex items-center">
-          <Package className="h-5 w-5 mr-2" />
-          ບໍລິການເກັບເງິນປາຍທາງ (COD)
-        </h2>
-        <p className="text-gray-700 mb-3">
-          ຄ່າບໍລິການເກັບເງິນປາຍທາງພຽງແຕ່ 1,000 ກີບ ຕໍ່ການສົ່ງແຕ່ລະຄັ້ງ, ໂອນເງິນພາຍໃນ 1-2 ວັນທຳການ
-        </p>
-        <Button className="bg-red-600 hover:bg-red-700">
-          ລົງທະບຽນໃຊ້ບໍລິການ
-        </Button>
       </div>
 
       {/* Pricing Tabs */}
       <Tabs defaultValue="standard" className="mb-8">
-        <TabsList className="w-full grid grid-cols-2 md:grid-cols-5 mb-4">
-          <TabsTrigger value="standard">ສິນຄ້າທົ່ວໄປ</TabsTrigger>
-          <TabsTrigger value="electronics">ອຸປະກອນອີເລັກໂຕຣນິກ</TabsTrigger>
-          <TabsTrigger value="furniture">ເຟີນີເຈີ</TabsTrigger>
-          <TabsTrigger value="vehicles">ຍານພາຫະນະ</TabsTrigger>
-          <TabsTrigger value="special">ພັດສະດຸພິເສດ</TabsTrigger>
+        <TabsList className="w-full grid grid-cols-2 mb-4">
+          <TabsTrigger
+            value="standard"
+            className="w-full text-center hover:text-red-600"
+          >
+            ພັດສະດຸພິເສດ
+          </TabsTrigger>
+          <TabsTrigger
+            value="price"
+            className="w-full text-center hover:text-red-600"
+          >
+            ຄິດໄລ່ຄ່າບໍລິການ(ພັດສະດຸທົ່ວໄປ)
+          </TabsTrigger>
         </TabsList>
-
         <TabsContent value="standard">
           <div className="overflow-x-auto">
             <table className="pricing-table">
@@ -127,107 +216,116 @@ export default function PricingPage() {
                 </tr>
               </thead>
               <tbody>
-                {filterPricing(standardPricing).map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>{item.item}</td>
-                    <td className="price">{item.price}</td>
+                {filteredItemsPrice?.map((value, index) => (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{value?.title}</td>
+                    <td className="price text-right">
+                      {currency(value?.packagePrice)} ກີບ
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+
+            <div className="text-center mt-8">
+              <p className="text-gray-500 mb-4">
+                ສະແດງ {filteredItemsPrice?.length} ໃນ {totalPrice} ສາຂາ
+              </p>
+              <Button variant="outline" onClick={loadMoreBranches}>
+                ໂຫຼດສາຂາເພີ່ມເຕີມ
+              </Button>
+            </div>
           </div>
         </TabsContent>
+        <TabsContent value="price">
+          <div className="bg-red-100 p-8 rounded-lg shadow-md max-w-xl mx-auto">
+            <h2 className="text-2xl font-semibold text-red-700 mb-4 text-center">
+              ຄິດໄລ່ຄ່າບໍລິການ
+            </h2>
 
-        <TabsContent value="electronics">
-          <div className="overflow-x-auto">
-            <table className="pricing-table">
-              <thead>
-                <tr>
-                  <th className="w-10">#</th>
-                  <th>ລາຍການ</th>
-                  <th className="text-right">ລາຄາ (ກີບ)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filterPricing(electronicsAndDevices).map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>{item.item}</td>
-                    <td className="price">{item.price}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </TabsContent>
+            <div className="flex justify-center mb-4">
+              <Package className="h-16 w-16 text-red-600" />
+            </div>
 
-        <TabsContent value="furniture">
-          <div className="overflow-x-auto">
-            <table className="pricing-table">
-              <thead>
-                <tr>
-                  <th className="w-10">#</th>
-                  <th>ລາຍການ</th>
-                  <th className="text-right">ລາຄາ (ກີບ)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filterPricing(furnitureAndLarge).map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>{item.item}</td>
-                    <td className="price">{item.price}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </TabsContent>
+            <div className="flex items-center space-x-4 mb-4">
+            <SelectProvinces
+  all={true}
+  value={selectedProvince.value}
+  onChange={(selected) => {
+    if (selected) {
+      setSelectedProvince({ value: selected.value, name: selected.provinceName });
+    } else {
+      setSelectedProvince({ value: undefined, name: null });
+    }
+  }}
+/>
 
-        <TabsContent value="vehicles">
-          <div className="overflow-x-auto">
-            <table className="pricing-table">
-              <thead>
-                <tr>
-                  <th className="w-10">#</th>
-                  <th>ລາຍການ</th>
-                  <th className="text-right">ລາຄາ (ກີບ)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filterPricing(vehiclesAndParts).map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>{item.item}</td>
-                    <td className="price">{item.price}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </TabsContent>
+              <div className="text-red-600">
+                <ArrowRight className="h-6 w-6" />
+              </div>
 
-        <TabsContent value="special">
-          <div className="overflow-x-auto">
-            <table className="pricing-table">
-              <thead>
-                <tr>
-                  <th className="w-10">#</th>
-                  <th>ລາຍການ</th>
-                  <th className="text-right">ລາຄາ (ກີບ)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filterPricing(specialPackages).map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>{item.item}</td>
-                    <td className="price">{item.price}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+              {/* <Select>
+                <SelectTrigger className="w-full border border-red-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+                  ເລືອກປາຍທາງ
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="hdy">1</SelectItem>
+                  <SelectItem value="kkc">2</SelectItem>
+                  <SelectItem value="urt">3</SelectItem>
+                </SelectContent>
+              </Select> */}
+            </div>
+            <div className="flex items-center space-x-4 mb-4">
+              <input
+                type="number"
+                placeholder="ຂະໜາດສິນຄ້າ (cm)"
+                className="p-3 border border-red-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-red-500"
+                value={getWidth}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (
+                    !value ||
+                    (parseInt(value) > 0 && parseInt(value) <= 350)
+                  ) {
+                    setGetWidth(value);
+                  }
+                }}
+              />
+              <input
+                type="number"
+                placeholder="ນ້ຳໜັກ (kg)"
+                className="p-3 border border-red-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-red-500"
+                value={getWeight}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (
+                    !value ||
+                    (parseInt(value) > 0 && parseInt(value) <= 80)
+                  ) {
+                    setGetWeight(value);
+                  }
+                }}
+              />
+            </div>
+
+            <button
+              className="mt-6 w-full bg-red-600 text-white py-3 rounded-lg font-medium hover:bg-red-700 transition"
+              onClick={calculatePrice}
+            >
+              ຄຳນວນ
+            </button>
+            <p>ສາຂາທີ່ເລືອກ: {selectedProvince.name || "ຍັງບໍ່ໄດ້ເລືອກ"}</p>
+
+            {priceItem !== null && (
+              <div className="mt-6 text-center bg-white p-4 rounded-lg shadow-md">
+                <p className="text-gray-700">ລາຄາ:</p>
+                <div className="flex justify-center items-center text-2xl font-semibold text-red-600">
+                  <Box className="h-6 w-6 mr-2" />{" "}
+                  <span>{priceItem.toLocaleString()} ກີບ</span>
+                </div>
+              </div>
+            )}
           </div>
         </TabsContent>
       </Tabs>
@@ -239,16 +337,12 @@ export default function PricingPage() {
           <li>ລາຄາຂ້າງເທິງນີ້ແມ່ນລາຄາມາດຕະຖານ ສຳລັບການຈັດສົ່ງປົກກະຕິ.</li>
           <li>ອາດມີການປັບປ່ຽນລາຄາຕາມຂະໜາດແລະນໍ້າໜັກທີ່ແທ້ຈິງຂອງພັດສະດຸ.</li>
           <li>ລາຄາບໍລິການຈັດສົ່ງດ່ວນພິເສດກະລຸນາຕິດຕໍ່ໂດຍກົງ.</li>
-          <li>ສຳລັບການຂົນສົ່ງສິນຄ້າຈຳນວນຫຼາຍ, ທ່ານສາມາດຕິດຕໍ່ເພື່ອຮັບໂປຣໂມຊັ່ນພິເສດ.</li>
+          <li>
+            ສຳລັບການຂົນສົ່ງສິນຄ້າຈຳນວນຫຼາຍ,
+            ທ່ານສາມາດຕິດຕໍ່ເພື່ອຮັບໂປຣໂມຊັ່ນພິເສດ.
+          </li>
           <li>ລາຄາທັງໝົດແມ່ນລວມອາກອນ VAT ແລ້ວ.</li>
         </ul>
-      </div>
-
-      {/* Calculator Button */}
-      <div className="text-center mt-8">
-        <Button className="bg-red-600 hover:bg-red-700">
-          ໃຊ້ເຄື່ອງຄິດໄລ່ຄ່າຂົນສົ່ງ
-        </Button>
       </div>
     </div>
   );

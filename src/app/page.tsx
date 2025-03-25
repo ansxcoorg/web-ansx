@@ -10,7 +10,14 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
-import { PhoneCall, Navigation, Package, Truck, Clock } from "lucide-react";
+import {
+  PhoneCall,
+  Navigation,
+  Package,
+  Truck,
+  Clock,
+  MapPin,
+} from "lucide-react";
 import SlideImages from "./home/slideImages";
 import PapersNews from "./home/PapersNews";
 import PackagePrice from "./home/packageprice";
@@ -113,9 +120,9 @@ export default function Home() {
       </section>
 
       {/* Latest News */}
-      <section className="bg-gray-50 py-12">
+      <section className="bg-red-600 py-12">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-8">ຂ່າວສານ ແລະ ກິດຈະກຳ</h2>
+          <h2 className="text-2xl text-white font-bold mb-8">ຂ່າວສານ ແລະ ກິດຈະກຳ</h2>
           <PapersNews />
         </div>
       </section>
@@ -141,9 +148,12 @@ export default function Home() {
               <PhoneCall className="mr-2 h-4 w-4" />
               ຕິດຕໍ່ພວກເຮົາ
             </Button>
-            <Button variant="outline" className="border-white hover:bg-red-700">
-              ຄົ້ນຫາສາຂາໃກ້ບ້ານ
-            </Button>
+            <Link href="/branches">
+              <Button className="bg-white text-red-600 hover:bg-gray-100">
+                <MapPin className="mr-2 h-4 w-4" />
+                ຄົ້ນຫາສາຂາໃກ້ບ້ານ
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

@@ -13,9 +13,11 @@ import LogoAns from "../../img/logo_next_day.png";
 const navItems = [
   { name: "ລາຍງານ ແລະ ຂ່າວສານ", href: "/news" },
   { name: "ສາຂາທັງໝົດ", href: "/branches" },
+  { name: "ຄ່າບໍລິການ", href: "/pricing" },
   { name: "ກ່ຽວກັບພວກເຮົາ", href: "/about" },
   { name: "ຮ່ວມງານກັບພວກເຮົາ", href: "/jobs" },
-  { name: "ນະໂຍບາຍຕ່າງໆ", href: "/policies" },
+  { name: "ຕິດຕໍ່ພວກເຮົາ", href: "/contact" },
+  { name: "ນະໂຍບາຍຕ່າງໆ", href: "/policy" },
 ];
 
 export default function Header() {
@@ -82,21 +84,7 @@ export default function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-              <nav className="flex flex-col gap-4 mt-8">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="text-lg font-medium px-2 py-2 text-gray-700 hover:text-red-600 transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </nav>
-
-              {/* Mobile Search */}
-              {/* Mobile Search */}
-              <form
+            <form
                 action="https://app.anousith.express/landing/search_tracking/search_item"
                 method="get"
                 className="flex items-center"
@@ -118,6 +106,17 @@ export default function Header() {
                   </div>
                 </div>
               </form>
+              <nav className="flex flex-col gap-4 mt-8">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="text-lg font-medium px-2 py-2 text-gray-700 hover:text-red-600 transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </nav>
             </SheetContent>
           </Sheet>
         </div>

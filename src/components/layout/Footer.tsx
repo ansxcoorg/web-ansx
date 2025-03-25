@@ -33,15 +33,19 @@ export default function Footer() {
             </p>
             <div className="flex items-center text-sm text-gray-600 mb-2">
               <MapPin className="mr-2 h-4 w-4" />
-              <span>ນະຄອນຫຼວງວຽງຈັນ, ລາວ ພີດີອາ</span>
+              <span>ນະຄອນຫຼວງວຽງຈັນ, ລາວ</span>
             </div>
             <div className="flex items-center text-sm text-gray-600 mb-2">
               <Phone className="mr-2 h-4 w-4" />
-              <span>+856 20 xxxx xxxx</span>
+              <span>+856 20 97285066</span>
+            </div>
+            <div className="flex items-center text-sm text-gray-600 mb-2">
+              <Phone className="mr-2 h-4 w-4" />
+              <span>ສາຍດ່ວນ: 1355</span>
             </div>
             <div className="flex items-center text-sm text-gray-600">
               <Mail className="mr-2 h-4 w-4" />
-              <span>info@anousith.express</span>
+              <span>anousithlogistic@gmail.com</span>
             </div>
           </div>
 
@@ -67,6 +71,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/pricing"
+                  className="text-sm text-gray-600 hover:text-red-600 transition-colors"
+                >
+                  ຄ່າບໍລິການ
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/about"
                   className="text-sm text-gray-600 hover:text-red-600 transition-colors"
                 >
@@ -83,7 +95,15 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/policies"
+                  href="/contact"
+                  className="text-sm text-gray-600 hover:text-red-600 transition-colors"
+                >
+                  ຕິດຕໍ່ພວກເຮົາ
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/policy"
                   className="text-sm text-gray-600 hover:text-red-600 transition-colors"
                 >
                   ນະໂຍບາຍຕ່າງໆ
@@ -98,7 +118,7 @@ export default function Footer() {
             <p className="text-sm text-gray-600 mb-4">
               ດາວໂຫຼດແອັບມືຖືຂອງພວກເຮົາເພື່ອປະສົບການທີ່ດີຂຶ້ນ
             </p>
-            <div className="relative h-32 w-full">
+            <div className="relative h-56 w-full">
               <Image
                 src={DownloadAPP}
                 alt="Download mobile app"
@@ -113,28 +133,20 @@ export default function Footer() {
             <h3 className="mb-4 text-lg font-medium">ຂໍ້ມູນເພີ່ມເຕີມ</h3>
             <div className="flex space-x-4">
               <a
-                href="https://www.facebook.com"
+                href="https://www.facebook.com/AnousithExpress"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-blue-600 transition-colors"
               >
-                <FaFacebookF className="h-6 w-6"/>
+                <FaFacebookF className="h-6 w-6" />
               </a>
               <a
-                href="https://www.tiktok.com"
+                href="https://www.tiktok.com/@ans_express"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-black transition-colors"
               >
                 <SiTiktok className="h-6 w-6" />
-              </a>
-              <a
-                href="https://www.instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-pink-600 transition-colors"
-              >
-                <ImInstagram className="h-6 w-6" />
               </a>
             </div>
             <p className="text-sm text-gray-600">

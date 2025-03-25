@@ -27,8 +27,6 @@ export default function BranchesPage() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  console.log("itemBranches", itemBranches);
-
   useEffect(() => {
     const query = searchParams.get("searchQuery") || "";
     setSearchQuery(query);
