@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X, Search } from "lucide-react";
@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
 import LogoAns from "../../img/logo_next_day.png";
+import { usePathname } from "next/navigation";
 
 const navItems = [
   { name: "ລາຍງານ ແລະ ຂ່າວສານ", href: "/news" },
@@ -22,11 +23,38 @@ const navItems = [
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setLoading(true);
+    const timeout = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timeout);
+  }, [pathname]);
 
   return (
-    <header className="bg-white sticky top-0 z-40 w-full border-b border-gray-200">
+    <header className="bg-gray-200 sticky top-0 z-40 w-full border-b border-gray-200">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
+          {loading && (
+            <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
+              <div className="text-center">
+                <Image
+                  src={LogoAns}
+                  alt="Anousith Express Logo"
+                  className="animate-bounce mb-6 mx-auto"
+                  width={120}
+                  height={120}
+                />
+                <div className="flex space-x-2 justify-center">
+                  <div className="w-3 h-12 bg-red-500 animate-pulse rounded-lg"></div>
+                  <div className="w-3 h-16 bg-red-500 animate-pulse delay-100 rounded-lg"></div>
+                  <div className="w-3 h-10 bg-red-500 animate-pulse delay-200 rounded-lg"></div>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <div className="relative h-10 w-36">
@@ -46,7 +74,7 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-gray-700 hover:text-red-600 transition-colors px-3 py-2"
+                className="text-sm font-bold text-gray-700 hover:text-red-600 transition-colors px-3 py-2 "
               >
                 {item.name}
               </Link>
@@ -84,7 +112,7 @@ export default function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-            <form
+              <form
                 action="https://app.anousith.express/landing/search_tracking/search_item"
                 method="get"
                 className="flex items-center"

@@ -9,8 +9,18 @@ import Schema from "../../apollo/index";
 import { formatDate } from "@/lib/utils";
 import Link from "next/link";
 
+interface Catalog {
+  title: string;
+}
+interface itemsJobs {
+  image: string;
+  createdAt: Date;
+  catalog: Catalog;
+  title: string;
+}
+
 export default function Jobs() {
-  const [itemsJobs, setItemsJobs] = useState<any[]>([]);
+  const [itemsJobs, setItemsJobs] = useState<itemsJobs[]>([]);
   const [fetchData, { data }] = useLazyQuery(Schema.communities, {
     fetchPolicy: "cache-and-network",
   });
@@ -42,12 +52,11 @@ export default function Jobs() {
             key={index}
             className="flex flex-col h-full overflow-hidden hover:shadow-lg hover:scale-105 transition-transform duration-300"
           >
-            <div className="relative h-[700px] w-full">
-              <Image
+            <div className="relative w-full">
+              <img
                 src={`https://storage.googleapis.com/ansx/website/images/${value?.image}`}
-                alt={"photo"}
-                fill
-                style={{ objectFit: "cover" }}
+                alt="photo"
+                className="w-full h-full object-cover rounded-2xl"
               />
             </div>
 

@@ -7,9 +7,7 @@ export default function ClientBody({
 }: {
   children: React.ReactNode;
 }) {
-
   useEffect(() => {
-
     document.body.className = "antialiased";
   }, []);
 

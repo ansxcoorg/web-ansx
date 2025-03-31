@@ -14,6 +14,8 @@ export default class Schema {
           address_info
           map_lat
           map_lng
+          public
+          region
         }
       }
     }

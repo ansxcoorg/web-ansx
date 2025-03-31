@@ -6,6 +6,8 @@ import Providers from "./providers";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import logo from "@/assets/img/ans-logo.png";
+import { ToastContainer } from "react-toastify";
+import './globals.css';
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const notoSansLao = Noto_Sans_Lao({
@@ -27,6 +29,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <html lang="en">
       <body className={`${inter.variable} ${notoSansLao.variable} font-sans`}>
@@ -37,6 +40,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </Providers>
+        <ToastContainer />
       </body>
     </html>
   );

@@ -21,10 +21,22 @@ import Schema from "../../apollo/index";
 import { formatDate } from "@/lib/utils";
 import { useSearchParams } from "next/navigation";
 
+interface Catalog {
+  title: string;
+}
+
+interface newsItem {
+  id: string;
+  image: string;
+  title: string;
+  date: Date;
+  catalog: Catalog;
+}
+
 export default function NewsPage() {
   const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
-  const [newsItems, setNewsItems] = useState<any[]>([]);
+  const [newsItems, setNewsItems] = useState<newsItem[]>([]);
   const initialPage = parseInt(searchParams.get("page") || "1", 10);
   const [page, setPage] = useState(initialPage);
   const [limit] = useState(7);
@@ -44,10 +56,8 @@ export default function NewsPage() {
     });
   }, [fetchData, page, limit]);
   useEffect(() => {
-    console.log("API Response:", data);
     if (data) {
       setNewsItems(data?.communities?.data || []);
-      console.log("Updated News Items:", data?.communities?.data);
       const calculatedTotalPages = Math.ceil(
         (data?.communities?.total || 0) / limit
       );
@@ -178,7 +188,6 @@ export default function NewsPage() {
               <PaginationPrevious
                 href="#"
                 onClick={() => {
-                  console.log("Previous Page Clicked");
                   setPage((prev) => Math.max(prev - 1, 1));
                 }}
               />
@@ -200,7 +209,6 @@ export default function NewsPage() {
               <PaginationNext
                 href="#"
                 onClick={() => {
-                  console.log("Next Page Clicked");
                   setPage((prev) => Math.min(prev + 1, totalPages));
                 }}
               />

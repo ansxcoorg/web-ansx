@@ -61,7 +61,9 @@ export default function SelectProvinces({
   }, [data, all]);
 
   return (
-    <div style={{ minWidth: 200, color: "black", marginTop: -5 }}>
+    <div
+      className="flex justify-center space-x-4 mb-4"
+    >
       <Select
         disabled={disabled}
         onValueChange={(value) => {
@@ -70,7 +72,7 @@ export default function SelectProvinces({
         }}
         value={value}
       >
-        <SelectTrigger className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 bg-white shadow-sm">
+        <SelectTrigger  className="w-full min-w-[150px] max-w-[250px] border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 bg-white shadow-sm">
           <SelectValue>
             {value && items.some((item) => item.value === value)
               ? items.find((item) => item.value === value)?.label
@@ -81,7 +83,7 @@ export default function SelectProvinces({
         </SelectTrigger>
         <SelectContent
           className="bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto"
-          position="item-aligned"
+          position="popper"
         >
           {items.map((item) => (
             <SelectItem

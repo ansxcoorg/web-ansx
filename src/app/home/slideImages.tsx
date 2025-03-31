@@ -13,8 +13,12 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 
+interface SlideImage {
+  image: string; 
+}
+
 export default function SlideImages() {
-  const [slideImg, setSlideImg] = useState<any[]>([]);
+  const [slideImg, setSlideImg] = useState<SlideImage[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [trackingNumber, setTrackingNumber] = useState("");
   const [fetchData, { data, loading }] = useLazyQuery(Schema.slideImg);
@@ -30,12 +34,10 @@ export default function SlideImages() {
 
   useEffect(() => {
     if (data) {
-      console.log("Data fetched:", data);
       setSlideImg(data?.slideImages?.data || []);
     }
   }, [data]);
 
-  console.log("Slide Images:", slideImg);
 
   useEffect(() => {
     if (slideImg.length > 0) {
@@ -61,6 +63,7 @@ export default function SlideImages() {
                 alt="post-slider"
                 fill
                 priority
+                className="object-cover"
               />
             </div>
           </CarouselItem>
@@ -76,7 +79,7 @@ export default function SlideImages() {
                 <input
                   type="text"
                   placeholder="ເລກພັດສະດຸ ຫຼື ເບີໂທລະສັບ..."
-                  className="w-full p-2 text-black rounded-md"
+                  className="w-full p-2 text-black rounded-md outline-none ring-0 focus:ring-0 focus:outline-none"
                   value={trackingNumber}
                   onChange={(e) => setTrackingNumber(e.target.value)}
                 />

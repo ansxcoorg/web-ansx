@@ -62,7 +62,7 @@ const BranchMap = ({ branches , center, zoom}: BranchMapProps) => {
                   position={{ lat, lng }}
                   title={branch.branch_name} 
                   label={{
-                    text: "0",
+                    text: ".",
                     color: "black",
                     fontSize: "10px",
                     fontWeight: "bold",

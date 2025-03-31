@@ -31,20 +31,26 @@ interface PricingItem {
   id: number;
   item: string;
   price: string;
+  title : string;
+  packagePrice : number;
 }
 
 export default function PricingPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [itemsPrice, setItemsPrice] = useState<any[]>();
-  const [totalPrice, setTotalPrice] = useState<any[]>();
+  const [itemsPrice, setItemsPrice] = useState<PricingItem[]>();
+  const [totalPrice, setTotalPrice] = useState<number>(0);
   const [getWidth, setGetWidth] = useState("");
   const [getWeight, setGetWeight] = useState("");
   const [priceItem, setPriceItem] = useState<number | null>(null);
-  const [selectedProvince, setSelectedProvince] = useState<{
-    value: string | undefined;
+  const [selectedProvinceFrom, setSelectedProvinceFrom] = useState<{
+    value: number | undefined;
     name: string | null;
   }>({ value: undefined, name: null });
 
+  const [selectedProvinceTo, setSelectedProvinceTo] = useState<{
+    value: number | undefined;
+    name: string | null;
+  }>({ value: undefined, name: null });
 
   const [skip, setSkip] = useState(0);
   const [limit, setLimit] = useState(10);
@@ -53,6 +59,12 @@ export default function PricingPage() {
   const [fetchData, { data }] = useLazyQuery(Schema.packagesPrice, {
     fetchPolicy: "cache-and-network",
   });
+
+  useEffect(() => {
+    if (!getWidth || !getWeight || selectedProvinceFrom || selectedProvinceTo) {
+      setPriceItem(null);
+    }
+  }, [getWidth, getWeight, selectedProvinceFrom, selectedProvinceTo]);
 
   useEffect(() => {
     const query = searchParams.get("searchQuery") || "";
@@ -101,7 +113,7 @@ export default function PricingPage() {
   const calculator = ({
     width,
     weight,
-    transferToProvince,
+    transferToProvince = 0,
     checkFree,
   }: {
     width: number;
@@ -134,26 +146,71 @@ export default function PricingPage() {
   };
 
   const calculatePrice = () => {
-    if (!getWidth || !getWeight) {
-      alert("ປ້ອນຂະໜາດນ້ຳໜັກກ່ອນ");
+    if (
+      !getWidth ||
+      !getWeight ||
+      !selectedProvinceFrom?.value ||
+      !selectedProvinceTo?.value
+    ) {
+      toast.error("ເລືອກແຂວງກ່ອນ ແລະ ປ້ອນຂະໜາດນ້ຳໜັກ", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        className: "custom-toast",
+      });
       return;
     }
 
     const width = parseInt(getWidth);
     const weight = parseInt(getWeight);
 
-    if (width <= 0 || width > 350 || weight <= 0 || weight > 80) {
-      alert("ຂະໜາດນ້ຳໜັກບໍ່ຖືກຕ້ອງ");
+    if (width < 40 || width > 350 || weight < 1 || weight > 80) {
+      toast.error("ຂະໜາດນ້ຳໜັກບໍ່ຖືກຕ້ອງ", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        className: "custom-toast",
+      });
       return;
     }
+
+    const transferToProvince = stateToSouthernEarth(
+      selectedProvinceFrom.value,
+      selectedProvinceTo.value
+    );
 
     const calculatedPrice = calculator({
       width,
       weight,
+      transferToProvince,
       checkFree: false,
     });
 
     setPriceItem(calculatedPrice);
+  };
+
+  const stateToSouthernEarth = (from_state: number, end_state: number): number => {
+    const fromState = Number(from_state);
+    const endState = Number(end_state);
+
+    if (isNaN(fromState) || isNaN(endState)) {
+      return 0;
+    }
+    const northern = [18, 13, 19, 16, 14, 17, 22, 21, 15, 23];
+    const southern = [8, 9, 3, 10, 5, 11, 12];
+
+    if (
+      (southern.indexOf(fromState) !== -1 &&
+        northern.indexOf(endState) !== -1) ||
+      (southern.indexOf(endState) !== -1 && northern.indexOf(fromState) !== -1)
+    ) {
+      return 1;
+    }
+    return 0;
   };
 
   return (
@@ -253,17 +310,19 @@ export default function PricingPage() {
                 <h2 className="mb-4">ເລືອກແຂວງຕົ້ນທາງ</h2>
                 <SelectProvinces
                   all={true}
-                  value={selectedProvince.value || "ເລືອກແຂວງ"}
+                  value={selectedProvinceFrom.value || "ເລືອກແຂວງ"}
                   onChange={(selected) => {
                     if (selected) {
-                      setSelectedProvince({ value: selected.value, name: selected.provinceName });
+                      setSelectedProvinceFrom({
+                        value: selected.value,
+                        name: selected.provinceName,
+                      });
                     } else {
-                      setSelectedProvince({ value: undefined, name: null });
+                      setSelectedProvinceFrom({ value: undefined, name: null });
                     }
                   }}
                 />
               </div>
-
 
               <div className="flex flex-col items-center text-red-600">
                 <ArrowRight className="h-6 w-6 mb-8" />
@@ -273,18 +332,19 @@ export default function PricingPage() {
                 <h2 className="mb-4">ເລືອກແຂວງປາຍທາງ</h2>
                 <SelectProvinces
                   all={true}
-                  value={selectedProvince.value || "ເລືອກແຂວງ"}
+                  value={selectedProvinceTo.value || "ເລືອກແຂວງ"}
                   onChange={(selected) => {
                     if (selected) {
-                      setSelectedProvince({ value: selected.value, name: selected.provinceName });
+                      setSelectedProvinceTo({
+                        value: selected.value,
+                        name: selected.provinceName,
+                      });
                     } else {
-                      setSelectedProvince({ value: undefined, name: null });
+                      setSelectedProvinceTo({ value: undefined, name: null });
                     }
                   }}
                 />
-
               </div>
-
             </div>
             <div className="flex items-center space-x-4 mb-4">
               <input
@@ -325,16 +385,30 @@ export default function PricingPage() {
             >
               ຄຳນວນ
             </button>
-            <p>ສາຂາທີ່ເລືອກ: {selectedProvince.name || "ຍັງບໍ່ໄດ້ເລືອກ"}</p>
 
             {priceItem !== null && (
-              <div className="mt-6 text-center bg-white p-4 rounded-lg shadow-md">
-                <p className="text-gray-700">ລາຄາ:</p>
-                <div className="flex justify-center items-center text-2xl font-semibold text-red-600">
-                  <Box className="h-6 w-6 mr-2" />{" "}
-                  <span>{priceItem.toLocaleString()} ກີບ</span>
+              <>
+                <div className="mt-6 text-center bg-white p-4 rounded-lg shadow-md">
+                  <div className="flex justify-center items-center mb-2">
+                    <p className="text-gray-700 mr-2 font-bold text-lg">
+                      ຄ່າສົ່ງ:
+                    </p>
+                    <div className="flex justify-center items-center text-2xl font-semibold text-red-600">
+                      <Box className="h-6 w-6 mr-2" />{" "}
+                      <span>{priceItem.toLocaleString()} ກີບ</span>
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="text-center mt-2">
+                    {" "}
+                    <Link href="/branches">
+                      <Button className="bg-red-600 hover:bg-red-700">
+                        ຄົ້ນຫາສາຂາໃກ້ບ້ານທ່ານ
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
-              </div>
+              </>
             )}
           </div>
         </TabsContent>

@@ -12,13 +12,28 @@ import Schema from "../../apollo/index";
 import { useLazyQuery } from "@apollo/client";
 import { usePathname, useSearchParams } from "next/navigation";
 
+interface itemBranches {
+  id_branch: number;
+  branch_name : string;
+  public : number;
+  address_info : string;
+  map_lat : string ;
+  map_lng : string;
+  region : string;
+  mainBranches : number;
+  isDeleted : number;
+  branch_address : string;
+
+}
+
 export default function BranchesPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [itemBranches, setItemBranches] = useState<any[]>([]);
-  const [totalBranches, setTotalBranches] = useState<any[]>([]);
+  const [itemBranches, setItemBranches] = useState<itemBranches[]>([]);
+  const [totalBranches, setTotalBranches] = useState<number>(0);
   const [skip, setSkip] = useState(0);
   const [limit, setLimit] = useState(100);
   // const [displayLimit, setDisplayLimit] = useState(50);
+  const [selectedRegion, setSelectedRegion] = useState("");
 
   const [mapCenter, setMapCenter] = useState({ lat: 17.9757, lng: 102.6331 });
   const [mapZoom, setMapZoom] = useState(7);
@@ -37,12 +52,13 @@ export default function BranchesPage() {
       variables: {
         where: {
           branch_name: searchQuery ? searchQuery : undefined,
+          region: selectedRegion ? selectedRegion : undefined,
         },
         skip: skip,
         limit: limit,
       },
     });
-  }, [skip, limit, searchQuery, QueryBranch]);
+  }, [skip, limit, searchQuery, QueryBranch, selectedRegion]);
 
   useEffect(() => {
     if (data) {
@@ -88,6 +104,8 @@ export default function BranchesPage() {
     }
   };
 
+  console.log("filteredBranches" , filteredBranches)
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">ສາຂາທັງໝົດ</h1>
@@ -97,17 +115,53 @@ export default function BranchesPage() {
 
       <Separator className="my-8" />
 
-      {/* Search Box */}
-      <div className="mb-8 max-w-lg">
-        <div className="relative">
-          <Input
-            type="search"
-            placeholder="ຄົ້ນຫາສາຂາ..."
-            className="w-full bg-gray-50 pr-10"
-            value={searchQuery}
-            onChange={(e) => updateSearchQuery(e.target.value)}
-          />
-          <Search className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+      <div className="flex flex-col sm:flex-row items-center justify-between mb-4">
+        {/* Region Select Buttons */}
+        <div className="flex space-x-4">
+          <button
+            onClick={() => setSelectedRegion("CENTRAL")}
+            className={`py-3 px-8  rounded-md ${
+              selectedRegion === "CENTRAL"
+                ? "bg-red-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
+            ພາກກາງ
+          </button>
+          <button
+            onClick={() => setSelectedRegion("NORTHERN")}
+            className={`py-3 px-8  rounded-md ${
+              selectedRegion === "NORTHERN"
+                ? "bg-red-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
+            ພາກເໜືອ
+          </button>
+          <button
+            onClick={() => setSelectedRegion("SOUTHERN")}
+            className={`py-3 px-8 rounded-md ${
+              selectedRegion === "SOUTHERN"
+                ? "bg-red-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}
+          >
+            ພາກໃຕ້
+          </button>
+        </div>
+
+        {/* Search Box */}
+        <div className="ml-auto max-w-xl">
+          <div className="relative">
+            <Input
+              type="search"
+              placeholder="ຄົ້ນຫາສາຂາ..."
+              className="w-full bg-gray-50 pr-10"
+              value={searchQuery}
+              onChange={(e) => updateSearchQuery(e.target.value)}
+            />
+            <Search className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+          </div>
         </div>
       </div>
 
@@ -115,7 +169,11 @@ export default function BranchesPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredBranches.length > 0 ? (
           filteredBranches.map((branch, index) => (
-            <Card key={index} className="overflow-hidden hover:shadow-lg hover:scale-105 transition-transform duration-300">
+            <Card
+              key={index}
+              className={`overflow-hidden hover:shadow-lg hover:scale-105 transition-transform duration-300 
+                ${branch.public === 1 ? "border-green-600" : "border-red-600"}`}
+            >
               <CardContent className="p-6">
                 <div className="flex items-start mb-4">
                   <div className="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center mr-4 flex-shrink-0">
@@ -137,9 +195,16 @@ export default function BranchesPage() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="mr-2 text-red-600 border-red-600 hover:bg-red-50"
+                        className={`mr-2 ${
+                          branch.public === 1
+                            ? "text-green-600 border-green-600 hover:bg-green-50"
+                            : "text-red-600 border-red-600 hover:bg-red-50"
+                        }`}
                       >
-                        <span className="mr-1">☎</span> {branch.branch_address}
+                        <span className="mr-1">
+                          {branch.public === 1 ? "✅" : "❌"}
+                        </span>
+                        {branch.public === 1 ? "ເປີດປົກກະຕິ" : "ປິດຊົ່ວຄາວ"}
                       </Button>
                       <Button
                         variant="ghost"

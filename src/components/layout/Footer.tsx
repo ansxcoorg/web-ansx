@@ -170,7 +170,7 @@ export default function Footer() {
               ເງື່ອນໄຂການໃຊ້ບໍລິການ
             </Link>
             <Link
-              href="#"
+              href="/policy"
               className="text-sm text-gray-600 hover:text-red-600 transition-colors"
             >
               ນະໂຍບາຍຄວາມເປັນສ່ວນຕົວ

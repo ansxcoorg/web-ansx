@@ -1,6 +1,6 @@
 "use client";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import {
   MapPin,
@@ -9,10 +9,8 @@ import {
   Clock,
   MessageSquare,
   Send,
-  Facebook,
-  Instagram,
-  Twitter,
-  Linkedin,
+  Unlink,
+  Truck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -25,6 +23,7 @@ import { SiTiktok } from "react-icons/si";
 import { ImInstagram } from "react-icons/im";
 
 import logo from "../../img/ans-logo.png";
+import { toast } from "react-toastify";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -46,16 +45,31 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, you would send this data to a server
-    console.log("Form submitted:", formData);
-    alert("ຂອບໃຈສຳລັບຂໍ້ຄວາມຂອງທ່ານ. ພວກເຮົາຈະຕິດຕໍ່ກັບທ່ານໃນໄວໆນີ້.");
-    // Reset form
+    toast.error("ຍັງບໍ່ສາມາດສົ່ງຜ່ານEmailໄດ້ໃນຂະນະນີ້!!!", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      className: "custom-toast",
+    });
     setFormData({
       name: "",
       email: "",
       phone: "",
       subject: "",
       message: "",
+    });
+  };
+
+  const handleChat = () => {
+    toast.error("ຍັງບໍ່ພ້ອມໃຊ້ງານໃນຂະນະນີ້!!!", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      className: "custom-toast",
     });
   };
 
@@ -72,7 +86,7 @@ export default function ContactPage() {
       <section className="relative h-64 flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://ext.same-assets.com/3628071284/3519962358.jpeg"
+            src="introl2.911109cb.png"
             alt="Contact Anousith Express"
             fill
             style={{ objectFit: "cover" }}
@@ -236,12 +250,36 @@ export default function ContactPage() {
 
               <Button
                 type="submit"
-                className="w-full bg-red-600 hover:bg-red-700"
+                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition-transform transform hover:scale-105"
               >
                 <Send className="h-4 w-4 mr-2" />
                 ສົ່ງຂໍ້ຄວາມ
               </Button>
             </form>
+            <div className="mt-4">
+              <h2 className="text-2xl font-bold mb-6">ຮ້ອງຮຽນບັນຫາ</h2>
+              <Button
+                onClick={() =>
+                  (window.location.href = "https://feedback.anousith.express/")
+                }
+                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition-transform transform hover:scale-105"
+              >
+                <Unlink className="h-4 w-4 mr-2" />
+                ຮ້ອງຮຽນບັນຫາ
+              </Button>
+            </div>
+            <div className="mt-4">
+              <h2 className="text-2xl font-bold mb-6">ສະໝັກລົດຮ່ວມ</h2>
+              <Button
+                onClick={() =>
+                  (window.location.href = "https://partner.anousith.express/")
+                }
+                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition-transform transform hover:scale-105"
+              >
+                <Truck className="h-4 w-4 mr-2" />
+                ສະໝັກລົດຮ່ວມ
+              </Button>
+            </div>
           </div>
 
           {/* Office Location */}
@@ -258,15 +296,13 @@ export default function ContactPage() {
                         width: "100%",
                         height: "100%",
                       }}
-                      center={{ lat: 17.975601, lng: 102.624856}}
+                      center={{ lat: 17.975601, lng: 102.624856 }}
                       zoom={15}
                       onLoad={(mapInstance) => setMap(mapInstance)}
                     >
                       <Marker
-                        position={{ lat: 17.975601, lng: 102.624856}}
-                        onClick={() =>
-                          handleMarkerClick(17.975601, 102.624856)
-                        }
+                        position={{ lat: 17.975601, lng: 102.624856 }}
+                        onClick={() => handleMarkerClick(17.975601, 102.624856)}
                       />
                     </GoogleMap>
                   </LoadScript>
@@ -347,7 +383,7 @@ export default function ContactPage() {
 
       {/* Customer Service */}
       <section className="bg-gray-50 py-12">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 hover:shadow-lg hover:scale-105 transition-transform duration-300">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-2xl font-bold mb-4">ບໍລິການລູກຄ້າ 24/7</h2>
@@ -361,14 +397,17 @@ export default function ContactPage() {
                 ມີຄຳຖາມກ່ຽວກັບບໍລິການຂອງພວກເຮົາ, ຫຼື ຕ້ອງການຄວາມຊ່ວຍເຫຼືອໃດໆ,
                 ພວກເຮົາຢູ່ທີ່ນີ້ເພື່ອຊ່ວຍທ່ານ.
               </p>
-              <Button className="bg-red-600 hover:bg-red-700">
+              <Button
+                className="bg-red-600 hover:bg-red-700"
+                onClick={handleChat}
+              >
                 <MessageSquare className="h-4 w-4 mr-2" />
                 ແຊັດກັບພວກເຮົາດຽວນີ້
               </Button>
             </div>
             <div className="relative h-72 md:h-96 rounded-lg overflow-hidden">
               <Image
-                src="https://ext.same-assets.com/430996638/2366276010.jpeg"
+                src="https://storage.googleapis.com/ansx/website/images/94d1b0b1-d671-403c-98fe-d70e9bd52c5d.png"
                 alt="Customer Service"
                 fill
                 style={{ objectFit: "cover" }}

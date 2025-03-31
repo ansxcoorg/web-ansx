@@ -13,6 +13,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import Link from "next/link";
 
 export default function AboutPage() {
   return (
@@ -21,7 +22,7 @@ export default function AboutPage() {
       <section className="relative h-80 flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://ext.same-assets.com/1812905475/1516298680.jpeg"
+            src="introl2.911109cb.png"
             alt="About Anousith Express"
             fill
             style={{ objectFit: "cover" }}
@@ -32,7 +33,8 @@ export default function AboutPage() {
         <div className="z-10 text-center text-white px-4">
           <h1 className="text-4xl font-bold mb-4">ກ່ຽວກັບພວກເຮົາ</h1>
           <p className="max-w-3xl mx-auto text-xl">
-            Anousith Express - ບໍລິການຂົນສົ່ງທີ່ໄວ, ປອດໄພ ແລະ ເຊື່ອຖືໄດ້ ທົ່ວປະເທດລາວ ແລະ ສາກົນ
+            Anousith Express - ບໍລິການຂົນສົ່ງທີ່ໄວ, ປອດໄພ ແລະ ເຊື່ອຖືໄດ້
+            ທົ່ວປະເທດລາວ ແລະ ສາກົນ
           </p>
         </div>
       </section>
@@ -43,18 +45,25 @@ export default function AboutPage() {
           <div>
             <h2 className="text-3xl font-bold mb-6">ປະຫວັດຄວາມເປັນມາ</h2>
             <p className="text-gray-600 mb-4">
-              Anousith Express ໄດ້ກໍ່ຕັ້ງຂຶ້ນໃນປີ 2015 ໂດຍມີຈຸດປະສົງເພື່ອສະໜອງການບໍລິການຂົນສົ່ງທີ່ມີຄຸນນະພາບສູງ, ສະດວກ ແລະ ໃນລາຄາທີ່ເໝາະສົມໃຫ້ແກ່ທຸລະກິດ ແລະ ບຸກຄົນທົ່ວປະເທດລາວ.
+              Anousith Express ໄດ້ກໍ່ຕັ້ງຂຶ້ນໃນປີ 2015
+              ໂດຍມີຈຸດປະສົງເພື່ອສະໜອງການບໍລິການຂົນສົ່ງທີ່ມີຄຸນນະພາບສູງ, ສະດວກ
+              ແລະ ໃນລາຄາທີ່ເໝາະສົມໃຫ້ແກ່ທຸລະກິດ ແລະ ບຸກຄົນທົ່ວປະເທດລາວ.
             </p>
             <p className="text-gray-600 mb-4">
-              ຈາກການເລີ່ມຕົ້ນດ້ວຍສາຂາພຽງ 5 ແຫ່ງໃນນະຄອນຫຼວງວຽງຈັນ, ພວກເຮົາໄດ້ຂະຫຍາຍຕົວຢ່າງໄວວາຈົນມີເຄືອຂ່າຍສາຂາຫຼາຍກວ່າ 400+ ແຫ່ງໃນປັດຈຸບັນ, ຄອບຄຸມທຸກແຂວງໃນປະເທດລາວ ແລະ ເຊື່ອມຕໍ່ກັບເຄືອຂ່າຍສາກົນ.
+              ຈາກການເລີ່ມຕົ້ນດ້ວຍສາຂາພຽງ 5 ແຫ່ງໃນນະຄອນຫຼວງວຽງຈັນ,
+              ພວກເຮົາໄດ້ຂະຫຍາຍຕົວຢ່າງໄວວາຈົນມີເຄືອຂ່າຍສາຂາຫຼາຍກວ່າ 400+
+              ແຫ່ງໃນປັດຈຸບັນ, ຄອບຄຸມທຸກແຂວງໃນປະເທດລາວ ແລະ
+              ເຊື່ອມຕໍ່ກັບເຄືອຂ່າຍສາກົນ.
             </p>
             <p className="text-gray-600">
-              ດ້ວຍທີມງານທີ່ມີປະສົບການ ແລະ ເຕັກໂນໂລຢີທີ່ທັນສະໄໝ, ພວກເຮົາໄດ້ກາຍເປັນໜຶ່ງໃນຜູ້ນຳດ້ານບໍລິການໂລຈິສຕິກ ແລະ ຂົນສົ່ງໃນປະເທດລາວ, ບໍລິການຫຼາຍກວ່າ 1 ລ້ານລາຍການຕໍ່ເດືອນ.
+              ດ້ວຍທີມງານທີ່ມີປະສົບການ ແລະ ເຕັກໂນໂລຢີທີ່ທັນສະໄໝ,
+              ພວກເຮົາໄດ້ກາຍເປັນໜຶ່ງໃນຜູ້ນຳດ້ານບໍລິການໂລຈິສຕິກ ແລະ
+              ຂົນສົ່ງໃນປະເທດລາວ, ບໍລິການຫຼາຍກວ່າ 1 ລ້ານລາຍການຕໍ່ເດືອນ.
             </p>
           </div>
           <div className="relative h-80 md:h-96 rounded-lg overflow-hidden">
             <Image
-              src="https://ext.same-assets.com/1075285828/1113901614.jpeg"
+              src={`https://storage.googleapis.com/ansx/website/images/880fbffb-6d3c-4783-80fd-3628d166b3bf.jpg`}
               alt="Anousith Express History"
               fill
               style={{ objectFit: "cover" }}
@@ -64,12 +73,15 @@ export default function AboutPage() {
       </section>
 
       {/* Mission, Vision, Values */}
-      <section className="bg-gray-50 py-16">
+      <section className="bg-red-600 py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">ພາລະກິດ, ວິໄສທັດ ແລະ ຄຸນຄ່າ</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
-              ທຸກການກະທຳ ແລະ ການຕັດສິນໃຈຂອງພວກເຮົາໄດ້ຮັບການຊີ້ນຳໂດຍຫຼັກການພື້ນຖານຂອງພວກເຮົາ
+            <h2 className="text-3xl font-bold mb-4 text-white">
+              ພາລະກິດ, ວິໄສທັດ ແລະ ຄຸນຄ່າ
+            </h2>
+            <p className="text-gray-600 max-w-3xl mx-auto text-white">
+              ທຸກການກະທຳ ແລະ
+              ການຕັດສິນໃຈຂອງພວກເຮົາໄດ້ຮັບການຊີ້ນຳໂດຍຫຼັກການພື້ນຖານຂອງພວກເຮົາ
             </p>
           </div>
 
@@ -81,7 +93,9 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-xl font-bold mb-3">ພາລະກິດ</h3>
                 <p className="text-gray-600">
-                  ສະໜອງການບໍລິການຂົນສົ່ງທີ່ມີປະສິດທິພາບສູງສຸດ, ເຊື່ອຖືໄດ້, ປອດໄພ, ທັນເວລາ ໃນລາຄາທີ່ເໝາະສົມ ເພື່ອເຊື່ອມໂຍງທຸລະກິດ ແລະ ຜູ້ຄົນໃນລາວ ແລະ ພາກພື້ນ.
+                  ສະໜອງການບໍລິການຂົນສົ່ງທີ່ມີປະສິດທິພາບສູງສຸດ, ເຊື່ອຖືໄດ້,
+                  ປອດໄພ, ທັນເວລາ ໃນລາຄາທີ່ເໝາະສົມ ເພື່ອເຊື່ອມໂຍງທຸລະກິດ ແລະ
+                  ຜູ້ຄົນໃນລາວ ແລະ ພາກພື້ນ.
                 </p>
               </CardContent>
             </Card>
@@ -93,7 +107,9 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-xl font-bold mb-3">ວິໄສທັດ</h3>
                 <p className="text-gray-600">
-                  ເປັນຜູ້ນຳດ້ານໂລຈິສຕິກ ແລະ ຂົນສົ່ງທີ່ໃຊ້ເຕັກໂນໂລຢີຊັ້ນນຳຂອງລາວ, ສ້າງຄວາມເຊື່ອມໂຍງທີ່ຫນ້າເຊື່ອຖືທີ່ສຸດລະຫວ່າງຜູ້ຄົນ, ທຸລະກິດ ແລະ ຊຸມຊົນ.
+                  ເປັນຜູ້ນຳດ້ານໂລຈິສຕິກ ແລະ ຂົນສົ່ງທີ່ໃຊ້ເຕັກໂນໂລຢີຊັ້ນນຳຂອງລາວ,
+                  ສ້າງຄວາມເຊື່ອມໂຍງທີ່ຫນ້າເຊື່ອຖືທີ່ສຸດລະຫວ່າງຜູ້ຄົນ, ທຸລະກິດ
+                  ແລະ ຊຸມຊົນ.
                 </p>
               </CardContent>
             </Card>
@@ -130,7 +146,9 @@ export default function AboutPage() {
 
       {/* Key Features */}
       <section className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold mb-12 text-center">ຈຸດເດັ່ນຂອງພວກເຮົາ</h2>
+        <h2 className="text-3xl font-bold mb-12 text-center">
+          ຈຸດເດັ່ນຂອງພວກເຮົາ
+        </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="text-center">
@@ -139,7 +157,8 @@ export default function AboutPage() {
             </div>
             <h3 className="text-xl font-semibold mb-2">ເຄືອຂ່າຍກວ້າງຂວາງ</h3>
             <p className="text-gray-600">
-              ມີສາຂາຫຼາຍກວ່າ 400+ ແຫ່ງທົ່ວປະເທດລາວ ຄອບຄຸມທຸກແຂວງ ແລະ ບັນດາເມືອງຫຼັກ
+              ມີສາຂາຫຼາຍກວ່າ 400+ ແຫ່ງທົ່ວປະເທດລາວ ຄອບຄຸມທຸກແຂວງ ແລະ
+              ບັນດາເມືອງຫຼັກ
             </p>
           </div>
 
@@ -176,64 +195,110 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="bg-gray-50 py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">ທີມງານຜູ້ບໍລິຫານ</h2>
+      <section className="bg-gray-50 py-16 mx-auto">
+        <div className="w-full mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-12 text-center">
+            ທີມງານຜູ້ບໍລິຫານ
+          </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="border-none shadow-md overflow-hidden">
-              <div className="relative h-64">
-                <Image
-                  src="https://ext.same-assets.com/695105685/1712067103.jpeg"
-                  alt="CEO"
-                  fill
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-              <CardContent className="p-6 text-center">
-                <h3 className="text-xl font-bold mb-1">ທ່ານ ອານຸສິດ ວິໄລພົນ</h3>
-                <p className="text-gray-500 mb-3">ຜູ້ກໍ່ຕັ້ງ ແລະ ປະທານບໍລິຫານ</p>
+          <div className="scroll-container">
+            <div className="scroll-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
+              <div className="scroll-item flex flex-col items-center w-60 hover:shadow-lg hover:scale-105 transition-transform duration-300">
+                <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden">
+                  <img
+                    src="https://ext.same-assets.com/695105685/1712067103.jpeg"
+                    alt="CEO"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <h3 className="text-xl font-bold mb-1"> ທ່ານ ..............</h3>
+                <p className="text-gray-500 mb-3">
+                  ຜູ້ກໍ່ຕັ້ງ ແລະ ປະທານບໍລິຫານ
+                </p>
                 <p className="text-sm text-gray-600">
                   ມີປະສົບການຫຼາຍກວ່າ 15 ປີໃນຂະແໜງໂລຈິສຕິກ ແລະ ການຂົນສົ່ງໃນລາວ
                 </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-none shadow-md overflow-hidden">
-              <div className="relative h-64">
-                <Image
-                  src="https://ext.same-assets.com/329469209/2659073661.jpeg"
-                  alt="COO"
-                  fill
-                  style={{ objectFit: "cover" }}
-                />
               </div>
-              <CardContent className="p-6 text-center">
-                <h3 className="text-xl font-bold mb-1">ທ່ານ ສົມພອນ ພົມມະຈັນ</h3>
+
+              <div className="scroll-item flex flex-col items-center w-60 hover:shadow-lg hover:scale-105 transition-transform duration-300">
+                <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden">
+                  <img
+                    src="https://ext.same-assets.com/329469209/2659073661.jpeg"
+                    alt="COO"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <h3 className="text-xl font-bold mb-1"> ທ່ານ ..............</h3>
                 <p className="text-gray-500 mb-3">ຜູ້ອຳນວຍການປະຕິບັດການ</p>
                 <p className="text-sm text-gray-600">
-                  ເປັນຜູ້ຊ່ຽວຊານດ້ານການຈັດການຫ່ວງໂສ້ອຸປະທານ ແລະ ໂລຈິສຕິກ
+                  ເປັນຜູ່ຊ່ຽວຊານດ້ານການຈັດການຫ່ວງໂສ້ອຸປະທານ ແລະ ໂລຈິສຕິກ
                 </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-none shadow-md overflow-hidden">
-              <div className="relative h-64">
-                <Image
-                  src="https://ext.same-assets.com/51785975/2381797199.jpeg"
-                  alt="CTO"
-                  fill
-                  style={{ objectFit: "cover" }}
-                />
               </div>
-              <CardContent className="p-6 text-center">
-                <h3 className="text-xl font-bold mb-1">ທ່ານ ນ. ວິໄລພອນ ສິດທິວົງ</h3>
+
+              <div className="scroll-item flex flex-col items-center w-60 hover:shadow-lg hover:scale-105 transition-transform duration-300">
+                <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden">
+                  <img
+                    src="https://ext.same-assets.com/51785975/2381797199.jpeg"
+                    alt="CTO"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <h3 className="text-xl font-bold mb-1">ທ່ານ ..............</h3>
                 <p className="text-gray-500 mb-3">ຜູ້ອຳນວຍການດ້ານເຕັກໂນໂລຢີ</p>
                 <p className="text-sm text-gray-600">
-                  ຜູ້ນຳດ້ານການພັດທະນາແພລັດຟອມດິຈິຕອລແລະລະບົບຕິດຕາມສຳລັບໂລຈິສຕິກ
+                  ຜູ່ນຳດ້ານການພັດທະນາແພລັດຟອມດິຈິຕອລແລະລະບົບຕິດຕາມສຳລັບໂລຈິສຕິກ
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+
+              <div className="scroll-item flex flex-col items-center w-60 hover:shadow-lg hover:scale-105 transition-transform duration-300">
+                <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden">
+                  <img
+                    src="https://ext.same-assets.com/695105685/1712067103.jpeg"
+                    alt="CEO"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <h3 className="text-xl font-bold mb-1"> ທ່ານ ..............</h3>
+                <p className="text-gray-500 mb-3">
+                  ຜູ້ກໍ່ຕັ້ງ ແລະ ປະທານບໍລິຫານ
+                </p>
+                <p className="text-sm text-gray-600">
+                  ມີປະສົບການຫຼາຍກວ່າ 15 ປີໃນຂະແໜງໂລຈິສຕິກ ແລະ ການຂົນສົ່ງໃນລາວ
+                </p>
+              </div>
+
+              <div className="scroll-item flex flex-col items-center w-60 hover:shadow-lg hover:scale-105 transition-transform duration-300">
+                <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden">
+                  <img
+                    src="https://ext.same-assets.com/695105685/1712067103.jpeg"
+                    alt="CEO"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <h3 className="text-xl font-bold mb-1"> ທ່ານ ..............</h3>
+                <p className="text-gray-500 mb-3">
+                  ຜູ້ກໍ່ຕັ້ງ ແລະ ປະທານບໍລິຫານ
+                </p>
+                <p className="text-sm text-gray-600">
+                  ມີປະສົບການຫຼາຍກວ່າ 15 ປີໃນຂະແໜງໂລຈິສຕິກ ແລະ ການຂົນສົ່ງໃນລາວ
+                </p>
+              </div>
+
+              <div className="scroll-item flex flex-col items-center w-60 hover:shadow-lg hover:scale-105 transition-transform duration-300">
+                <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden">
+                  <img
+                    src="https://ext.same-assets.com/329469209/2659073661.jpeg"
+                    alt="COO"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <h3 className="text-xl font-bold mb-1"> ທ່ານ ..............</h3>
+                <p className="text-gray-500 mb-3">ຜູ້ອຳນວຍການປະຕິບັດການ</p>
+                <p className="text-sm text-gray-600">
+                  ເປັນຜູ່ຊ່ຽວຊານດ້ານການຈັດການຫ່ວງໂສ້ອຸປະທານ ແລະ ໂລຈິສຕິກ
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -244,15 +309,23 @@ export default function AboutPage() {
           ພ້ອມຮັບໃຊ້ທ່ານໃນທຸກຄວາມຕ້ອງການດ້ານການຂົນສົ່ງ
         </h2>
         <p className="text-gray-600 mb-8 max-w-3xl mx-auto">
-          ບໍ່ວ່າທ່ານຈະເປັນທຸລະກິດຂະໜາດນ້ອຍ, ລາຍໃຫຍ່ ຫຼື ບຸກຄົນ, ພວກເຮົາມີທາງອອກການຂົນສົ່ງທີ່ເໝາະສົມກັບທຸກຄວາມຕ້ອງການຂອງທ່ານ.
+          ບໍ່ວ່າທ່ານຈະເປັນທຸລະກິດຂະໜາດນ້ອຍ, ລາຍໃຫຍ່ ຫຼື ບຸກຄົນ,
+          ພວກເຮົາມີທາງອອກການຂົນສົ່ງທີ່ເໝາະສົມກັບທຸກຄວາມຕ້ອງການຂອງທ່ານ.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button className="bg-red-600 hover:bg-red-700">
-            ຕິດຕໍ່ພວກເຮົາ
-          </Button>
-          <Button variant="outline" className="border-red-600 text-red-600 hover:bg-red-50">
-            ເບິ່ງບໍລິການຂອງພວກເຮົາ
-          </Button>
+          <Link href="./about">
+            <Button className="bg-red-600 hover:bg-red-700">
+              ຕິດຕໍ່ພວກເຮົາ
+            </Button>
+          </Link>
+          <Link href="./pricing">
+            <Button
+              variant="outline"
+              className="border-red-600 text-red-600 hover:bg-red-50"
+            >
+              ເບິ່ງບໍລິການຂອງພວກເຮົາ
+            </Button>
+          </Link>
         </div>
       </section>
     </div>
