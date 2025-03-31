@@ -8,6 +8,7 @@ import Footer from "@/components/layout/Footer";
 import logo from "@/assets/img/ans-logo.png";
 import { ToastContainer } from "react-toastify";
 import './globals.css';
+import ClientBody from "./ClientBody";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const notoSansLao = Noto_Sans_Lao({
@@ -33,13 +34,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${notoSansLao.variable} font-sans`}>
-        <Providers>
+        <ClientBody>
           <div className="flex min-h-screen flex-col">
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />
           </div>
-        </Providers>
+        </ClientBody>
         <ToastContainer />
       </body>
     </html>
