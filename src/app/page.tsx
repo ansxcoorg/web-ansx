@@ -50,23 +50,10 @@ export default function Home() {
 
   return (
     <div>
-      {/* Date Display */}
-      {/* <div className="container mx-auto px-4 py-4">
-        <div className="flex justify-start">
-          <div className="date-display">
-            <span className="day">{day}</span>
-            <span className="month">{month}</span>
-            <span className="year">{year}</span>
-          </div>
-        </div>
-      </div> */}
-
-      {/* Hero Carousel */}
       <section className="mb-12">
         <SlideImages />
       </section>
 
-      {/* Service Features */}
       <section className="container mx-auto px-4 py-12">
         <h2 className="text-2xl font-bold mb-8 text-center">
           ຈຸດເດັ່ນຂອງການບໍລິການ
@@ -119,21 +106,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Latest News */}
       <section className="bg-red-600 py-12">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl text-white font-bold mb-8">ຂ່າວສານ ແລະ ກິດຈະກຳ</h2>
+          <h2 className="text-2xl text-white font-bold mb-8">
+            ຂ່າວສານ ແລະ ກິດຈະກຳ
+          </h2>
           <PapersNews />
         </div>
       </section>
 
-      {/* Pricing Section */}
       <section className="container mx-auto px-4 py-12">
         <h2 className="text-2xl font-bold mb-8">ລາຄາບໍລິການຫຼັກ</h2>
         <PackagePrice />
       </section>
 
-      {/* Call to Action */}
       <section className="bg-red-600 text-white py-12 hero-gradient">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">

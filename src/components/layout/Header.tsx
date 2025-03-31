@@ -55,7 +55,6 @@ export default function Header() {
             </div>
           )}
 
-          {/* Logo */}
           <Link href="/" className="flex items-center">
             <div className="relative h-10 w-36">
               <Image
@@ -68,7 +67,6 @@ export default function Header() {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-4">
             {navItems.map((item) => (
               <Link
@@ -79,31 +77,8 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
+            
           </nav>
-
-          {/* Search Bar */}
-          {/* <form
-            action="https://app.anousith.express/landing/search_tracking/search_item"
-            method="get"
-            className="hidden md:flex items-center"
-          >
-            <div className="relative">
-              <Input
-                type="search"
-                name="trackingID"
-                placeholder="ຄົ້ນຫາຂໍ້ມູນທີ່ຕ້ອງການ..."
-                className="w-64 rounded-full bg-gray-100 focus:ring-red-500"
-              />
-              <button
-                type="submit"
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
-              >
-                <Search className="h-4 w-4" />
-              </button>
-            </div>
-          </form> */}
-
-          {/* Mobile Menu Trigger */}
           <Sheet>
             <SheetTrigger asChild className="md:hidden">
               <Button variant="ghost" size="icon">

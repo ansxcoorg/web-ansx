@@ -82,7 +82,6 @@ export default function ContactPage() {
 
   return (
     <div>
-      {/* Hero Section */}
       <section className="relative h-64 flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <Image
@@ -102,7 +101,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Info Cards */}
       <section className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 -mt-20 relative z-10">
           <Card className="shadow-md border-none hover:shadow-lg hover:scale-105 transition-transform duration-300">
@@ -148,10 +146,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Form & Map */}
       <section className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Form */}
           <div>
             <h2 className="text-2xl font-bold mb-6">ສົ່ງຂໍ້ຄວາມຫາພວກເຮົາ</h2>
             <p className="text-gray-600 mb-8">
@@ -282,12 +278,10 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Office Location */}
           <div>
             <h2 className="text-2xl font-bold mb-6">ສຳນັກງານໃຫຍ່ຂອງພວກເຮົາ</h2>
             <div className="bg-gray-100 rounded-lg overflow-hidden mb-6">
               <div className="aspect-video relative">
-                {/* This would be a real map in a production environment */}
                 <div className="absolute inset-0 bg-gray-300 flex items-center justify-center">
                   <LoadScript googleMapsApiKey="AIzaSyBEYR4WPB2KnYBJxue4s9TuK4qlL3VYg9s">
                     <GoogleMap
@@ -381,7 +375,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Customer Service */}
       <section className="bg-gray-50 py-12">
         <div className="container mx-auto px-4 hover:shadow-lg hover:scale-105 transition-transform duration-300">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -417,7 +410,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* FAQ */}
       <section className="container mx-auto px-4 py-12">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">ຄຳຖາມທີ່ພົບເລື້ອຍ</h2>

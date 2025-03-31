@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 
 interface SlideImage {
-  image: string; 
+  image: string;
 }
 
 export default function SlideImages() {
@@ -37,7 +37,6 @@ export default function SlideImages() {
       setSlideImg(data?.slideImages?.data || []);
     }
   }, [data]);
-
 
   useEffect(() => {
     if (slideImg.length > 0) {

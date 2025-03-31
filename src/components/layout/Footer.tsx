@@ -17,7 +17,6 @@ export default function Footer() {
     <footer className="bg-[#f6f7f7] border-t">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {/* Company Info */}
           <div>
             <div className="mb-4 relative h-12 w-40">
               <Image
@@ -49,7 +48,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h3 className="mb-4 text-lg font-medium">ລິ້ງດ່ວນ</h3>
             <ul className="space-y-2">
@@ -112,7 +110,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Mobile App */}
           <div>
             <h3 className="mb-4 text-lg font-medium">ແອັບມືຖື</h3>
             <p className="text-sm text-gray-600 mb-4">
@@ -128,11 +125,11 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* QR Code */}
           <div>
             <h3 className="mb-4 text-lg font-medium">ຂໍ້ມູນເພີ່ມເຕີມ</h3>
             <div className="flex space-x-4">
               <a
+              
                 href="https://www.facebook.com/AnousithExpress"
                 target="_blank"
                 rel="noopener noreferrer"

@@ -246,7 +246,6 @@ export default function PricingPage() {
         </div>
       </div>
 
-      {/* Pricing Tabs */}
       <Tabs defaultValue="standard" className="mb-8">
         <TabsList className="w-full grid grid-cols-2 mb-4">
           <TabsTrigger
@@ -414,7 +413,6 @@ export default function PricingPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Notes */}
       <div className="bg-gray-50 p-6 rounded-lg">
         <h3 className="text-lg font-semibold mb-3">ໝາຍເຫດ</h3>
         <ul className="list-disc pl-5 space-y-2 text-sm text-gray-700">

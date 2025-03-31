@@ -18,7 +18,6 @@ import Link from "next/link";
 export default function AboutPage() {
   return (
     <div>
-      {/* Hero Section */}
       <section className="relative h-80 flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <Image
@@ -39,7 +38,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Company Overview */}
       <section className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-2 gap-12 items-center hover:shadow-lg hover:scale-105 transition-transform duration-300">
           <div>
@@ -72,7 +70,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission, Vision, Values */}
       <section className="bg-red-600 py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -144,7 +141,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Key Features */}
       <section className="container mx-auto px-4 py-16">
         <h2 className="text-3xl font-bold mb-12 text-center">
           ຈຸດເດັ່ນຂອງພວກເຮົາ
@@ -194,7 +190,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team Section */}
       <section className="bg-gray-50 py-16 mx-auto">
         <div className="w-full mx-auto px-4">
           <h2 className="text-3xl font-bold mb-12 text-center">
@@ -303,7 +298,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Contact CTA */}
       <section className="container mx-auto px-4 py-16 text-center">
         <h2 className="text-3xl font-bold mb-6">
           ພ້ອມຮັບໃຊ້ທ່ານໃນທຸກຄວາມຕ້ອງການດ້ານການຂົນສົ່ງ

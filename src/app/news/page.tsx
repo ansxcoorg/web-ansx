@@ -180,7 +180,6 @@ export default function NewsPage() {
         ))}
       </div>
 
-      {/* Pagination */}
       {totalPages > 1 && (
         <Pagination>
           <PaginationContent>

@@ -104,19 +104,15 @@ export default function BranchesPage() {
     }
   };
 
-  console.log("filteredBranches" , filteredBranches)
-
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">ສາຂາທັງໝົດ</h1>
 
-      {/* Branch Map (Placeholder) */}
       <Map branches={filteredBranches} center={mapCenter} zoom={mapZoom} />
 
       <Separator className="my-8" />
 
       <div className="flex flex-col sm:flex-row items-center justify-between mb-4">
-        {/* Region Select Buttons */}
         <div className="flex space-x-4">
           <button
             onClick={() => setSelectedRegion("CENTRAL")}
@@ -150,7 +146,6 @@ export default function BranchesPage() {
           </button>
         </div>
 
-        {/* Search Box */}
         <div className="ml-auto max-w-xl">
           <div className="relative">
             <Input
@@ -165,7 +160,6 @@ export default function BranchesPage() {
         </div>
       </div>
 
-      {/* Branches List */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredBranches.length > 0 ? (
           filteredBranches.map((branch, index) => (
@@ -228,7 +222,6 @@ export default function BranchesPage() {
         )}
       </div>
 
-      {/* More Branches Indicator */}
       <div className="text-center mt-8">
         <p className="text-gray-500 mb-4">
           ສະແດງ {filteredBranches.length} ໃນ {totalBranches} ສາຂາ
