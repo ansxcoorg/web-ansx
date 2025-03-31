@@ -22,13 +22,12 @@ const navItems = [
 ];
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     setLoading(true);
-    const timeout = setTimeout(() => setLoading(false), 1000);
+    const timeout = setTimeout(() => setLoading(false), 500);
     return () => clearTimeout(timeout);
   }, [pathname]);
 
@@ -77,7 +76,7 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
-            
+
           </nav>
           <Sheet>
             <SheetTrigger asChild className="md:hidden">

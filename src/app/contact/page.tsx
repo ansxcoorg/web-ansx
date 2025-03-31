@@ -324,6 +324,11 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex items-start">
+                    <Phone className="h-5 w-5 text-red-600 mt-1 mr-3 flex-shrink-0" />
+                    <p className="text-gray-600">ສາຍດ່ວນ: 1588</p>
+                  </div>
+
+                  <div className="flex items-start">
                     <Mail className="h-5 w-5 text-red-600 mt-1 mr-3 flex-shrink-0" />
                     <p className="text-gray-600">anousithlogistic@gmail.com</p>
                   </div>
