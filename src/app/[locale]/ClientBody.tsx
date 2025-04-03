@@ -12,6 +12,7 @@ import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
 import _ from "lodash";
 import Notiflix from "notiflix";
+import { LoadScript } from "@react-google-maps/api";
 
 const API_URL = "http://localhost:5500/graphql";
 // const API_URL = "https://dash.api.anousith-express.com/graphql";
@@ -65,5 +66,11 @@ const client = new ApolloClient({
 });
 
 export default function ClientBody({ children }: { children: ReactNode }) {
-  return <ApolloProvider client={client}>{children}</ApolloProvider>;
+  return (
+    <ApolloProvider client={client}>
+      <LoadScript googleMapsApiKey="AIzaSyBEYR4WPB2KnYBJxue4s9TuK4qlL3VYg9s">
+        {children}
+      </LoadScript>
+    </ApolloProvider>
+  );
 }

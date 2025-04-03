@@ -10,6 +10,7 @@ import "./globals.css";
 import ClientBody from "./ClientBody";
 import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
+import { LoadScript } from "@react-google-maps/api";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const notoSansLao = Noto_Sans_Lao({
@@ -60,7 +61,6 @@ export default async function RootLayout({
             </div>
           </ClientBody>
         </NextIntlClientProvider>
-
         <ToastContainer />
       </body>
     </html>

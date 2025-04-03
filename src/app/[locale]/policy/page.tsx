@@ -28,7 +28,11 @@ const PolicySection = ({
   items: string[];
 }) => (
   <>
-    <SectionHeader title={title} />
+    <tr>
+      <td colSpan={2}>
+        <SectionHeader title={title} />
+      </td>
+    </tr>
     {items.map((item, index) => (
       <PolicyItem key={index} text={item} />
     ))}

@@ -28,21 +28,14 @@ const BranchMap = ({ branches , center, zoom}: BranchMapProps) => {
   // const center = { lat: 17.9757, lng: 102.6331 };
   const [map, setMap] = useState<google.maps.Map | null>(null);
 
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyBEYR4WPB2KnYBJxue4s9TuK4qlL3VYg9s",
-    libraries: ["places"],
-  });
-
+  const defaultCenter = { lat: 17.9757, lng: 102.6331 };
+  const defaultZoom = 10;
 
   const handleMarkerClick = (lat: number, lng: number) => {
     if (!map) return;
-  
     map.setCenter({ lat, lng });
     map.setZoom(15);
   };
-
-  if (loadError) return <p>{t("map_error")}</p>;
-  if (!isLoaded) return <p>{t("loading")}</p>;
 
   return (
     <div className="mb-8 bg-gray-100 rounded-lg p-4">
@@ -51,8 +44,8 @@ const BranchMap = ({ branches , center, zoom}: BranchMapProps) => {
         <GoogleMap
           id="map"
           mapContainerStyle={containerStyle}
-          center={center}
-          zoom={zoom}
+          center={center || defaultCenter} 
+          zoom={zoom || defaultZoom} 
           onLoad={(mapInstance) => setMap(mapInstance)}
         >
           {branches.map((branch) => {

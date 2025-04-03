@@ -40,6 +40,11 @@ export default function ContactPage() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const containerStyle = {
+    width: "100%",
+    height: "100%",
+  };
+
   const [map, setMap] = useState<google.maps.Map | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -281,13 +286,10 @@ export default function ContactPage() {
             <div className="bg-gray-100 rounded-lg overflow-hidden mb-6">
               <div className="aspect-video relative">
                 <div className="absolute inset-0 bg-gray-300 flex items-center justify-center">
-                  <LoadScript googleMapsApiKey="AIzaSyBEYR4WPB2KnYBJxue4s9TuK4qlL3VYg9s">
+             
                     <GoogleMap
                       id="map"
-                      mapContainerStyle={{
-                        width: "100%",
-                        height: "100%",
-                      }}
+                      mapContainerStyle={containerStyle}
                       center={{ lat: 17.975601, lng: 102.624856 }}
                       zoom={15}
                       onLoad={(mapInstance) => setMap(mapInstance)}
@@ -297,7 +299,7 @@ export default function ContactPage() {
                         onClick={() => handleMarkerClick(17.975601, 102.624856)}
                       />
                     </GoogleMap>
-                  </LoadScript>
+               
                 </div>
               </div>
             </div>
@@ -421,10 +423,10 @@ export default function ContactPage() {
           <Card className="shadow-sm">
             <CardContent className="p-6">
               <h3 className="text-lg font-semibold mb-2">
-              {t("question_1")}
+              {t("question1")}
               </h3>
               <p className="text-gray-600">
-              {t("answer_1")}
+              {t("answer1")}
               </p>
             </CardContent>
           </Card>
@@ -432,10 +434,10 @@ export default function ContactPage() {
           <Card className="shadow-sm">
             <CardContent className="p-6">
               <h3 className="text-lg font-semibold mb-2">
-              {t("question_2")}
+              {t("question2")}
               </h3>
               <p className="text-gray-600">
-              {t("answer_2")}
+              {t("answer2")}
               </p>
             </CardContent>
           </Card>
@@ -443,10 +445,10 @@ export default function ContactPage() {
           <Card className="shadow-sm">
             <CardContent className="p-6">
               <h3 className="text-lg font-semibold mb-2">
-              {t("question_3")}
+              {t("question3")}
               </h3>
               <p className="text-gray-600">
-              {t("answer_3")}
+              {t("answer3")}
               </p>
             </CardContent>
           </Card>
@@ -454,10 +456,10 @@ export default function ContactPage() {
           <Card className="shadow-sm">
             <CardContent className="p-6">
               <h3 className="text-lg font-semibold mb-2">
-              {t("question_4")}
+              {t("question4")}
               </h3>
               <p className="text-gray-600">
-              {t("answer_4")}
+              {t("answer4")}
               </p>
             </CardContent>
           </Card>
