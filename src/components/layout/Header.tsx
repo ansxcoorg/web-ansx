@@ -9,21 +9,26 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
 import LogoAns from "../../img/logo_next_day.png";
-import { usePathname } from "next/navigation";
-
-const navItems = [
-  { name: "ລາຍງານ ແລະ ຂ່າວສານ", href: "/news" },
-  { name: "ສາຂາທັງໝົດ", href: "/branches" },
-  { name: "ຄ່າບໍລິການ", href: "/pricing" },
-  { name: "ກ່ຽວກັບພວກເຮົາ", href: "/about" },
-  { name: "ຮ່ວມງານກັບພວກເຮົາ", href: "/jobs" },
-  { name: "ຕິດຕໍ່ພວກເຮົາ", href: "/contact" },
-  { name: "ນະໂຍບາຍຕ່າງໆ", href: "/policy" },
-];
+import { usePathname, useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import LocalSelect from "./LocalSelect";
 
 export default function Header() {
   const [loading, setLoading] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+  const t = useTranslations("Header");
+  const locale = useLocale();
+
+  const navItems = [
+    { name: t("news"), href: "/news" },
+    { name: t("branches"), href: "/branches" },
+    { name: t("pricing"), href: "/pricing" },
+    { name: t("about"), href: "/about" },
+    { name: t("jobs"), href: "/jobs" },
+    { name: t("contact"), href: "/contact" },
+    { name: t("policy"), href: "/policy" },
+  ];
 
   useEffect(() => {
     setLoading(true);
@@ -70,13 +75,13 @@ export default function Header() {
             {navItems.map((item) => (
               <Link
                 key={item.name}
-                href={item.href}
+                href={`/${locale}${item.href}`}
                 className="text-sm font-bold text-gray-700 hover:text-red-600 transition-colors px-3 py-2 "
               >
                 {item.name}
               </Link>
             ))}
-
+            <LocalSelect defaultValue={locale} label="Language" />
           </nav>
           <Sheet>
             <SheetTrigger asChild className="md:hidden">
@@ -85,40 +90,49 @@ export default function Header() {
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-              <form
-                action="https://app.anousith.express/landing/search_tracking/search_item"
-                method="get"
-                className="flex items-center"
-              >
-                <div className="mt-6">
+            <SheetContent
+              side="right"
+              className="w-[300px] sm:w-[400px] bg-white shadow-xl rounded-l-2xl p-4"
+            >
+              <div className="flex flex-col space-y-6">
+                {/* Language Selector */}
+                <LocalSelect defaultValue={locale} label="Language" />
+
+                {/* Search Form */}
+                <form
+                  action="https://app.anousith.express/landing/search_tracking/search_item"
+                  method="get"
+                  className="flex flex-col space-y-4"
+                >
                   <div className="relative">
                     <Input
                       type="search"
                       name="query"
-                      placeholder="ຄົ້ນຫາຂໍ້ມູນທີ່ຕ້ອງການ..."
-                      className="w-full bg-gray-100"
+                      placeholder={t("tracking_placeholder")}
+                      className="w-full bg-gray-100 rounded-lg p-3 pr-10 border border-gray-300 focus:ring-2 focus:ring-red-400 focus:outline-none"
                     />
                     <button
                       type="submit"
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-red-600 transition-colors"
                     >
-                      <Search className="h-4 w-4" />
+                      <Search className="h-5 w-5" />
                     </button>
                   </div>
-                </div>
-              </form>
-              <nav className="flex flex-col gap-4 mt-8">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="text-lg font-medium px-2 py-2 text-gray-700 hover:text-red-600 transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </nav>
+                </form>
+
+                {/* Navigation Links */}
+                <nav className="flex flex-col space-y-4">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={`/${locale}${item.href}`}
+                      className="text-lg font-semibold text-gray-700 hover:text-red-600 px-3 py-2 transition-all rounded-lg hover:bg-gray-100"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </nav>
+              </div>
             </SheetContent>
           </Sheet>
         </div>

@@ -1,22 +1,19 @@
-/** @type {import('next').NextConfig} */
+import createNextIntlPlugin from "next-intl/plugin";
 
+const withNextIntl = createNextIntlPlugin();
+
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "ext.same-assets.com",
-        pathname: "**",
-      },
-      {
-        protocol: "https",
         hostname: "storage.googleapis.com",
-        pathname: "/ansx/website/images/**",
       },
     ],
+    domains: ['ext.same-assets.com'],
   },
+  
 };
 
-module.exports = nextConfig;
+export default withNextIntl(nextConfig);

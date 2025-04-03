@@ -22,10 +22,10 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",  // Setting base URL to the root of the project
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"],  // Path alias for @ symbol to refer to the src directory
+      "@apollo/*": ["src/apollo/*"] // Path alias for @apollo to refer to src/apollo directory
     }
   },
   "include": [

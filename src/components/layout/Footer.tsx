@@ -6,13 +6,15 @@ import { Separator } from "@/components/ui/separator";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { FaFacebookF } from "react-icons/fa6";
 import { SiTiktok } from "react-icons/si";
-import { ImInstagram } from "react-icons/im";
 import DownloadAPP from "../../img/IOS_ANDROID_DOWNLOAD.png";
 import Logo from "../../img/logo_next_day.png";
+import { useLocale, useTranslations } from "next-intl";
 
 const currentYear = new Date().getFullYear();
 
 export default function Footer() {
+  const t = useTranslations('footer');
+  const locale = useLocale();
   return (
     <footer className="bg-[#f6f7f7] border-t">
       <div className="container mx-auto px-4 py-12">
@@ -27,93 +29,98 @@ export default function Footer() {
               />
             </div>
             <p className="text-sm text-gray-600 mb-4">
-              Anousith Express ບໍລິການຮັບສົ່ງພັດສະດຸແລະເຄື່ອງທົ່ວປະເທດລາວ ແລະ
-              ສາກົນ
+              {t("company_name")} {t("description")} 
             </p>
             <div className="flex items-center text-sm text-gray-600 mb-2">
               <MapPin className="mr-2 h-4 w-4" />
-              <span>ນະຄອນຫຼວງວຽງຈັນ, ລາວ</span>
+              <span>{t("address")}</span>
             </div>
             <div className="flex items-center text-sm text-gray-600 mb-2">
               <Phone className="mr-2 h-4 w-4" />
-              <span>+856 20 97285066</span>
+              <span>{t("phone")}</span>
             </div>
             <div className="flex items-center text-sm text-gray-600 mb-2">
               <Phone className="mr-2 h-4 w-4" />
-              <span>ສາຍດ່ວນ: 1355</span>
+              <span>{t("hotline")}</span>
             </div>
             <div className="flex items-center text-sm text-gray-600">
               <Mail className="mr-2 h-4 w-4" />
-              <span>anousithlogistic@gmail.com</span>
+              <span>{t("email")}</span>
             </div>
           </div>
 
           <div>
-            <h3 className="mb-4 text-lg font-medium">ລິ້ງດ່ວນ</h3>
+            <h3 className="mb-4 text-lg font-medium">{t("link")}</h3>
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/news"
+                  href={`/${locale}/news`}
                   className="text-sm text-gray-600 hover:text-red-600 transition-colors"
                 >
-                  ລາຍງານ ແລະ ຂ່າວສານ
+                  {t("news")}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/branches"
+             
+                  href={`/${locale}/branches`}
                   className="text-sm text-gray-600 hover:text-red-600 transition-colors"
                 >
-                  ສາຂາທັງໝົດ
+                  {t("branches")}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/pricing"
+         
+                  href={`/${locale}/pricing`}
                   className="text-sm text-gray-600 hover:text-red-600 transition-colors"
                 >
-                  ຄ່າບໍລິການ
+                    {t("pricing")}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/about"
+            
+                  href={`/${locale}/about`}
                   className="text-sm text-gray-600 hover:text-red-600 transition-colors"
                 >
-                  ກ່ຽວກັບພວກເຮົາ
+                  {t("about")}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/jobs"
+            
+                  href={`/${locale}/jobs`}
                   className="text-sm text-gray-600 hover:text-red-600 transition-colors"
                 >
-                  ຮ່ວມງານກັບພວກເຮົາ
+                  {t("jobs")}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/contact"
+          
+                  href={`/${locale}/contact`}
                   className="text-sm text-gray-600 hover:text-red-600 transition-colors"
                 >
-                  ຕິດຕໍ່ພວກເຮົາ
+                   {t("contact")}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/policy"
+  
+                  href={`/${locale}/policy`}
                   className="text-sm text-gray-600 hover:text-red-600 transition-colors"
                 >
-                  ນະໂຍບາຍຕ່າງໆ
+                   {t("policy")}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="mb-4 text-lg font-medium">ແອັບມືຖື</h3>
+            <h3 className="mb-4 text-lg font-medium">{t("Mobile App")}</h3>
             <p className="text-sm text-gray-600 mb-4">
-              ດາວໂຫຼດແອັບມືຖືຂອງພວກເຮົາເພື່ອປະສົບການທີ່ດີຂຶ້ນ
+            {t("mobile_app")}
             </p>
             <div className="relative h-56 w-full">
               <Image
@@ -126,7 +133,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-4 text-lg font-medium">ຂໍ້ມູນເພີ່ມເຕີມ</h3>
+            <h3 className="mb-4 text-lg font-medium">{t("More Information")}</h3>
             <div className="flex space-x-4">
               <a
               
@@ -147,7 +154,7 @@ export default function Footer() {
               </a>
             </div>
             <p className="text-sm text-gray-600">
-              ຕິດຕາມຂ່າວສານແລະການບໍລິການໃໝ່ລ່າສຸດ
+            {t("follow_us")}
             </p>
           </div>
         </div>
@@ -156,21 +163,20 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-600 mb-4 md:mb-0">
-            © {currentYear} Anousith Express | All rights reserved | Design by
-            ANS TECH
+            © {currentYear} {t("more")}
           </p>
           <div className="flex space-x-4">
             <Link
               href="#"
               className="text-sm text-gray-600 hover:text-red-600 transition-colors"
             >
-              ເງື່ອນໄຂການໃຊ້ບໍລິການ
+              {t("terms")}
             </Link>
             <Link
-              href="/policy"
+              href={`/${locale}/policy`}
               className="text-sm text-gray-600 hover:text-red-600 transition-colors"
             >
-              ນະໂຍບາຍຄວາມເປັນສ່ວນຕົວ
+              {t("privacy")}
             </Link>
           </div>
         </div>

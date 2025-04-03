@@ -10,7 +10,16 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-noto-sans-lao)", "var(--font-inter)", "sans-serif"],
+        sans: [
+          "Inter", 
+          "Noto Sans Lao", 
+          "DB Heavent", 
+          "Noto Sans SC", 
+          "sans-serif",
+        ],
+        lao: ["Noto Sans Lao", "sans-serif"],
+        thai: ["DB Heavent", "sans-serif"],
+        chinese: ["Noto Sans SC", "sans-serif"],
       },
       colors: {
         background: "hsl(var(--background))",
