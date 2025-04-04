@@ -4,7 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -72,25 +71,15 @@
   }
 }
 @layer base {
-  /* :root {
-    --font-noto-sans-lao: "Noto Sans Lao", sans-serif;
-    --font-inter: "Inter", sans-serif;
-  } */
-
+  :root {
+    --font-inter: 'Inter', sans-serif;
+    --font-noto-sans-lao: 'Noto Sans Lao', sans-serif;
+    --font-noto-sans-sc: 'Noto Sans SC', sans-serif;
+    --font-sarabun: 'Sarabun', sans-serif;
+    --font-be-vietnam-pro: 'Be Vietnam Pro', sans-serif;
+  }
   body {
-    font-family: var(--font-inter), sans-serif;
-  }
-
-  [lang="lo"] {
-    font-family: var(--font-noto-sans-lao), sans-serif;
-  }
-
-  [lang="th"] {
-    font-family: "DB Heavent", sans-serif !important;
-  }
-
-  [lang="zh"] {
-    font-family: "Noto Sans SC", "Noto Sans", sans-serif;
+    font-family: var(--font-inter);
   }
 }
 
@@ -101,7 +90,6 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-noto-sans-lao), var(--font-inter), sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 

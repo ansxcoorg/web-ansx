@@ -1,6 +1,12 @@
 import { NextIntlClientProvider } from "next-intl";
 import type { Metadata } from "next";
-import { Inter, Noto_Sans_Lao, Noto_Sans_SC, Sarabun } from "next/font/google";
+import {
+  Be_Vietnam_Pro,
+  Inter,
+  Noto_Sans_Lao,
+  Noto_Sans_SC,
+  Sarabun,
+} from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -28,6 +34,12 @@ const sarabun = Sarabun({
   subsets: ["thai"],
   variable: "--font-sarabun",
 });
+
+const beVietnamPro = Be_Vietnam_Pro({
+  weight: ["400", "700"],
+  subsets: ["vietnamese"],
+  variable: "--font-be-vietnam-pro",
+});
 export const metadata: Metadata = {
   title: "Anousith Logistics",
   description: "Logistics and shipping",
@@ -51,12 +63,24 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <html lang={locale}>
-      <body className="antialiased">
+      <body
+        className={`antialiased ${
+          locale === "Lao"
+            ? "font-lao"
+            : locale === "Thai"
+            ? "font-thai"
+            : locale === "China"
+            ? "font-chinese"
+            : locale === "VietNam"
+            ? "font-vietnamese"
+            : "font-inter"
+        }`}
+      >
         <NextIntlClientProvider messages={messages}>
           <ClientBody>
             <div className="flex min-h-screen flex-col">
               <Header />
-              <main className="flex-1">{children}</main>
+              <main className="flex-1 font-lao">{children}</main>
               <Footer />
             </div>
           </ClientBody>
