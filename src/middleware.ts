@@ -6,5 +6,5 @@ import {routing} from './i18n/routing';
 export default createMiddleware(routing);
  
 export const config = {
-  matcher: ['/', '/(Lao|Us|Thai|China|VietNam)/:path*']
+  matcher: ['/', '/(Lao|Us|Thai|China|VietNam|Korea)/:path*']
 };

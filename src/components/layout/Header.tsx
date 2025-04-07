@@ -12,6 +12,7 @@ import LogoAns from "../../img/logo_next_day.png";
 import { usePathname, useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import LocalSelect from "./LocalSelect";
+import DarkModeToggle from "../ui/DarkModeToggle";
 
 export default function Header() {
   const [loading, setLoading] = useState(false);
@@ -81,6 +82,7 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
+            {/* <DarkModeToggle /> */}
             <LocalSelect defaultValue={locale} label="Language" />
           </nav>
           <Sheet>

@@ -9,13 +9,6 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        inter: ['var(--font-inter)'],
-        lao: ['var(--font-noto-sans-lao)'],
-        thai: ['var(--font-sarabun)'],
-        chinese: ['var(--font-noto-sans-sc)'],
-        vietnamese: ['var(--font-be-vietnam-pro)'],
-      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

@@ -37,7 +37,11 @@
     "view_all": "ເບິ່ງຂ່າວສານທັງໝົດ",
     "no_title": "ບໍ່ມີຫົວຂໍ້",
     "no_description": "ບໍ່ມີຄຳອິບາຍ",
-    "date_placeholder": "---"
+    "date_placeholder": "---",
+    "news_activities": "ຂ່າວສານ ແລະ ກິດຈະກຳ",
+    "News not found" : "ບໍ່ພົບຂ່າວສານ",
+    "Searching for news" : "ຄົ້ນຫາຂ່າວສານ...",
+    "Read more" : "ອ່ານຕໍ່"
   },
   "pricing": {
     "title": "ລາຄາບໍລິການ",

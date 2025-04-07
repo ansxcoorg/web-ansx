@@ -35,15 +35,18 @@ export default function LocalSelect({ defaultValue, label }: Props) {
       case 'Thai':
         return 'TH'; 
       case 'Us':
-          return 'US';
+        return 'US';
       case 'China':
         return 'CN';
       case 'VietNam':
         return 'VN';
+      case 'Korea':
+        return 'KR';
       default:
         return lang.toUpperCase();
     }
   };
+  
 
   return (
     <>

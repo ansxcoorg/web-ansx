@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 const SectionHeader = ({ title }: { title: string }) => (
   <h4 className="text-lg font-bold mt-6 mb-2">{title}</h4>
 );
@@ -423,7 +423,8 @@ export default function Policy() {
           <br />
           {t("description")}
         </h2>
-        <div className="overflow-x-auto">
+
+        <div  className="overflow-x-auto">
           <table className="policy-table">
             <tbody>
               {sections.map((section, index) => (

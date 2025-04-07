@@ -13,6 +13,7 @@ import { onError } from "@apollo/client/link/error";
 import _ from "lodash";
 import Notiflix from "notiflix";
 import { LoadScript } from "@react-google-maps/api";
+import ThemeProvider from "@/components/ui/ThemeProvider";
 
 const API_URL = "http://localhost:5500/graphql";
 // const API_URL = "https://dash.api.anousith-express.com/graphql";

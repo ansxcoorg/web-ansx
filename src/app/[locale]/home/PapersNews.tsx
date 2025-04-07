@@ -9,12 +9,25 @@ import { useEffect, useState } from "react";
 import { formatDate } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useLocale, useTranslations } from "next-intl";
+import PopupModal from "@/components/ui/PopupModal";
 
 export default function PapersNews() {
   const t = useTranslations("news");
   const locale = useLocale();
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
   const [itemsNew, setItemsNew] = useState<any[]>([]);
   const [fetchData, { data, loading }] = useLazyQuery(Schema.news);
+
+  const openModal = (item) => {
+    setSelectedItem(item);
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedItem(null);
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     fetchData({
@@ -56,12 +69,12 @@ export default function PapersNews() {
               <p className="text-sm text-gray-600 line-clamp-2">
                 {item?.title || t("no_description")}
               </p>
-              <Link
-                href={`/news/${item?.id || "#"}`}
+              <button
+                onClick={() => openModal(item)}
                 className="text-red-600 text-sm font-medium mt-3 block"
               >
                 {t("read_more")}
-              </Link>
+              </button>
             </CardContent>
           </Card>
         ))}
@@ -76,6 +89,13 @@ export default function PapersNews() {
           </Button>
         </Link>
       </div>
+
+      <PopupModal
+        isOpen={isOpen}
+        onClose={closeModal}
+        item={selectedItem}
+        formatDate={formatDate}
+      />
     </div>
   );
 }

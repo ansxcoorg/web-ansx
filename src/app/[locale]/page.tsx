@@ -44,7 +44,8 @@ export default function Home() {
           <h2 className="text-2xl font-bold mb-8 text-center">
             {t("feature_title")}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+         
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-white text-black theme-chinese:bg-red-500 theme-chinese:text-yellow-300">
             <Card className="border-none shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300">
               <CardContent className="p-6 flex flex-col items-center text-center">
                 <div className="rounded-full bg-red-100 p-4 mb-4">

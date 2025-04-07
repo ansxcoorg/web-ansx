@@ -55,7 +55,7 @@ export default function NotificationPopup() {
 
   return (
     <Dialog open={showPopup} onOpenChange={setShowPopup}>
-      <DialogContent className="max-w-3xl text-center bg-transparent p-8 border-0 outline-none ">
+      <DialogContent className="max-w-3xl text-center bg-transparent p-8 border-0 outline-none font-lao ">
         <DialogHeader>
           <DialogTitle className="text-white text-2xl">
             📢 ປະກາດສຳຄັນ
