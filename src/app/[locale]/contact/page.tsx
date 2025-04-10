@@ -18,13 +18,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
-import { FaFacebookF } from "react-icons/fa6";
+import { FaFacebookF, FaSpinner } from "react-icons/fa6";
 import { SiTiktok } from "react-icons/si";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
+import { useLazyQuery, useMutation } from "@apollo/client";
+import Schema from "../../../apollo/index";
 
 export default function ContactPage() {
   const t = useTranslations("contact");
+  const [fetchGmail] = useMutation(Schema.sendGmail);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -47,16 +51,49 @@ export default function ContactPage() {
 
   const [map, setMap] = useState<google.maps.Map | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.error("ຍັງບໍ່ສາມາດສົ່ງຜ່ານEmailໄດ້ໃນຂະນະນີ້!!!", {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      className: "custom-toast",
-    });
+    // toast.error("ຍັງບໍ່ສາມາດສົ່ງຜ່ານEmailໄດ້ໃນຂະນະນີ້!!!", {
+    //   position: "top-center",
+    //   autoClose: 3000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   className: "custom-toast",
+    // });
+
+    const { name, email, phone, subject, message } = formData;
+    setLoading(true);
+    try {
+      await fetchGmail({
+        variables: {
+          to: email,
+          subject: subject,
+          message: message,
+          fullName: name,
+          phoneNumber: phone,
+        },
+      });
+      toast.success("ສົ່ງອີເມວສຳເລັດ", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        className: "custom-toast",
+      });
+    } catch (error) {
+      toast.error("ການສົ່ງອີເມວລົ່ມເຫລວ", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        className: "custom-toast",
+      });
+    } finally {
+      setLoading(false);
+    }
     setFormData({
       name: "",
       email: "",
@@ -99,9 +136,7 @@ export default function ContactPage() {
         </div>
         <div className="z-10 text-center text-white px-4">
           <h1 className="text-4xl font-bold mb-4">{t("contact_us_title")}</h1>
-          <p className="max-w-3xl mx-auto">
-          {t("contact_us_description")}
-          </p>
+          <p className="max-w-3xl mx-auto">{t("contact_us_description")}</p>
         </div>
       </section>
 
@@ -113,9 +148,7 @@ export default function ContactPage() {
                 <Phone className="h-6 w-6 text-red-600" />
               </div>
               <h3 className="text-xl font-bold mb-2">{t("call_us")}</h3>
-              <p className="text-gray-600 mb-2">
-              {t("call_us_24_7")}
-              </p>
+              <p className="text-gray-600 mb-2">{t("call_us_24_7")}</p>
               <p className="text-red-600 font-semibold">{t("phone_number")}</p>
               <p className="text-red-600 font-semibold">{t("hotline")}</p>
             </CardContent>
@@ -128,9 +161,7 @@ export default function ContactPage() {
               </div>
               <h3 className="text-xl font-bold mb-2">{t("email_us")}</h3>
               <p className="text-gray-600 mb-2">{t("response_time")}</p>
-              <p className="text-red-600 font-semibold">
-              {t("email_address")}
-              </p>
+              <p className="text-red-600 font-semibold">{t("email_address")}</p>
             </CardContent>
           </Card>
 
@@ -142,7 +173,7 @@ export default function ContactPage() {
               <h3 className="text-xl font-bold mb-2">{t("working_hours")}</h3>
               <p className="text-gray-600 mb-2">{t("working_hours_details")}</p>
               <p className="text-red-600 font-semibold">
-              {t("monday_to_friday")}
+                {t("monday_to_friday")}
               </p>
               <p className="text-red-600 font-semibold">{t("saturday")}</p>
             </CardContent>
@@ -153,9 +184,11 @@ export default function ContactPage() {
       <section className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-2xl font-bold mb-6">{t("send_message_title")}</h2>
+            <h2 className="text-2xl font-bold mb-6">
+              {t("send_message_title")}
+            </h2>
             <p className="text-gray-600 mb-8">
-            {t("send_message_description")}
+              {t("send_message_description")}
             </p>
 
             <form onSubmit={handleSubmit}>
@@ -172,7 +205,7 @@ export default function ContactPage() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder= {t("placeholder_1")}
+                    placeholder={t("placeholder_1")}
                     required
                   />
                 </div>
@@ -250,9 +283,14 @@ export default function ContactPage() {
               <Button
                 type="submit"
                 className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition-transform transform hover:scale-105"
+                disabled={loading}
               >
-                <Send className="h-4 w-4 mr-2" />
-                {t("send_message_button")} 
+                {loading ? (
+                  <FaSpinner className="animate-spin h-4 w-4 mr-2" />
+                ) : (
+                  <Send className="h-4 w-4 mr-2" />
+                )}
+                {t("send_message_button")}
               </Button>
             </form>
             <div className="mt-4">
@@ -268,7 +306,9 @@ export default function ContactPage() {
               </Button>
             </div>
             <div className="mt-4">
-              <h2 className="text-2xl font-bold mb-6">{t("register_vehicle")}</h2>
+              <h2 className="text-2xl font-bold mb-6">
+                {t("register_vehicle")}
+              </h2>
               <Button
                 onClick={() =>
                   (window.location.href = "https://partner.anousith.express/")
@@ -286,36 +326,30 @@ export default function ContactPage() {
             <div className="bg-gray-100 rounded-lg overflow-hidden mb-6">
               <div className="aspect-video relative">
                 <div className="absolute inset-0 bg-gray-300 flex items-center justify-center">
-             
-                    <GoogleMap
-                      id="map"
-                      mapContainerStyle={containerStyle}
-                      center={{ lat: 17.975601, lng: 102.624856 }}
-                      zoom={15}
-                      onLoad={(mapInstance) => setMap(mapInstance)}
-                    >
-                      <Marker
-                        position={{ lat: 17.975601, lng: 102.624856 }}
-                        onClick={() => handleMarkerClick(17.975601, 102.624856)}
-                      />
-                    </GoogleMap>
-               
+                  <GoogleMap
+                    id="map"
+                    mapContainerStyle={containerStyle}
+                    center={{ lat: 17.975601, lng: 102.624856 }}
+                    zoom={15}
+                    onLoad={(mapInstance) => setMap(mapInstance)}
+                  >
+                    <Marker
+                      position={{ lat: 17.975601, lng: 102.624856 }}
+                      onClick={() => handleMarkerClick(17.975601, 102.624856)}
+                    />
+                  </GoogleMap>
                 </div>
               </div>
             </div>
 
             <Card className="border-none shadow-md">
               <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-4">
-                {t("main_office")}
-                </h3>
+                <h3 className="text-xl font-bold mb-4">{t("main_office")}</h3>
 
                 <div className="space-y-4">
                   <div className="flex items-start">
                     <MapPin className="h-5 w-5 text-red-600 mt-1 mr-3 flex-shrink-0" />
-                    <p className="text-gray-600">
-                    {t("address")}
-                    </p>
+                    <p className="text-gray-600">{t("address")}</p>
                   </div>
 
                   <div className="flex items-start">
@@ -384,13 +418,11 @@ export default function ContactPage() {
         <div className="container mx-auto px-4 hover:shadow-lg hover:scale-105 transition-transform duration-300">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-2xl font-bold mb-4">{t("customer_service_24_7")}</h2>
-              <p className="text-gray-600 mb-4">
-                {t("text_1")}
-              </p>
-              <p className="text-gray-600 mb-6">
-              {t("text_2")}
-              </p>
+              <h2 className="text-2xl font-bold mb-4">
+                {t("customer_service_24_7")}
+              </h2>
+              <p className="text-gray-600 mb-4">{t("text_1")}</p>
+              <p className="text-gray-600 mb-6">{t("text_2")}</p>
               <Button
                 className="bg-red-600 hover:bg-red-700"
                 onClick={handleChat}
@@ -413,7 +445,9 @@ export default function ContactPage() {
 
       <section className="container mx-auto px-4 py-12">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">{t("frequently_asked_questions")}</h2>
+          <h2 className="text-3xl font-bold mb-4">
+            {t("frequently_asked_questions")}
+          </h2>
           <p className="text-gray-600 max-w-3xl mx-auto">
             {t("faq_description")}
           </p>
@@ -422,45 +456,29 @@ export default function ContactPage() {
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           <Card className="shadow-sm">
             <CardContent className="p-6">
-              <h3 className="text-lg font-semibold mb-2">
-              {t("question1")}
-              </h3>
-              <p className="text-gray-600">
-              {t("answer1")}
-              </p>
+              <h3 className="text-lg font-semibold mb-2">{t("question1")}</h3>
+              <p className="text-gray-600">{t("answer1")}</p>
             </CardContent>
           </Card>
 
           <Card className="shadow-sm">
             <CardContent className="p-6">
-              <h3 className="text-lg font-semibold mb-2">
-              {t("question2")}
-              </h3>
-              <p className="text-gray-600">
-              {t("answer2")}
-              </p>
+              <h3 className="text-lg font-semibold mb-2">{t("question2")}</h3>
+              <p className="text-gray-600">{t("answer2")}</p>
             </CardContent>
           </Card>
 
           <Card className="shadow-sm">
             <CardContent className="p-6">
-              <h3 className="text-lg font-semibold mb-2">
-              {t("question3")}
-              </h3>
-              <p className="text-gray-600">
-              {t("answer3")}
-              </p>
+              <h3 className="text-lg font-semibold mb-2">{t("question3")}</h3>
+              <p className="text-gray-600">{t("answer3")}</p>
             </CardContent>
           </Card>
 
           <Card className="shadow-sm">
             <CardContent className="p-6">
-              <h3 className="text-lg font-semibold mb-2">
-              {t("question4")}
-              </h3>
-              <p className="text-gray-600">
-              {t("answer4")}
-              </p>
+              <h3 className="text-lg font-semibold mb-2">{t("question4")}</h3>
+              <p className="text-gray-600">{t("answer4")}</p>
             </CardContent>
           </Card>
         </div>

@@ -123,4 +123,24 @@ export default class Schema {
       }
     }
   `;
+  static sendGmail = gql`
+    mutation SendEmail(
+      $to: String!
+      $subject: String!
+      $message: String!
+      $fullName: String
+      $phoneNumber: String
+    ) {
+      sendEmail(
+        to: $to
+        subject: $subject
+        message: $message
+        fullName: $fullName
+        phoneNumber: $phoneNumber
+      ) {
+        message
+        success
+      }
+    }
+  `;
 }
