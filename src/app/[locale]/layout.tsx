@@ -23,11 +23,6 @@ const notoSansLao = Noto_Sans_Lao({
   subsets: ["lao"],
   variable: "--font-noto-sans-lao",
 });
-const notoSansSC = Noto_Sans_SC({
-  weight: ["400", "700"],
-  subsets: ["latin", "chinese"],
-  variable: "--font-noto-sans-sc",
-});
 const sarabun = Sarabun({
   weight: ["400", "700"],
   subsets: ["thai"],
