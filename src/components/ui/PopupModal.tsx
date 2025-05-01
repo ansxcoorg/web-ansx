@@ -5,7 +5,17 @@ import Image from "next/image";
 import { DialogHeader } from "./dialog";
 import { DialogClose } from "@radix-ui/react-dialog";
 
-export default function PopupModal({ isOpen, onClose, item, formatDate }) {
+export default function PopupModal({
+  isOpen,
+  onClose,
+  item,
+  formatDate,
+}: {
+  isOpen: any;
+  onClose: any;
+  item: any;
+  formatDate: any;
+}) {
   if (!item) return null;
 
   return (

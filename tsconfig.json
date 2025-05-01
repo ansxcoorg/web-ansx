@@ -22,6 +22,7 @@
         "name": "next"
       }
     ],
+    "typeRoots": ["./node_modules/@types", "./src/types"],
     "baseUrl": ".",  // Setting base URL to the root of the project
     "paths": {
       "@/*": ["./src/*"],  // Path alias for @ symbol to refer to the src directory

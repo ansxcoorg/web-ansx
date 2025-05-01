@@ -1,3 +1,4 @@
+import Flag from "react-world-flags";
 
 import {
   Select,
@@ -7,9 +8,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Locale, routing, usePathname, useRouter } from "@/i18n/routing";
-import Flag from 'react-world-flags';
-import { useParams } from "next/navigation";
 
+import { useParams } from "next/navigation";
 
 type Props = {
   defaultValue: string;
@@ -22,31 +22,27 @@ export default function LocalSelect({ defaultValue, label }: Props) {
   const params = useParams();
 
   const handleChange = (value: string) => {
-    router.replace(
-      { pathname, params },
-      { locale: value as Locale }
-    );
+    router.replace(pathname, { locale: value as Locale });
   };
 
   const getCountryCode = (lang: string) => {
     switch (lang) {
-      case 'Lao':
-        return 'LA'; 
-      case 'Thai':
-        return 'TH'; 
-      case 'Us':
-        return 'US';
-      case 'China':
-        return 'CN';
-      case 'VietNam':
-        return 'VN';
-      case 'Korea':
-        return 'KR';
+      case "Lao":
+        return "LA";
+      case "Thai":
+        return "TH";
+      case "Us":
+        return "US";
+      case "China":
+        return "CN";
+      case "VietNam":
+        return "VN";
+      case "Korea":
+        return "KR";
       default:
         return lang.toUpperCase();
     }
   };
-  
 
   return (
     <>

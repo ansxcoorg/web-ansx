@@ -79,7 +79,7 @@ export default function NewsPage() {
     window.history.replaceState({}, "", newUrl);
   }, [page]);
 
-  const openModal = (news) => {
+  const openModal = (news :any) => {
     setSelectedItem(news);
     setIsOpen(true);
   };

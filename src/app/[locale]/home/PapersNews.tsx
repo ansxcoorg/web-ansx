@@ -19,7 +19,7 @@ export default function PapersNews() {
   const [itemsNew, setItemsNew] = useState<any[]>([]);
   const [fetchData, { data, loading }] = useLazyQuery(Schema.news);
 
-  const openModal = (item) => {
+  const openModal = (item :any) => {
     setSelectedItem(item);
     setIsOpen(true);
   };

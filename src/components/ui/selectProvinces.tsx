@@ -30,12 +30,12 @@ export default function SelectProvinces({
   value,
   all,
 }: {
-  onChange?: (res: ProvinceOption | null) => void;
+  onChange?: (res: any) => void;
   disabled?: boolean;
-  value?: string;
+  value?: string | number;
   all?: boolean;
 }) {
-  const [items, setItems] = useState<ProvinceOption[]>([]); // เปลี่ยนเป็น ProvinceOption[]
+  const [items, setItems] = useState<any[]>([]);
 
   const [fetchData, { data, loading }] = useLazyQuery(Schema.provinces, {
     fetchPolicy: "network-only",
@@ -83,11 +83,10 @@ export default function SelectProvinces({
       <Select
         disabled={disabled}
         onValueChange={(value) => {
-          // ค้นหาตัวเลือกที่เลือกมาใน items
           const selected = items.find((item) => item.value === value);
-          if (onChange) onChange(selected || null); // ส่งค่าไปที่ onChange
+          if (onChange) onChange(selected || null); 
         }}
-        value={value}
+        value={value?.toString()}
       >
         <SelectTrigger className="w-full min-w-[150px] max-w-[250px] border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 bg-white shadow-sm">
           <SelectValue>
