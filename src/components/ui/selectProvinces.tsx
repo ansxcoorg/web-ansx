@@ -18,7 +18,7 @@ interface ProvinceOption {
   provinceName?: string;
 }
 
-// สร้าง interface สำหรับ data ที่ fetch มา
+
 interface provinces {
   id_state: string;
   provinceName: string;
@@ -36,13 +36,12 @@ export default function SelectProvinces({
   all?: boolean;
 }) {
   const [items, setItems] = useState<ProvinceOption[]>([]); // เปลี่ยนเป็น ProvinceOption[]
-  
-  // เรียกใช้ useLazyQuery จาก Apollo
+
   const [fetchData, { data, loading }] = useLazyQuery(Schema.provinces, {
     fetchPolicy: "network-only",
   });
 
-  // Fetch ข้อมูลเมื่อ Component mount
+
   useEffect(() => {
     fetchData({
       variables: {
@@ -51,7 +50,7 @@ export default function SelectProvinces({
     });
   }, [fetchData]);
 
-  // เมื่อ data เปลี่ยนแปลง
+
   useEffect(() => {
     if (data) {
     
