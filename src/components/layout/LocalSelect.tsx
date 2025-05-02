@@ -26,23 +26,24 @@ export default function LocalSelect({ defaultValue, label }: Props) {
   };
 
   const getCountryCode = (lang: string) => {
-    switch (lang) {
-      case "Lao":
+    switch (lang.toUpperCase()) {
+      case "LA":
         return "LA";
-      case "Thai":
+      case "TH":
         return "TH";
-      case "Us":
+      case "US":
         return "US";
-      case "China":
+      case "CN":
         return "CN";
-      case "VietNam":
+      case "VN":
         return "VN";
-      case "Korea":
+      case "KR":
         return "KR";
       default:
         return lang.toUpperCase();
     }
   };
+  
 
   return (
     <>

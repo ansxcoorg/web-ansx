@@ -50,6 +50,9 @@ export default async function RootLayout({
   params: { locale: Locale };
 }) {
   const { locale } = await params;
+
+  console.log("lo" , locale)
+  // LA|US|TH|CH|VN|KR
   if (!routing.locales.includes(locale as Locale)) {
     notFound();
   }
@@ -57,17 +60,18 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <html lang={locale}>
+      
       <body
         className={`antialiased ${
-          locale === "Lao"
+          locale === "LA"
             ? "font-lao"
-            : locale === "Thai"
+            : locale === "TH"
             ? "font-thai"
-            : locale === "China"
+            : locale === "CN"
             ? "font-chinese"
-            : locale === "VietNam"
+            : locale === "VN"
             ? "font-vietnamese"
-            : locale === "Korea"
+            : locale === "KR"
             ? "Noto Sans KR"
             : "font-inter"
         }`}
