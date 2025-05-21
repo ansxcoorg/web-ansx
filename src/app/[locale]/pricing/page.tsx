@@ -282,7 +282,7 @@ export default function PricingPage() {
             <div className="text-center mt-8">
               <p className="text-gray-500 mb-4">
                 {t("display")} {filteredItemsPrice?.length}{" "}
-                {t("in")} {totalPrice} {t("branches")}
+                {t("in")} {totalPrice} {t("column_name")}
               </p>
               <Button variant="outline" onClick={loadMoreBranches}>
                 {t("load_more_branches")}

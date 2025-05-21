@@ -50,8 +50,6 @@ export default async function RootLayout({
   params: { locale: Locale };
 }) {
   const { locale } = await params;
-
-  console.log("lo" , locale)
   // LA|US|TH|CH|VN|KR
   if (!routing.locales.includes(locale as Locale)) {
     notFound();
