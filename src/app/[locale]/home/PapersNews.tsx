@@ -19,7 +19,7 @@ export default function PapersNews() {
   const [itemsNew, setItemsNew] = useState<any[]>([]);
   const [fetchData, { data, loading }] = useLazyQuery(Schema.news);
 
-  const openModal = (item :any) => {
+  const openModal = (item: any) => {
     setSelectedItem(item);
     setIsOpen(true);
   };
@@ -71,7 +71,11 @@ export default function PapersNews() {
               </p>
               <button
                 onClick={() => openModal(item)}
-                className="text-red-600 text-sm font-medium mt-3 block"
+                /* Read more button Animation */
+                className="text-red-600 text-sm font-medium mt-3 block relative w-fit
+                           after:content-[''] after:absolute after:bottom-0 after:left-0 
+                           after:w-0 after:h-[2px] after:bg-red-600 
+                           after:transition-all after:duration-300 hover:after:w-full"
               >
                 {t("read_more")}
               </button>

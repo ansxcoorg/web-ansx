@@ -38,7 +38,7 @@ export default function Header() {
   }, [pathname]);
 
   return (
-    <header className="bg-gray-200 sticky top-0 z-40 w-full border-b border-gray-200">
+    <header className="bg-white/80 sticky top-0 z-40 w-full border-b border-gray-200">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {loading && (
