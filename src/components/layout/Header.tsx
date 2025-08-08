@@ -21,6 +21,8 @@ export default function Header() {
   const t = useTranslations("Header");
   const locale = useLocale();
 
+  console.log("locale" , locale)
+
   const navItems = [
     { name: t("news"), href: "/news" },
     { name: t("branches"), href: "/branches" },

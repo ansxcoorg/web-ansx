@@ -178,6 +178,8 @@ export default function PricingPage() {
       selectedProvinceTo.value
     );
 
+
+
     const calculatedPrice = calculator({
       width,
       weight,
