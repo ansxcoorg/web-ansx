@@ -4,6 +4,7 @@ import { X } from "lucide-react";
 import Image from "next/image";
 import { DialogHeader } from "./dialog";
 import { DialogClose } from "@radix-ui/react-dialog";
+import { useTranslations } from "next-intl";
 
 export default function PopupModal({
   isOpen,
@@ -13,10 +14,13 @@ export default function PopupModal({
 }: {
   isOpen: any;
   onClose: any;
-  item: any;
+  item: any | null; 
   formatDate: any;
 }) {
+   const t = useTranslations("news");
   if (!item) return null;
+ 
+
 
   return (
     <Dialog
@@ -38,7 +42,7 @@ export default function PopupModal({
           {/* Header */}
           <div className="text-center mb-4">
             <h2 className="text-4xl font-extrabold text-gray-800 mb-2">
-              📢 ປະກາດຂ່າວສານ
+              📢 {t("Announcement")}
             </h2>
           </div>
 

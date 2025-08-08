@@ -9,7 +9,7 @@
     "jobs": "Công việc",
     "notice": "Thông báo",
     "policy": "Chính sách",
-    "tracking_placeholder" : "Số vận đơn hoặc Số điện thoại..."
+    "tracking_placeholder": "Số vận đơn hoặc Số điện thoại..."
   },
   "HomePage": {
     "feature_title": "Điểm nổi bật của dịch vụ",
@@ -29,7 +29,7 @@
     "find_branch": "Tìm chi nhánh gần nhất"
   },
   "SlideIMages": {
-    "tracking_placeholder" : "Số vận đơn hoặc Số điện thoại...",
+    "tracking_placeholder": "Số vận đơn hoặc Số điện thoại...",
     "tracking": "Theo dõi vận đơn"
   },
   "news": {
@@ -39,9 +39,10 @@
     "no_description": "Không có mô tả",
     "date_placeholder": "---",
     "news_activities": "Tin tức và hoạt động",
-    "News not found" : "Không tìm thấy tin tức",
-    "Searching for news" : "Đang tìm kiếm tin tức...",
-    "Read more" : "Đọc tiếp"
+    "News not found": "Không tìm thấy tin tức",
+    "Searching for news": "Đang tìm kiếm tin tức...",
+    "Read more": "Đọc tiếp",
+    "Announcement": "Thông báo"
   },
   "pricing": {
     "title": "Giá dịch vụ",
@@ -51,7 +52,7 @@
     "view_all": "Xem tất cả giá dịch vụ",
     "display": "Hiển thị",
     "in": "Trong",
-    "branches": "Chi nhánh",  
+    "branches": "Chi nhánh",
 
     "service_price": "Giá dịch vụ",
     "cod_service": "Dịch vụ thu tiền khi nhận hàng (COD)",
@@ -61,8 +62,8 @@
     "express_delivery": "Giao hàng nhanh",
     "general_delivery": "Tính phí dịch vụ (hàng thông thường)",
     "currency": "Kíp",
-    "select_province_and_enter_weight" : "Vui lòng chọn tỉnh gửi và nhận và nhập kích thước trọng lượng",
-    "invalid_size_or_weight" : "Kích thước hoặc trọng lượng không hợp lệ",
+    "select_province_and_enter_weight": "Vui lòng chọn tỉnh gửi và nhận và nhập kích thước trọng lượng",
+    "invalid_size_or_weight": "Kích thước hoặc trọng lượng không hợp lệ",
 
     "load_more_branches": "Tải thêm chi nhánh",
     "calculate_service_fee": "Tính phí dịch vụ",
@@ -190,9 +191,9 @@
     "fax": "Đường dây nóng: 1588",
     "follow_us": "Theo dõi chúng tôi",
     "customer_service_24_7": "Dịch vụ khách hàng 24/7",
-      "chat": "Trò chuyện",
-  "no_messages": "Chưa có tin nhắn nào",
-  "sending": "Đang gửi",
+    "chat": "Trò chuyện",
+    "no_messages": "Chưa có tin nhắn nào",
+    "sending": "Đang gửi",
     "contact_us": "Trò chuyện với chúng tôi ngay bây giờ",
     "text_1": "Chúng tôi hiểu rằng nhu cầu vận chuyển của bạn không bao giờ ngừng và đội ngũ dịch vụ khách hàng của chúng tôi cũng vậy.",
     "text_2": "Chúng tôi sẵn sàng phục vụ bạn 24 giờ mỗi ngày, 7 ngày trong tuần. Dù bạn cần theo dõi bưu kiện, có câu hỏi về dịch vụ của chúng tôi, hoặc cần sự giúp đỡ nào, chúng tôi luôn ở đây để giúp đỡ bạn.",

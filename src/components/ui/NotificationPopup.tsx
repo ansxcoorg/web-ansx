@@ -13,7 +13,7 @@ import { usePathname } from "next/navigation";
 import { useLazyQuery } from "@apollo/client";
 import Schema from "../../apollo/index";
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function NotificationPopup() {
   const [items, setItems] = useState<any[]>([]);
@@ -23,6 +23,8 @@ export default function NotificationPopup() {
   const [fetchData, { data }] = useLazyQuery(Schema.communities, {
     fetchPolicy: "cache-and-network",
   });
+
+  const t = useTranslations("news");
 
   useEffect(() => {
     fetchData({
@@ -58,7 +60,7 @@ export default function NotificationPopup() {
       <DialogContent className="max-w-3xl text-center bg-transparent p-8 border-0 outline-none font-lao ">
         <DialogHeader>
           <DialogTitle className="text-white text-2xl">
-            📢 ປະກາດສຳຄັນ
+             📢 {t("Announcement")}
           </DialogTitle>
           <DialogClose className="absolute top-4 right-4 text-white hover:text-gray-300 border-0 outline-none">
             ✖

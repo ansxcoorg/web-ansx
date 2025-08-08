@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useMutation, gql, useQuery } from "@apollo/client";
-import { useTranslation } from "react-i18next";
-import { MessageSquare, Send, Trash2 } from "lucide-react";
+import {  Send, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 const SEND_MESSAGE = gql`
@@ -89,6 +88,25 @@ export default function ChatComponent({ onClose }: { onClose: () => void }) {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [data?.getMessages]);
 
+  useEffect(() => {
+  if (!data?.getMessages?.length) return;
+
+  const msgs = data.getMessages;
+  const customerName = msgs[0]?.sender;
+
+  const adminSent = msgs.some((msg: any) => msg.sender === "Admin");
+
+  if (!adminSent && customerName) {
+    sendMessage({
+      variables: {
+        sender: "Admin",
+        recipient: customerName,
+        text: "🙏 ຂອບໃຈຫຼາຍໆສໍາລັບການຕິດຕໍ່ ທີມງານໄດ້ຮັບຂໍ້ຄວາມແລ້ວ ແລະ ຈະຕອບກັບໃຫ້ໄວທີ່ສຸດເດີ້",
+      },
+    }).catch(console.error);
+  }
+}, [data?.getMessages]);
+
   if (queryLoading)
     return <div className="bg-white p-4 rounded shadow">Loading chat...</div>;
 
@@ -119,7 +137,7 @@ export default function ChatComponent({ onClose }: { onClose: () => void }) {
             className={`relative max-w-[80%] px-4 py-2 rounded-xl text-sm ${
               msg.sender === "Admin"
                 ? "bg-white self-start text-gray-800 border"
-                : "bg-blue-600 self-end text-white ml-auto"
+                : "bg-red-600 self-end text-white ml-auto"
             }`}
           >
             <div className="font-semibold text-xs mb-1">{msg.sender}</div>
