@@ -52,9 +52,9 @@ const BranchMap = ({ branches, center, zoom }: BranchMapProps) => {
     map.setZoom(15);
   };
 
-  // SVG icon  (bg-white/70)
+  // SVG icon  (bg-white/70) 
   const getSvgMarker = (logoDataUrl: string, color: "white" | "red") => {
-    const fill = color === "white" ? "rgba(255,255,255,0.7)" : "rgba(252,165,165,0.7)";
+    const fill = color === "white" ? "rgba(255,255,255,0.7)" : "rgba(252,165,165,1)";
     return {
       url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
         <svg xmlns="http://www.w3.org/2000/svg" width="60" height="80" viewBox="0 0 60 80">

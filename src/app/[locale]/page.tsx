@@ -110,17 +110,20 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <h2 className="text-2xl text-white font-bold mb-8">
               {t("news_activities")}
+      
             </h2>
             <PapersNews />
           </div>
         </section>
 
         <section className="container mx-auto px-4 py-12">
-          <h2 className="text-2xl font-bold mb-8">{t("main_pricing")}</h2>
+          <h2 className="text-2xl font-bold mb-8">{t("main_pricing")}
+          </h2>
+          
           <PackagePrice />
         </section>
 
-        <section className="bg-red-600 text-white py-12 hero-gradient">
+        <section className="bg-gradient-to-r from-red-600 via-gray-500 to-red-600 text-white py-12 animate-gradient-x bg-[length:200%_200%]">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-6">{t("hero_title")}</h2>
             <p className="mb-8 max-w-2xl mx-auto">{t("hero_description")}</p>
@@ -130,7 +133,7 @@ export default function Home() {
                 {t("contact_us")}
               </Button>
               <Link href={`/${locale}/branches`}>
-                <Button className="bg-white text-red-600 hover:bg-gray-100 hover:scale-[1.02] transition-all duration-300 ease-in-out cursor-pointer rounded-md ">
+                <Button className="bg-white text-red-600 hover:bg-gray-100  hover:scale-[1.02] transition-all duration-300 ease-in-out cursor-pointer rounded-md ">
                   <MapPin className="mr-2 h-4 w-4" />
                   {t("find_branch")}
                 </Button>

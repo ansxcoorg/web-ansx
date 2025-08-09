@@ -381,7 +381,7 @@ export default function ContactPage() {
                 <Separator className="my-6" />
 
                 <h4 className="text-lg font-semibold mb-3">{t("follow_us")}</h4>
-                <div className="flex space-x-4">
+                <div className="flex space-x-24">
                   <Link
                     href="https://www.facebook.com/AnousithExpress"
                     target="_blank"
