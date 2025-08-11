@@ -38,7 +38,7 @@ export default function AboutPage() {
       </section>
 
       <section className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 gap-12 items-center hover:shadow-lg hover:scale-105 transition-transform duration-300">
+        <div className="grid md:grid-cols-2 gap-12 items-center hover:drop-shadow-lg hover:scale-105 transition-transform duration-300">
           <div>
             <h2 className="text-3xl font-bold mb-6">{t("history_title")}</h2>
             <p className="text-gray-600 mb-4">{t("history_description")}</p>
@@ -68,31 +68,40 @@ export default function AboutPage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="border-none shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300">
+            {/* Card 1 */}
+            <Card className="group border-none shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300">
               <CardContent className="p-6">
-                <div className="bg-red-100 rounded-full w-14 h-14 flex items-center justify-center mb-4">
-                  <TruckIcon className="h-7 w-7 text-red-600" />
+                <div className="relative inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-4 bg-red-100">
+                  <span className="absolute inset-0 bg-red-600 top-full group-hover:top-0 transition-all duration-500 ease-in-out z-0 rounded-full" />
+                  <TruckIcon className="relative z-10 h-7 w-7 text-red-600 transition-all duration-500 group-hover:text-white group-hover:rotate-[360deg]" />
                 </div>
+
                 <h3 className="text-xl font-bold mb-3">{t("title1")}</h3>
                 <p className="text-gray-600">{t("description1")}</p>
               </CardContent>
             </Card>
 
-            <Card className="border-none shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300">
+            {/* Card 2 */}
+            <Card className="group border-none shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300">
               <CardContent className="p-6">
-                <div className="bg-red-100 rounded-full w-14 h-14 flex items-center justify-center mb-4">
-                  <Award className="h-7 w-7 text-red-600" />
+                <div className="relative inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-4 bg-red-100">
+                  <span className="absolute inset-0 bg-red-600 top-full group-hover:top-0 transition-all duration-500 ease-in-out z-0 rounded-full" />
+                  <Award className="relative z-10 h-7 w-7 text-red-600 transition-all duration-500 group-hover:text-white group-hover:rotate-[360deg]" />
                 </div>
+
                 <h3 className="text-xl font-bold mb-3">{t("title2")}</h3>
                 <p className="text-gray-600">{t("description2")}</p>
               </CardContent>
             </Card>
 
-            <Card className="border-none shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300">
+            {/* Card 3 */}
+            <Card className="group border-none shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300">
               <CardContent className="p-6">
-                <div className="bg-red-100 rounded-full w-14 h-14 flex items-center justify-center mb-4">
-                  <Heart className="h-7 w-7 text-red-600" />
+                <div className="relative inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-4 bg-red-100">
+                  <span className="absolute inset-0 bg-red-600 top-full group-hover:top-0 transition-all duration-500 ease-in-out z-0 rounded-full" />
+                  <Heart className="relative z-10 h-7 w-7 text-red-600 transition-all duration-500 group-hover:text-white group-hover:rotate-[360deg]" />
                 </div>
+
                 <h3 className="text-xl font-bold mb-3">{t("title3")}</h3>
                 <ul className="text-gray-600 space-y-2">
                   <li className="flex items-start">
@@ -158,108 +167,141 @@ export default function AboutPage() {
         </div>
       </section>
 
+     {/* Management Team — keep scroll-container */}
       <section className="bg-gray-50 py-16 mx-auto">
-        <div className="w-full mx-auto px-4">
+        <div className="w-full max-w-6xl mx-auto px-4">
           <h2 className="text-3xl font-bold mb-12 text-center">
             {t("management_team")}
           </h2>
 
-          <div className="scroll-container">
-            <div className="scroll-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
-              <div className="scroll-item flex flex-col items-center w-60 hover:shadow-lg hover:scale-105 transition-transform duration-300">
-                <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden">
-                  <img
-                    src="https://ext.same-assets.com/695105685/1712067103.jpeg"
-                    alt="CEO"
-                    className="w-full h-full object-cover"
-                  />
+          <div
+            className="
+              scroll-container relative overflow-x-auto md:overflow-visible
+              snap-x snap-mandatory
+              before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:w-8 before:bg-gradient-to-r before:to-transparent
+              after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:w-8 after:bg-gradient-to-l after:to-transparent
+            "
+          >
+            <div
+              className="
+                scroll-content grid gap-8 justify-items-center
+                grid-flow-col auto-cols-[15rem]
+                md:grid-flow-row md:auto-cols-auto md:grid-cols-2
+                lg:grid-cols-4 px-1 pb-2
+              "
+            >
+              {/* item 1 */}
+              <div className="scroll-item snap-start group w-60">
+                <div className="flex flex-col items-center rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-100 transition hover:shadow-lg hover:-translate-y-0.5">
+                  <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden ring-2 ring-red-200 transition group-hover:ring-red-400 group-hover:shadow-md">
+                    <img
+                      src="https://ext.same-assets.com/695105685/1712067103.jpeg"
+                      alt="CEO"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-1"> ທ່ານ ..............</h3>
+                  <p className="text-red-600/80 text-sm font-medium mb-2">
+                    ຜູ້ກໍ່ຕັ້ງ ແລະ ປະທານບໍລິຫານ
+                  </p>
+                  <p className="text-sm text-gray-600 text-center">
+                    ມີປະສົບການຫຼາຍກວ່າ 15 ປີໃນຂະແໜງໂລຈິສຕິກ ແລະ ການຂົນສົ່ງໃນລາວ
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold mb-1"> ທ່ານ ..............</h3>
-                <p className="text-gray-500 mb-3">
-                  ຜູ້ກໍ່ຕັ້ງ ແລະ ປະທານບໍລິຫານ
-                </p>
-                <p className="text-sm text-gray-600">
-                  ມີປະສົບການຫຼາຍກວ່າ 15 ປີໃນຂະແໜງໂລຈິສຕິກ ແລະ ການຂົນສົ່ງໃນລາວ
-                </p>
               </div>
 
-              <div className="scroll-item flex flex-col items-center w-60 hover:shadow-lg hover:scale-105 transition-transform duration-300">
-                <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden">
-                  <img
-                    src="https://ext.same-assets.com/329469209/2659073661.jpeg"
-                    alt="COO"
-                    className="w-full h-full object-cover"
-                  />
+              {/* item 2 */}
+              <div className="scroll-item snap-start group w-60">
+                <div className="flex flex-col items-center rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-100 transition hover:shadow-lg hover:-translate-y-0.5">
+                  <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden ring-2 ring-red-200 transition group-hover:ring-red-400 group-hover:shadow-md">
+                    <img
+                      src="https://ext.same-assets.com/329469209/2659073661.jpeg"
+                      alt="COO"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-1"> ທ່ານ ..............</h3>
+                  <p className="text-red-600/80 text-sm font-medium mb-2">ຜູ້ອຳນວຍການປະຕິບັດການ</p>
+                  <p className="text-sm text-gray-600 text-center">
+                    ເປັນຜູ່ຊ່ຽວຊານດ້ານການຈັດການຫ່ວງໂສ້ອຸປະທານ ແລະ ໂລຈິສຕິກ
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold mb-1"> ທ່ານ ..............</h3>
-                <p className="text-gray-500 mb-3">ຜູ້ອຳນວຍການປະຕິບັດການ</p>
-                <p className="text-sm text-gray-600">
-                  ເປັນຜູ່ຊ່ຽວຊານດ້ານການຈັດການຫ່ວງໂສ້ອຸປະທານ ແລະ ໂລຈິສຕິກ
-                </p>
               </div>
 
-              <div className="scroll-item flex flex-col items-center w-60 hover:shadow-lg hover:scale-105 transition-transform duration-300">
-                <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden">
-                  <img
-                    src="https://ext.same-assets.com/51785975/2381797199.jpeg"
-                    alt="CTO"
-                    className="w-full h-full object-cover"
-                  />
+              {/* item 3 */}
+              <div className="scroll-item snap-start group w-60">
+                <div className="flex flex-col items-center rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-100 transition hover:shadow-lg hover:-translate-y-0.5">
+                  <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden ring-2 ring-red-200 transition group-hover:ring-red-400 group-hover:shadow-md">
+                    <img
+                      src="https://ext.same-assets.com/51785975/2381797199.jpeg"
+                      alt="CTO"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-1">ທ່ານ ..............</h3>
+                  <p className="text-red-600/80 text-sm font-medium mb-2">ຜູ້ອຳນວຍການດ້ານເຕັກໂນໂລຢີ</p>
+                  <p className="text-sm text-gray-600 text-center">
+                    ຜູ່ນຳດ້ານການພັດທະນາແພລັດຟອມດິຈິຕອລແລະລະບົບຕິດຕາມສຳລັບໂລຈິສຕິກ
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold mb-1">ທ່ານ ..............</h3>
-                <p className="text-gray-500 mb-3">ຜູ້ອຳນວຍການດ້ານເຕັກໂນໂລຢີ</p>
-                <p className="text-sm text-gray-600">
-                  ຜູ່ນຳດ້ານການພັດທະນາແພລັດຟອມດິຈິຕອລແລະລະບົບຕິດຕາມສຳລັບໂລຈິສຕິກ
-                </p>
               </div>
 
-              <div className="scroll-item flex flex-col items-center w-60 hover:shadow-lg hover:scale-105 transition-transform duration-300">
-                <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden">
-                  <img
-                    src="https://ext.same-assets.com/695105685/1712067103.jpeg"
-                    alt="CEO"
-                    className="w-full h-full object-cover"
-                  />
+              {/* item 4 */}
+              <div className="scroll-item snap-start group w-60">
+                <div className="flex flex-col items-center rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-100 transition hover:shadow-lg hover:-translate-y-0.5">
+                  <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden ring-2 ring-red-200 transition group-hover:ring-red-400 group-hover:shadow-md">
+                    <img
+                      src="https://ext.same-assets.com/695105685/1712067103.jpeg"
+                      alt="CEO"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-1"> ທ່ານ ..............</h3>
+                  <p className="text-red-600/80 text-sm font-medium mb-2">
+                    ຜູ້ກໍ່ຕັ້ງ ແລະ ປະທານບໍລິຫານ
+                  </p>
+                  <p className="text-sm text-gray-600 text-center">
+                    ມີປະສົບການຫຼາຍກວ່າ 15 ປີໃນຂະແໜງໂລຈິສຕິກ ແລະ ການຂົນສົ່ງໃນລາວ
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold mb-1"> ທ່ານ ..............</h3>
-                <p className="text-gray-500 mb-3">
-                  ຜູ້ກໍ່ຕັ້ງ ແລະ ປະທານບໍລິຫານ
-                </p>
-                <p className="text-sm text-gray-600">
-                  ມີປະສົບການຫຼາຍກວ່າ 15 ປີໃນຂະແໜງໂລຈິສຕິກ ແລະ ການຂົນສົ່ງໃນລາວ
-                </p>
               </div>
 
-              <div className="scroll-item flex flex-col items-center w-60 hover:shadow-lg hover:scale-105 transition-transform duration-300">
-                <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden">
-                  <img
-                    src="https://ext.same-assets.com/695105685/1712067103.jpeg"
-                    alt="CEO"
-                    className="w-full h-full object-cover"
-                  />
+              {/* item 5 */}
+              <div className="scroll-item snap-start group w-60">
+                <div className="flex flex-col items-center rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-100 transition hover:shadow-lg hover:-translate-y-0.5">
+                  <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden ring-2 ring-red-200 transition group-hover:ring-red-400 group-hover:shadow-md">
+                    <img
+                      src="https://ext.same-assets.com/695105685/1712067103.jpeg"
+                      alt="CEO"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-1"> ທ່ານ ..............</h3>
+                  <p className="text-red-600/80 text-sm font-medium mb-2">
+                    ຜູ້ກໍ່ຕັ້ງ ແລະ ປະທານບໍລິຫານ
+                  </p>
+                  <p className="text-sm text-gray-600 text-center">
+                    ມີປະສົບການຫຼາຍກວ່າ 15 ປີໃນຂະແໜງໂລຈິສຕິກ ແລະ ການຂົນສົ່ງໃນລາວ
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold mb-1"> ທ່ານ ..............</h3>
-                <p className="text-gray-500 mb-3">
-                  ຜູ້ກໍ່ຕັ້ງ ແລະ ປະທານບໍລິຫານ
-                </p>
-                <p className="text-sm text-gray-600">
-                  ມີປະສົບການຫຼາຍກວ່າ 15 ປີໃນຂະແໜງໂລຈິສຕິກ ແລະ ການຂົນສົ່ງໃນລາວ
-                </p>
               </div>
 
-              <div className="scroll-item flex flex-col items-center w-60 hover:shadow-lg hover:scale-105 transition-transform duration-300">
-                <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden">
-                  <img
-                    src="https://ext.same-assets.com/329469209/2659073661.jpeg"
-                    alt="COO"
-                    className="w-full h-full object-cover"
-                  />
+              {/* item 6 */}
+              <div className="scroll-item snap-start group w-60">
+                <div className="flex flex-col items-center rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-100 transition hover:shadow-lg hover:-translate-y-0.5">
+                  <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden ring-2 ring-red-200 transition group-hover:ring-red-400 group-hover:shadow-md">
+                    <img
+                      src="https://ext.same-assets.com/329469209/2659073661.jpeg"
+                      alt="COO"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-1"> ທ່ານ ..............</h3>
+                  <p className="text-red-600/80 text-sm font-medium mb-2">ຜູ້ອຳນວຍການປະຕິບັດການ</p>
+                  <p className="text-sm text-gray-600 text-center">
+                    ເປັນຜູ່ຊ່ຽວຊານດ້ານການຈັດການຫ່ວງໂສ້ອຸປະທານ ແລະ ໂລຈິສຕິກ
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold mb-1"> ທ່ານ ..............</h3>
-                <p className="text-gray-500 mb-3">ຜູ້ອຳນວຍການປະຕິບັດການ</p>
-                <p className="text-sm text-gray-600">
-                  ເປັນຜູ່ຊ່ຽວຊານດ້ານການຈັດການຫ່ວງໂສ້ອຸປະທານ ແລະ ໂລຈິສຕິກ
-                </p>
               </div>
             </div>
           </div>

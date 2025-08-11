@@ -80,7 +80,11 @@
       "express_shipping": "특급 배송 요금에 대한 자세한 사항은 저희에게 직접 문의하십시오",
       "bulk_shipping": "대량 배송을 위한 특별 프로모션에 대해서는 저희에게 문의하십시오",
       "vat_included": "모든 가격은 부가가치세(VAT)가 포함된 가격입니다"
-    }
+    },
+    "width_must_be_over_40": "너비는 40cm보다 커야 합니다.",
+    "width_must_be_under_350": "너비는 350cm보다 작아야 합니다.",
+    "weight_must_be_over_1": "무게는 1kg보다 커야 합니다.",
+    "weight_must_be_under_80": "무게는 80kg보다 작아야 합니다."
   },
   "footer": {
     "company_name": "Anousith Express",
@@ -121,7 +125,9 @@
     "load_more": "더 많은 지점 로드",
     "branch_open": "정상 운영",
     "branch_closed": "임시 휴업",
-    "view_map": "지도 보기"
+    "view_map": "지도 보기",
+    "zoom_in": "확대",
+    "Navigate": "길 안내"
   },
   "about": {
     "about_us_title": "회사 소개",

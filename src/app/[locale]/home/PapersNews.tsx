@@ -104,11 +104,22 @@ export default function PapersNews() {
   return (
     <div>
       {/* Controls */}
-      <div className="mb-4 flex items-right justify-end ">
-        <div className="flex gap-2">
-          <Button variant="outline" size="sm" onClick={scrollPrev}>←</Button>
-          <Button variant="outline" size="sm" onClick={scrollNext}>→</Button>
-        </div>
+
+      <div className="mb-4 flex items-right justify-end gap-2">
+        <Button
+          onClick={scrollPrev}
+          className="rounded-full border border-gray-300 bg-white shadow-sm hover:bg-red-50 hover:border-red-300 transition-colors duration-200 text-black"
+          size="icon"
+        >
+          ←
+        </Button>
+        <Button
+          onClick={scrollNext}
+          className="rounded-full border border-gray-300 bg-white shadow-sm hover:bg-red-50 hover:border-red-300 transition-colors duration-200 text-black"
+          size="icon"
+        >
+          →
+        </Button>
       </div>
 
       {/* Viewport */}
@@ -195,7 +206,7 @@ export default function PapersNews() {
             key={i}
             onClick={() => scrollTo(i)}
             className={`h-2 w-2 rounded-full transition-all duration-300 ${
-              i === selectedIndex ? "w-4 bg-gray-100" : "bg-white"
+              i === selectedIndex ? "w-4 bg-red-700" : "bg-white"
             }`}
             aria-label={`Go to slide ${i + 1}`}
           />

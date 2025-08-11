@@ -146,8 +146,9 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 -mt-20 relative z-10">
           <Card className="shadow-md border-none hover:shadow-lg hover:scale-105 transition-transform duration-300">
             <CardContent className="p-6 flex flex-col items-center text-center">
-              <div className="bg-red-100 rounded-full p-4 mb-4">
-                <Phone className="h-6 w-6 text-red-600" />
+              <div className="relative inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-4 group bg-red-100">
+                <span className="absolute inset-0 bg-red-600 top-full group-hover:top-0 transition-all duration-500 ease-in-out z-0 rounded-full" />
+                <Phone className="relative z-10 h-6 w-6 text-red-600 group-hover:text-white transition-all duration-500 group-hover:rotate-[360deg]" />
               </div>
               <h3 className="text-xl font-bold mb-2">{t("call_us")}</h3>
               <p className="text-gray-600 mb-2">{t("call_us_24_7")}</p>
@@ -158,8 +159,9 @@ export default function ContactPage() {
 
           <Card className="shadow-md border-none hover:shadow-lg hover:scale-105 transition-transform duration-300">
             <CardContent className="p-6 flex flex-col items-center text-center">
-              <div className="bg-red-100 rounded-full p-4 mb-4">
-                <Mail className="h-6 w-6 text-red-600" />
+              <div className="relative inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-4 group bg-red-100">
+                <span className="absolute inset-0 bg-red-600 top-full group-hover:top-0 transition-all duration-500 ease-in-out z-0 rounded-full" />
+                <Mail className="relative z-10 h-6 w-6 text-red-600 group-hover:text-white transition-all duration-500 group-hover:rotate-[360deg]" />
               </div>
               <h3 className="text-xl font-bold mb-2">{t("email_us")}</h3>
               <p className="text-gray-600 mb-2">{t("response_time")}</p>
@@ -169,8 +171,9 @@ export default function ContactPage() {
 
           <Card className="shadow-md border-none hover:shadow-lg hover:scale-105 transition-transform duration-300">
             <CardContent className="p-6 flex flex-col items-center text-center">
-              <div className="bg-red-100 rounded-full p-4 mb-4">
-                <Clock className="h-6 w-6 text-red-600" />
+              <div className="relative inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-4 group bg-red-100">
+                <span className="absolute inset-0 bg-red-600 top-full group-hover:top-0 transition-all duration-500 ease-in-out z-0 rounded-full" />
+                <Clock className="relative z-10 h-6 w-6 text-red-600 group-hover:text-white transition-all duration-500 group-hover:rotate-[360deg]" />
               </div>
               <h3 className="text-xl font-bold mb-2">{t("working_hours")}</h3>
               <p className="text-gray-600 mb-2">{t("working_hours_details")}</p>

@@ -82,7 +82,11 @@
       "express_shipping": "สำหรับอัตราค่าจัดส่งด่วน กรุณาติดต่อเราตรง",
       "bulk_shipping": "สำหรับการจัดส่งจำนวนมาก ติดต่อเราสำหรับโปรโมชั่นพิเศษ",
       "vat_included": "ราคาทั้งหมดรวมภาษีมูลค่าเพิ่ม (VAT)"
-    }
+    },
+    "width_must_be_over_40": "ความกว้างต้องมากกว่า 40 ซม.",
+    "width_must_be_under_350": "ความกว้างต้องน้อยกว่า 350 ซม.",
+    "weight_must_be_over_1": "น้ำหนักต้องมากกว่า 1 กก.",
+    "weight_must_be_under_80": "น้ำหนักต้องน้อยกว่า 80 กก."
   },
   "footer": {
     "company_name": "Anousith Express",
@@ -123,7 +127,9 @@
     "load_more": "โหลดสาขาเพิ่มเติ่ม",
     "branch_open": "เปิดปกติ",
     "branch_closed": "ปิดชั่วคราว",
-    "view_map": "ดูแผนที่"
+    "view_map": "ดูแผนที่",
+    "zoom_in": "ซูมเข้า",
+    "Navigate": "นำทาง"
   },
   "about": {
     "about_us_title": "เกี่ยวกับเรา",

@@ -81,7 +81,11 @@
       "express_shipping": "For express shipping rates, please contact us directly.",
       "bulk_shipping": "For bulk shipping, contact us for special promotions.",
       "vat_included": "All prices include VAT."
-    }
+    },
+    "width_must_be_over_40": "Width must be greater than 40 cm.",
+    "width_must_be_under_350": "Width must be less than 350 cm.",
+    "weight_must_be_over_1": "Weight must be greater than 1 kg.",
+    "weight_must_be_under_80": "Weight must be less than 80 kg."
   },
   "footer": {
     "company_name": "Anousith Express",
@@ -122,7 +126,9 @@
     "load_more": "Load more branches",
     "branch_open": "Open Regularly",
     "branch_closed": "Temporarily Closed",
-    "view_map": "View Map"
+    "view_map": "View Map",
+    "zoom_in": "Zoom In",
+    "Navigate": "Navigate"
   },
   "about": {
     "about_us_title": "About Us",

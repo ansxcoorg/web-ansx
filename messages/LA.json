@@ -81,7 +81,11 @@
       "express_shipping": "ລາຄາບໍລິການຈັດສົ່ງດ່ວນພິເສດກະລຸນາຕິດຕໍ່ໂດຍກົງ.",
       "bulk_shipping": "ສຳລັບການຂົນສົ່ງສິນຄ້າຈຳນວນຫຼາຍ, ທ່ານສາມາດຕິດຕໍ່ເພື່ອຮັບໂປຣໂມຊັ່ນພິເສດ.",
       "vat_included": "ລາຄາທັງໝົດແມ່ນລວມອາກອນ VAT ແລ້ວ."
-    }
+    },
+    "width_must_be_over_40": "ຂະໜາດສິນຄ້າຕ້ອງຫຼາຍກວ່າ 40 ຊມ.",
+    "width_must_be_under_350": "ຂະໜາດສິນຄ້າຕ້ອງນ້ອຍກວ່າ 350 ຊມ.",
+    "weight_must_be_over_1": "ນ້ຳໜັກຕ້ອງຫຼາຍກວ່າ 1 ກກ.",
+    "weight_must_be_under_80": "ນ້ຳໜັກຕ້ອງນ້ອຍກວ່າ 80 ກກ."
   },
   "footer": {
     "company_name": "Anousith Express",
@@ -110,7 +114,7 @@
     "map_error": "ເກີດຂໍ້ຜິດຜາດໃນແຜນທີ່",
     "loading": "ກຳລັງໂຫລດ....",
     "branch_map": "ແຜນທີ່ສາຂາ",
-    "all_branches": "ສາຂາທັງໝົດ",
+    "all_branches": "",
     "central_region": "ພາກກາງ",
     "northern_region": "ພາກເໜືອ",
     "southern_region": "ພາກໃຕ້",
@@ -122,7 +126,9 @@
     "load_more": "ໂຫຼດສາຂາເພີ່ມເຕີມ",
     "branch_open": "ເປີດປົກກະຕິ",
     "branch_closed": "ປິດຊົ່ວຄາວ",
-    "view_map": "ເບິ່ງແຜນທີ່"
+    "view_map": "ເບິ່ງແຜນທີ່",
+    "zoom_in": "ຊູມເຂົ້າ",
+    "Navigate": "ນຳທາງ"
   },
   "about": {
     "about_us_title": "ກ່ຽວກັບພວກເຮົາ",
