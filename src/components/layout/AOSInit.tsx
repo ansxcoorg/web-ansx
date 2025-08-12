@@ -30,7 +30,11 @@ export default function AOSInit() {
           el.closest("[data-radix-scroll-area-corner]")
         ) {
           return;
-        }
+        };
+        if (
+          el.closest('[aria-roledescription="carousel"]') || // shadcn carousel root
+          el.closest(".embla") // Embla class (common)
+        ) return;
         // design the fade-up
         el.setAttribute("data-aos", "fade-up");
         el.setAttribute("data-aos-easing", "ease-out-cubic"); // easing นุ่ม
