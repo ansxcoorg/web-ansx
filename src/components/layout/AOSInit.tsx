@@ -12,15 +12,18 @@ export default function AOSInit() {
       nodes.forEach((el) => {
         // class table is data-aos-skip
         if (el.closest("table")) return;
-
         //  subtree is data-aos-skip
         if (el.closest("[data-aos-skip]")) return;
-
         // google maps is data-aos-skip
         if (el.closest(".gm-style")) return;
-
         //  Header is data-aos-skip
         if (el.closest("header") || el.closest(".site-header")) return;
+        //  PapersNews is data-aos-skip
+        if (el.closest("PapersNews") || el.closest("SlideImages")) return;
+        //  Skip: section bg-red-600 
+        if (el.closest("section.bg-red-600")) return;
+        //  Skip: PapersNews component 
+        if (el.closest(".papers-news")) return;
         //  scroll area is data-aos-skip
         if (
           el.closest("[data-radix-scroll-area-root]") ||
@@ -31,13 +34,16 @@ export default function AOSInit() {
         ) {
           return;
         };
+        // Skip: Embla carousel
         if (
           el.closest('[aria-roledescription="carousel"]') || // shadcn carousel root
           el.closest(".embla") // Embla class (common)
         ) return;
         // design the fade-up
         el.setAttribute("data-aos", "fade-up");
-        el.setAttribute("data-aos-easing", "ease-out-cubic"); // easing นุ่ม
+        el.setAttribute("data-aos-easing", "ease-out-cubic"); // ease-out-cubic
+        el.setAttribute("data-aos-duration", "600");
+        el.setAttribute("data-aos-offset", "24"); // 24px offset
       });
     };
     applyAOSAttr();
