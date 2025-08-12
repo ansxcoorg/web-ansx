@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MessageSquare, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import ChatComponent from "@/app/[locale]/contact/ChatComponent";
@@ -9,8 +9,28 @@ export default function FloatingContactButton() {
   const t = useTranslations("contact");
   const [open, setOpen] = useState(false);
 
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const onOpen = () => setOpen(true);
+    const onClose = () => setOpen(false);
+    const onToggle = () => setOpen((v) => !v);
+
+    window.addEventListener("ansx:openChat", onOpen as EventListener);
+    window.addEventListener("ansx:closeChat", onClose as EventListener);
+    window.addEventListener("ansx:toggleChat", onToggle as EventListener);
+
+    return () => {
+      window.removeEventListener("ansx:openChat", onOpen as EventListener);
+      window.removeEventListener("ansx:closeChat", onClose as EventListener);
+      window.removeEventListener("ansx:toggleChat", onToggle as EventListener);
+    };
+  }, []);
+
   return (
     <>
+      {/* button */}
       <button
         onClick={() => setOpen(true)}
         aria-label={t("contact_us")}
@@ -20,6 +40,8 @@ export default function FloatingContactButton() {
         <MessageSquare className="h-5 w-5" />
         <span className="hidden sm:inline">{t("contact_us")}</span>
       </button>
+
+      {/* Show chat box in chat component */}
       {open && (
         <div className="fixed bottom-20 right-4 z-[60] w-[350px] max-w-[90vw]">
           <div className="relative rounded-xl overflow-hidden shadow-2xl">

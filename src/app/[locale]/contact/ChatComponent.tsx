@@ -1,10 +1,10 @@
 "use client";
-
-import React, { useState, useEffect, useRef } from "react";
-import { useMutation, gql, useQuery } from "@apollo/client";
-import {  Send, Trash2 } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { useMutation, useQuery, gql } from "@apollo/client";
+import { Trash2, Send, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+// --- Schema (ใช้ของเดิมคุณ) ---
 const SEND_MESSAGE = gql`
   mutation SendMessage($sender: String!, $recipient: String!, $text: String!) {
     sendMessage(sender: $sender, recipient: $recipient, text: $text) {
@@ -38,33 +38,31 @@ const CLEAR_MESSAGES = gql`
 export default function ChatComponent({ onClose }: { onClose: () => void }) {
   const t = useTranslations("contact");
   const [sender, setSender] = useState("");
-  const [querySender, setQuerySender] = useState("");
+  const [querySender, setQuerySender] = useState(""); // ใช้ยิง query
   const [text, setText] = useState("");
-  const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const {
-    data,
-    loading: queryLoading,
-    error: queryError,
-  } = useQuery(GET_MESSAGES, {
-    variables: { sender, recipient: "Admin" },
-    pollInterval: 3000,
-    skip: !querySender,
-  });
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const greetedRef = useRef(false); // กันยิงข้อความต้อนรับซ้ำ
+
+  const { data, loading: queryLoading, error: queryError } = useQuery(
+    GET_MESSAGES,
+    {
+      variables: { sender: querySender, recipient: "Admin" },
+      pollInterval: 3000,
+      skip: !querySender, // ยังไม่กรอกชื่อ/ยังไม่ส่งข้อความครั้งแรก ก็ยังไม่ query
+    }
+  );
 
   const [sendMessage, { loading: mutationLoading, error: mutationError }] =
     useMutation(SEND_MESSAGE);
   const [clearMessages, { loading: clearing }] = useMutation(CLEAR_MESSAGES, {
-    refetchQueries: ["getMessages"],
+    refetchQueries: ["GetMessages"],
   });
 
   const handleClearChat = async () => {
     try {
-      await clearMessages({
-        variables: {
-          sender: String(sender),
-        },
-      });
+      await clearMessages({ variables: { sender: String(querySender) } });
+      greetedRef.current = false;
     } catch (error) {
       console.error(error);
     }
@@ -76,39 +74,44 @@ export default function ChatComponent({ onClose }: { onClose: () => void }) {
       return;
     }
     try {
-      await sendMessage({ variables: { sender, recipient: "Admin", text } });
+      await sendMessage({
+        variables: { sender: sender.trim(), recipient: "Admin", text },
+      });
       setText("");
-      setQuerySender(sender.trim());
+      if (!querySender) setQuerySender(sender.trim()); // เริ่ม subscribe ข้อความ
     } catch (err) {
       console.error(err);
     }
   };
 
+  // Auto-scroll
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [data?.getMessages]);
+  }, [data?.getMessages?.length]);
 
+  // chat box to admin greeting
   useEffect(() => {
-  if (!data?.getMessages?.length) return;
+    const msgs = data?.getMessages;
+    if (!msgs || greetedRef.current) return;
 
-  const msgs = data.getMessages;
-  const customerName = msgs[0]?.sender;
+    const hasAdmin = msgs.some((m: any) => m.sender === "Admin");
+    const customer = msgs[0]?.sender;
 
-  const adminSent = msgs.some((msg: any) => msg.sender === "Admin");
-
-  if (!adminSent && customerName) {
-    sendMessage({
-      variables: {
-        sender: "Admin",
-        recipient: customerName,
-        text: "🙏 ຂອບໃຈຫຼາຍໆສໍາລັບການຕິດຕໍ່ ທີມງານໄດ້ຮັບຂໍ້ຄວາມແລ້ວ ແລະ ຈະຕອບກັບໃຫ້ໄວທີ່ສຸດເດີ້",
-      },
-    }).catch(console.error);
-  }
-}, [data?.getMessages]);
-
-  if (queryLoading)
-    return <div className="bg-white p-4 rounded shadow">Loading chat...</div>;
+    if (!hasAdmin && customer) {
+      greetedRef.current = true;
+      sendMessage({
+        variables: {
+          sender: "Admin",
+          recipient: customer,
+          text:
+            "🙏 ຂອບໃຈຫຼາຍໆສໍາລັບການຕິດຕໍ່ ທີມງານໄດ້ຮັບຂໍ້ຄວາມແລ້ວ ແລະ ຈະຕອບກັບໃຫ້ໄວທີ່ສຸດເດີ້",
+        },
+      }).catch((e) => {
+        greetedRef.current = false; // ถ้าพลาด ให้ยิงใหม่รอบหน้าได้
+        console.error(e);
+      });
+    }
+  }, [data?.getMessages, sendMessage]);
 
   return (
     <div className="p-4 border rounded-lg shadow-lg bg-white w-full max-w-md flex flex-col">
@@ -117,15 +120,20 @@ export default function ChatComponent({ onClose }: { onClose: () => void }) {
         <h3 className="text-lg font-bold text-gray-700">💬 {t("chat")}</h3>
         <button
           onClick={onClose}
-          className="text-gray-500 hover:text-red-500 text-xl"
+          className="text-gray-500 hover:text-red-500"
+          aria-label="Close"
         >
-          ✖
+          <X className="h-5 w-5" />
         </button>
       </div>
 
       {/* Messages */}
       <div className="overflow-y-auto mb-3 max-h-80 border rounded-lg p-3 bg-gray-100 space-y-2">
-        {data?.getMessages?.length === 0 && (
+        {queryLoading && (
+          <div className="text-gray-400 text-center">{t("loading")}</div>
+        )}
+
+        {data?.getMessages?.length === 0 && !queryLoading && (
           <div className="text-gray-400 text-center mt-10">
             <p>{t("no_messages")}</p>
           </div>
@@ -148,7 +156,6 @@ export default function ChatComponent({ onClose }: { onClose: () => void }) {
             </div>
           </div>
         ))}
-
         <div ref={messagesEndRef} />
         {queryError && (
           <p className="text-red-600 text-sm">
@@ -157,7 +164,7 @@ export default function ChatComponent({ onClose }: { onClose: () => void }) {
         )}
       </div>
 
-      {/* Sender name */}
+      {/* Sender */}
       <input
         type="text"
         placeholder={t("name")}
@@ -179,7 +186,7 @@ export default function ChatComponent({ onClose }: { onClose: () => void }) {
       <div className="flex justify-between items-center">
         <button
           onClick={handleClearChat}
-          disabled={clearing}
+          disabled={clearing || !querySender}
           className="p-2 bg-red-500 hover:bg-red-600 text-white rounded-full disabled:opacity-50"
           title="Clear Messages"
         >

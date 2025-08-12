@@ -24,11 +24,17 @@ import { toast, ToastContainer } from "react-toastify";
 import { useTranslations } from "next-intl";
 import { useLazyQuery, useMutation } from "@apollo/client";
 import Schema from "../../../apollo/index";
-import ChatComponent from "./ChatComponent";
+
+// Function to open the chat box in the contact page  
+const openFloatingChat = () => {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event("ansx:openChat"));
+  }
+};
 
 export default function ContactPage() {
   const t = useTranslations("contact");
-  const [showChat, setShowChat] = useState(false);
+
   const [fetchGmail] = useMutation(Schema.sendGmail);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -428,9 +434,10 @@ export default function ContactPage() {
               </h2>
               <p className="text-gray-600 mb-4">{t("text_1")}</p>
               <p className="text-gray-600 mb-6">{t("text_2")}</p>
+              {/* open chat box in contact page by openFloatingChat */}
               <button
                 className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded flex items-center"
-                onClick={() => setShowChat(true)}
+                onClick={openFloatingChat}
               >
                 <MessageSquare className="h-4 w-4 mr-2" />
                 {t("contact_us")}
@@ -447,12 +454,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-      {showChat && (
-        <div className="fixed bottom-4 right-4 z-50 w-[350px]">
-          <ChatComponent onClose={() => setShowChat(false)} />
-        </div>
-      )}
-
       <section className="container mx-auto px-4 py-12">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">
