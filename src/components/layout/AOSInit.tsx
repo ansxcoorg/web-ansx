@@ -22,6 +22,8 @@ export default function AOSInit() {
         if (el.closest("PapersNews") || el.closest("SlideImages")) return;
         //  Skip: section bg-red-600 
         if (el.closest("section.bg-red-600")) return;
+        //buttons are data-aos-skip
+        if (el.closest("button") || el.closest("a")) return;
         //  Skip: PapersNews component 
         if (el.closest(".papers-news")) return;
         //  scroll area is data-aos-skip
