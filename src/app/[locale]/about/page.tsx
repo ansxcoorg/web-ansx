@@ -13,6 +13,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 
+
 export default function AboutPage() {
   const locale = useLocale();
   const t = useTranslations("about");

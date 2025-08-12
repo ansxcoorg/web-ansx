@@ -19,6 +19,7 @@ import { getMessages } from "next-intl/server";
 import FloatingContactButton from "@/components/layout/FloatingContactButton";
 import AOSInit from "@/components/layout/AOSInit";
 
+
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const notoSansLao = Noto_Sans_Lao({
   weight: ["400", "700"],
@@ -60,6 +61,7 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <html lang={locale}>
+      
       <body
         className={`antialiased ${
           locale === "LA"
@@ -73,6 +75,7 @@ export default async function RootLayout({
             : locale === "KR"
             ? "Noto Sans KR"
             : "font-inter"
+            
         }`}
       >
         <NextIntlClientProvider messages={messages}>
@@ -81,6 +84,7 @@ export default async function RootLayout({
             <div className="flex min-h-screen flex-col">
               <Header />
               <main className="flex-1 font-lao">{children}</main>
+
               <Footer />
               <FloatingContactButton />
             </div>

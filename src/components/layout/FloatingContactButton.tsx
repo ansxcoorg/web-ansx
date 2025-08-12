@@ -9,7 +9,7 @@ export default function FloatingContactButton() {
   const t = useTranslations("contact");
   const [open, setOpen] = useState(false);
 
-
+  // ฟัง event จากหน้าอื่น ๆ
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -30,7 +30,7 @@ export default function FloatingContactButton() {
 
   return (
     <>
-      {/* button */}
+      {/* ปุ่มลอย เปิดกล่องแชท */}
       <button
         onClick={() => setOpen(true)}
         aria-label={t("contact_us")}
@@ -41,7 +41,7 @@ export default function FloatingContactButton() {
         <span className="hidden sm:inline">{t("contact_us")}</span>
       </button>
 
-      {/* Show chat box in chat component */}
+      {/* แสดงกล่องแชทที่นี่ “ที่เดียว” */}
       {open && (
         <div className="fixed bottom-20 right-4 z-[60] w-[350px] max-w-[90vw]">
           <div className="relative rounded-xl overflow-hidden shadow-2xl">
