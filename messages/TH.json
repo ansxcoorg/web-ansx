@@ -86,7 +86,9 @@
     "width_must_be_over_40": "ความกว้างต้องมากกว่า 40 ซม.",
     "width_must_be_under_350": "ความกว้างต้องน้อยกว่า 350 ซม.",
     "weight_must_be_over_1": "น้ำหนักต้องมากกว่า 1 กก.",
-    "weight_must_be_under_80": "น้ำหนักต้องน้อยกว่า 80 กก."
+    "weight_must_be_under_80": "น้ำหนักต้องน้อยกว่า 80 กก.",
+    "no_results": "ไม่พบผลลัพธ์",
+    "try_another_keyword": "กรุณาลองคำค้นหาอื่น"
   },
   "footer": {
     "company_name": "Anousith Express",

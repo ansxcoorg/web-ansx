@@ -362,7 +362,7 @@ export default function PricingPage() {
                               <Search className="h-5 w-5 text-gray-500" />
                             </div>
                             <p className="text-sm font-medium text-gray-800">
-                              {t("no_results") ?? "No results"}
+                              {t("no_results", { fallback: "No results" })}
                             </p>
                             <p className="mt-1 text-xs text-gray-500">
                               {t("try_another_keyword") ??
@@ -376,7 +376,7 @@ export default function PricingPage() {
                 </table>
               </div>
 
-              {/* Footer: count + load more */}
+              {/* load more */}
               <div className="flex flex-col items-center gap-3 border-t bg-gray-50 px-4 py-4 md:flex-row md:justify-between">
                 <p className="text-xs text-gray-500">
                   {t("display")} {filteredItemsPrice?.length ?? 0} {t("in")}{" "}

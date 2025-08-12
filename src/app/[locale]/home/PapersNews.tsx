@@ -95,7 +95,7 @@ export default function PapersNews() {
     };
   }, [emblaApi, start, stop]);
 
-  // หยุดตอนเปิดโมดอล
+  //stop while is open
   useEffect(() => {
     if (isOpen) stop();
     else start();
@@ -103,7 +103,6 @@ export default function PapersNews() {
 
   return (
     <div>
-      {/* Controls */}
 
       <div className="mb-4 flex items-right justify-end gap-2">
         <Button
@@ -206,7 +205,7 @@ export default function PapersNews() {
             key={i}
             onClick={() => scrollTo(i)}
             className={`h-2 w-2 rounded-full transition-all duration-300 ${
-              i === selectedIndex ? "w-4 bg-red-700" : "bg-white"
+              i === selectedIndex ? "w-4 bg-gray-100" : "bg-white"
             }`}
             aria-label={`Go to slide ${i + 1}`}
           />

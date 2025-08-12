@@ -59,7 +59,7 @@ const BranchMap = ({ branches, center, zoom }: BranchMapProps) => {
   // SVG icon (white default, red on hover/selected)
   const getSvgMarker = (logoDataUrl: string, variant: "white" | "red") => {
     const fill =
-      variant === "white" ? "rgba(255,255,255,0.7)" : "rgba(248, 113, 113, 1)"; // red-400
+      variant === "white" ? "rgba(255,255,255,0.7)" : "rgba(220, 38, 38, 0.7)"; // red-600/70
     return {
       url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
         <svg xmlns="http://www.w3.org/2000/svg" width="60" height="80" viewBox="0 0 60 80">

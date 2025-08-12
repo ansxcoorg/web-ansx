@@ -16,6 +16,7 @@ import "./globals.css";
 import ClientBody from "./ClientBody";
 import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
+import FloatingContactButton from "@/components/layout/FloatingContactButton";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const notoSansLao = Noto_Sans_Lao({
@@ -79,7 +80,9 @@ export default async function RootLayout({
             <div className="flex min-h-screen flex-col">
               <Header />
               <main className="flex-1 font-lao">{children}</main>
+
               <Footer />
+              <FloatingContactButton />
             </div>
           </ClientBody>
         </NextIntlClientProvider>

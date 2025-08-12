@@ -420,7 +420,7 @@ export default function ContactPage() {
       </section>
 
       <section className="bg-gray-50 py-12">
-        <div className="container mx-auto px-4 hover:shadow-lg hover:scale-105 transition-transform duration-300">
+        <div className="container mx-auto px-4 hover:drop-shadow-lg hover:scale-105 transition-transform duration-300">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-2xl font-bold mb-4">

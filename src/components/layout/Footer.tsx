@@ -11,7 +11,6 @@ import Logo from "../../img/logo_next_day.png";
 import { useLocale, useTranslations } from "next-intl";
 
 const currentYear = new Date().getFullYear();
-
 export default function Footer() {
   const t = useTranslations("footer");
   const locale = useLocale();
@@ -201,3 +200,4 @@ export default function Footer() {
     </footer>
   );
 }
+

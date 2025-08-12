@@ -86,7 +86,7 @@ export default function NewsPage() {
 
   // ------- Auto Slide + Animation (Featured) -------
   const [activeIndex, setActiveIndex] = useState(0);
-  const AUTOPLAY_MS = 4500;
+  const AUTOPLAY_MS = 2500;
 
   useEffect(() => { setActiveIndex(0); }, [newsItems]);
 
