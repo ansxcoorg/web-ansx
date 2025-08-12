@@ -11,7 +11,6 @@ export default function FloatingContactButton() {
 
   return (
     <>
-      {/* Floating Contact Button */}
       <button
         onClick={() => setOpen(true)}
         aria-label={t("contact_us")}

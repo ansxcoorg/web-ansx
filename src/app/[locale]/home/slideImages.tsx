@@ -98,7 +98,7 @@ export default function SlideImages() {
         </form>
       </CarouselContent>
 
-      {/* Indicators (จุดแสดงสถานะสไลด์) */}
+      {/* Indicators */}
       <div className="absolute bottom-4 left-0 right-0 flex justify-center">
         <div className="flex space-x-2">
           {slideImg.map((_, index) => (
