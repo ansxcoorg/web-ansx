@@ -64,7 +64,7 @@ export default function SlideImages() {
                 className="w-full h-full object-cover rounded-5xl"
                 style={{
                   width: "100%",   
-                  maxHeight: "759px",
+                  maxHeight: "559px",
                   objectFit: "cover", 
                 }}
               />

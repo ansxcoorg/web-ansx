@@ -9,6 +9,7 @@ import {
   SelectValue,
   SelectContent,
   SelectItem,
+  SelectPortal,
 } from "@radix-ui/react-select";
 
 // สร้าง interface สำหรับ items ใน Select
@@ -17,7 +18,6 @@ interface ProvinceOption {
   label: string;
   provinceName?: string;
 }
-
 
 interface provinces {
   id_state: string;
@@ -41,7 +41,6 @@ export default function SelectProvinces({
     fetchPolicy: "network-only",
   });
 
-
   useEffect(() => {
     fetchData({
       variables: {
@@ -50,15 +49,12 @@ export default function SelectProvinces({
     });
   }, [fetchData]);
 
-
   useEffect(() => {
     if (data) {
-    
       const results = Array.isArray(data?.provinces?.data)
         ? (data.provinces.data as provinces[])
         : [];
 
-   
       const formattedResults: ProvinceOption[] = results.map(
         (item: provinces, index: number) => ({
           value: item.id_state,
@@ -67,50 +63,62 @@ export default function SelectProvinces({
         })
       );
 
-   
       setItems(
         all
           ? [{ value: "all", label: "ທັງໝົດ" }, ...formattedResults]
           : formattedResults
       );
     } else {
-      setItems([]); 
+      setItems([]);
     }
   }, [data, all]);
 
   return (
-    <div className="flex justify-center space-x-4 mb-4">
+    <div className="w-full" data-aos-skip>
       <Select
         disabled={disabled}
-        onValueChange={(value) => {
-          const selected = items.find((item) => item.value === value);
-          if (onChange) onChange(selected || null); 
+        onValueChange={(val) => {
+          const selected = items.find((it) => it.value === val);
+          onChange?.(selected || null);
         }}
         value={value?.toString()}
       >
-        <SelectTrigger className="w-full min-w-[150px] max-w-[250px] border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 bg-white shadow-sm">
+
+        <SelectTrigger
+          className="w-full h-12 border border-gray-300 px-3 rounded-lg bg-white shadow-sm
+                     focus:outline-none focus:ring-2 focus:ring-red-500"
+          // เผื่อ AOS ใช้ closest กับ trigger
+          data-radix-select-trigger
+        >
           <SelectValue>
-            {value && items.some((item) => item.value === value)
-              ? items.find((item) => item.value === value)?.label
+            {value && items.some((it) => it.value === value)
+              ? items.find((it) => it.value === value)?.label
               : loading
               ? "ກຳລັງໂຫຼດ..."
               : "ເລືອກແຂວງ"}
           </SelectValue>
         </SelectTrigger>
-        <SelectContent
-          className="bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto"
-          position="popper"
+
+    <SelectPortal>
+    <SelectContent
+      className="bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto
+                 z-[10000]"
+      style={{ width: "var(--radix-select-trigger-width)" }}
+      position="popper"
+      sideOffset={8}
+      data-aos-skip
+    >
+      {items.map((item) => (
+        <SelectItem
+          key={item.value}
+          value={item.value}
+          className="p-2 hover:bg-red-100 cursor-pointer"
         >
-          {items.map((item) => (
-            <SelectItem
-              key={item.value}
-              value={item.value}
-              className="p-2 hover:bg-red-100 cursor-pointer"
-            >
-              {item.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
+          {item.label}
+        </SelectItem>
+     ))}
+    </SelectContent>
+  </SelectPortal>
       </Select>
     </div>
   );

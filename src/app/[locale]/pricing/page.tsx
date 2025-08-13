@@ -261,7 +261,6 @@ export default function PricingPage() {
         </Link>
       </div>
 
-
       <Tabs defaultValue="standard" className="mb-8">
         <TabsList className="w-full grid grid-cols-2 ">
           <TabsTrigger
@@ -318,9 +317,7 @@ export default function PricingPage() {
                 <table className="w-full text-sm">
                   <thead className="bg-gray-50 text-gray-700 sticky top-0 z-10">
                     <tr>
-                      <th className="w-14 px-4 py-3 text-left font-medium">
-
-                      </th>
+                      <th className="w-14 px-4 py-3 text-left font-medium"></th>
                       <th className="px-4 py-3 text-left font-medium">
                         {t("column_name")}
                       </th>
@@ -333,25 +330,27 @@ export default function PricingPage() {
                     {(filteredItemsPrice?.length ?? 0) > 0 ? (
                       filteredItemsPrice!.map((value, index) => (
                         <tr
-                key={`${value.id}-${index}`}
-                className="group relative transition-colors odd:bg-white even:bg-gray-50/60 hover:bg-red-50/60 "
-              >
-                {/* left-stick while hover */}
-                <td className="px-4 py-3 text-gray-500">
-                  <span className="absolute left-0 top-0 h-full w-1 bg-red-500/70 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  {index + 1}
-                </td>
+                          key={`${value.id}-${index}`}
+                          className="group relative transition-colors odd:bg-white even:bg-gray-50/60 hover:bg-red-50/60 "
+                        >
+                          {/* left-stick while hover */}
+                          <td className="px-4 py-3 text-gray-500">
+                            <span className="absolute left-0 top-0 h-full w-1 bg-red-500/70 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            {index + 1}
+                          </td>
 
-                <td className="px-4 py-3">
-                  <div className="font-medium text-gray-900">{value.title}</div>
-                </td>
+                          <td className="px-4 py-3">
+                            <div className="font-medium text-gray-900">
+                              {value.title}
+                            </div>
+                          </td>
 
-                <td className="px-4 py-3 text-right">
-                  <span className="font-semibold text-gray-900">
-                    {currency(value.packagePrice)} {t("currency")}
-                  </span>
-                </td>
-              </tr>
+                          <td className="px-4 py-3 text-right">
+                            <span className="font-semibold text-gray-900">
+                              {currency(value.packagePrice)} {t("currency")}
+                            </span>
+                          </td>
+                        </tr>
                       ))
                     ) : (
                       // Empty state
@@ -394,7 +393,7 @@ export default function PricingPage() {
           </div>
         </TabsContent>
         <TabsContent value="price" className="mt-6">
-          <div className="bg-red-100 p-8 rounded-lg shadow-md max-w-xl mx-auto ">
+           <div className="bg-red-100 p-8 rounded-lg shadow-md max-w-xl mx-auto" data-aos-skip>
             <h2 className="text-2xl font-semibold text-red-700 mb-4 text-center">
               {t("calculate_service_fee")}
             </h2>
@@ -406,6 +405,19 @@ export default function PricingPage() {
             <div className="flex justify-center space-x-4 mb-4">
               <div className="flex flex-col items-center">
                 <h2 className="mb-4">{t("select_province_from")}</h2>
+              </div>
+
+              <div className="flex flex-col items-center text-red-600">
+                <ArrowRight className="h-6 w-6 mb-8" />
+              </div>
+
+              <div className="flex flex-col items-center">
+                <h2 className="mb-4">{t("select_province_to")}</h2>
+              </div>
+            </div>
+            <div className="flex flex-row justify-center space-x-4 mb-4 w-full" >
+              
+              <div className="flex-1">
                 <SelectProvinces
                   all={true}
                   value={
@@ -425,12 +437,7 @@ export default function PricingPage() {
                 />
               </div>
 
-              <div className="flex flex-col items-center text-red-600">
-                <ArrowRight className="h-6 w-6 mb-8" />
-              </div>
-
-              <div className="flex flex-col items-center">
-                <h2 className="mb-4">{t("select_province_to")}</h2>
+              <div className="flex-1">
                 <SelectProvinces
                   all={true}
                   value={
@@ -449,6 +456,7 @@ export default function PricingPage() {
                 />
               </div>
             </div>
+
             <div className="flex items-center space-x-4 mb-4">
               <input
                 type="number"

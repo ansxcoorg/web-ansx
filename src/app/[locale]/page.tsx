@@ -40,8 +40,17 @@ export default function Home() {
           <SlideImages />
         </section>
 
-        <section className="container mx-auto px-4 py-12">
-          <h2 className="text-2xl font-bold mb-8 text-center">
+        <section className="container mx-auto px-4 py-14">
+          <h2
+            className="
+                       mx-auto max-w-3xl md:max-w-4xl px-4
+                       text-3xl md:text-4xl font-bold leading-snug md:leading-tight tracking-tight
+                       mb-8 text-center
+                       bg-[linear-gradient(90deg,#760115_0%,#BA0020_31.38%,#E13035_43.31%,#5E0E4D_86.62%)]
+                       bg-clip-text text-transparent
+                       break-words
+                       "
+          >
             {t("feature_title")}
           </h2>
 
@@ -106,20 +115,18 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="bg-red-600 py-12">
+        <section className="bg-gradient-to-r from-red-700 via-red-600 to-red-700 text-white py-12 animate-gradient-x bg-[length:200%_200%] py-12">
           <div className="container mx-auto px-4">
-            <h2 className="text-2xl text-white font-bold mb-8">
+            <h2 className="text-3xl text-white font-bold mb-8">
               {t("news_activities")}
-      
             </h2>
             <PapersNews />
           </div>
         </section>
 
         <section className="container mx-auto px-4 py-12">
-          <h2 className="text-2xl font-bold mb-8">{t("main_pricing")}
-          </h2>
-          
+          <h2 className="text-2xl font-bold mb-8">{t("main_pricing")}</h2>
+
           <PackagePrice />
         </section>
 
