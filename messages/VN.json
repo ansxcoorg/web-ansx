@@ -219,7 +219,8 @@
     "placeholder_2": "Chủ đề của tin nhắn",
     "placeholder_3": "Tên đầy đủ của bạn",
     "placeholder_4": "email@example.com",
-    "loading": "Đang tải...."
+    "loading": "Đang tải....",
+    "enter_message_alert": "Vui lòng nhập tên và tin nhắn của bạn"
   },
   "Policy": {
     "title": "Chính sách của chúng tôi",

@@ -218,7 +218,8 @@
     "placeholder_2": "ຫົວຂໍ້ຂອງຂໍ້ຄວາມ",
     "placeholder_3": "ຊື່ເຕັມຂອງທ່ານ",
     "placeholder_4": "email@example.com",
-    "loading": "ກຳລັງໂຫລດ...."
+    "loading": "ກຳລັງໂຫລດ....",
+    "enter_message_alert": "ກະລູນາໃສ່ຊື້ແລະຂໍ້ຄວາມ"
   },
   "Policy": {
     "title": "ນະໂຍບາຍຕ່າງໆຂອງພວກເຮົາ",

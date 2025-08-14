@@ -217,7 +217,8 @@
     "placeholder_2": "메시지 제목",
     "placeholder_3": "전체 이름",
     "placeholder_4": "email@example.com",
-    "loading": "로딩 중...."
+    "loading": "로딩 중....",
+    "enter_message_alert": "이름과 메시지를 입력해 주세요"
   },
   "Policy": {
     "title": "저희의 정책",

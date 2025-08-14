@@ -216,7 +216,8 @@
     "placeholder_2": "消息的主题",
     "placeholder_3": "您的全名",
     "placeholder_4": "email@example.com",
-    "loading": "正在加载...."
+    "loading": "正在加载....",
+    "enter_message_alert": "请输入姓名和留言"
   },
   "Policy": {
     "title": "我们公司的不同政策",

@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { useMutation, useQuery, gql } from "@apollo/client";
 import { Trash2, Send, X } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // --- Schema ---
 const SEND_MESSAGE = gql`
@@ -80,7 +82,15 @@ export default function ChatComponent({ onClose }: { onClose: () => void }) {
 
   const handleSendMessage = async () => {
     if (!sender.trim() || !text.trim()) {
-      alert("ກະລູນາໃສ່ຊື້ແລະຂໍ້ຄວາມ");
+      toast.error(t("enter_message_alert"), {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return;
     }
     try {
@@ -167,7 +177,7 @@ export default function ChatComponent({ onClose }: { onClose: () => void }) {
                   className={`h-7 w-7 shrink-0 rounded-full grid place-items-center text-[10px] font-semibold border ${
                     isAdmin
                       ? "bg-slate-100 text-slate-600 border-slate-200" // Admin
-                      : "bg-red-100 text-red-700 border-red-200" // User (โทนแดง)
+                      : "bg-red-100 text-red-700 border-red-200" // User 
                   }`}
                   title={msg.sender}
                 >
@@ -179,7 +189,7 @@ export default function ChatComponent({ onClose }: { onClose: () => void }) {
                   className={`rounded-2xl px-3 py-2 text-[13px] leading-relaxed shadow-sm border ${
                     isAdmin
                       ? "bg-white text-slate-800 border-slate-200" // Admin
-                      : "bg-red-600 text-white border-red-600" // User (โทนแดง)
+                      : "bg-red-600 text-white border-red-600" // User 
                   }`}
                 >
                   {/* name of user */}

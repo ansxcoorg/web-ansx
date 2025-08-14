@@ -217,7 +217,8 @@
     "placeholder_2": "Subject of the message",
     "placeholder_3": "Your full name",
     "placeholder_4": "email@example.com",
-    "loading": "Loading...."
+    "loading": "Loading....",
+    "enter_message_alert": "Please enter your name and message"
   },
   "Policy": {
     "things_to_know": "Things to know before using the service:",
