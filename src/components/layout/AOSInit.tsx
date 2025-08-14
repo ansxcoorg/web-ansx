@@ -8,17 +8,17 @@ export default function AOSInit() {
     const hasRadixSelectInside = (root: Element | Document | null) => {
       if (!root || !(root as Element).querySelector) return false;
       return Boolean(
-        // ใช้ ARIA role + data-* ครอบคลุมทุกรุ่น
+        // ARIA role + data
         (root as Element).querySelector(
           [
             '[role="combobox"]',
             '[role="listbox"]',
             '[role="option"]',
-            '[data-radix-select-trigger]',
-            '[data-radix-select-content]',
-            '[data-radix-select-viewport]',
-            '[data-radix-select-item]',
-            '[data-radix-portal]',
+            "[data-radix-select-trigger]",
+            "[data-radix-select-content]",
+            "[data-radix-select-viewport]",
+            "[data-radix-select-item]",
+            "[data-radix-portal]",
           ].join(",")
         )
       );
@@ -41,7 +41,7 @@ export default function AOSInit() {
       );
 
       nodes.forEach((el) => {
-        // 0) ถ้ามี AOS อยู่แล้วและเป็น ancestor ของ Select — ลบออก
+        // 0) if AOS will be ancestor of Select
         if (el.hasAttribute("data-aos") && hasRadixSelectInside(el)) {
           el.removeAttribute("data-aos");
           el.style.transform = "";
@@ -49,19 +49,28 @@ export default function AOSInit() {
           return;
         }
 
-        // 1) ข้ามทุกอย่างที่มี select ข้างใน (กันพาเรนต์โดน transform)
+        // 1) skip select
         if (hasRadixSelectInside(el)) return;
 
         // 2) opt‑out manual
         if (el.closest("[data-aos-skip], .aos-ignore")) return;
 
-        // 3) โครงสร้างที่ไม่ควร animate
+        // 3) skip table,table,...
         if (el.closest("table")) return;
         if (el.closest(".gm-style")) return;
         if (el.closest("header, .site-header")) return;
         if (el.closest("section.bg-gradient-to-r")) return;
         if (el.closest("button, a")) return;
-        if (el.closest("input, select, textarea, [contenteditable='true']")) return;
+        if (el.closest("input, select, textarea, [contenteditable='true']"))
+          return;
+        if (
+          el.classList.contains("hover-scale") ||
+          Array.from(el.classList).some((cls) =>
+            cls.startsWith("hover:scale")
+          ) ||
+          (el.style.transform && el.style.transform.includes("scale"))
+        )
+          return;
 
         // 4) Scroll-area (Radix)
         if (
@@ -70,26 +79,28 @@ export default function AOSInit() {
           el.closest("[data-radix-scroll-area-scrollbar]") ||
           el.closest("[data-radix-scroll-area-thumb]") ||
           el.closest("[data-radix-scroll-area-corner]")
-        ) return;
+        )
+          return;
 
         // 5) React‑Toastify
         if (
           el.closest(".Toastify") ||
           el.closest(".Toastify__toast-container") ||
           el.closest(".Toastify__toast")
-        ) return;
+        )
+          return;
 
         // 6) Carousel / Embla
         if (
           el.closest('[aria-roledescription="carousel"]') ||
           el.closest(".embla")
-        ) return;
+        )
+          return;
 
-        // 7) คอมโพเนนต์ที่ตั้งใจ skip เอง
+        // 7) skip paper-news
         if (el.closest(".papers-news")) return;
 
-        // ---- ใส่ AOS ----
-        // (อย่า animate สำหรับ element ที่เป็นลูกหลานของ select)
+        // ---- Animation AOS ----
         el.setAttribute("data-aos", "fade-up");
         el.setAttribute("data-aos-easing", "ease-out-cubic");
         el.setAttribute("data-aos-duration", "600");
@@ -97,9 +108,8 @@ export default function AOSInit() {
       });
     };
 
-    // เริ่มทำงาน
     applyAOSAttr();
-    cleanupSelectAncestors(); // ล้างของเก่าอีกชั้น
+    cleanupSelectAncestors(); //  clear
 
     AOS.init({ duration: 600, easing: "ease-out", offset: 24, once: true });
     AOS.refreshHard();
@@ -117,7 +127,7 @@ export default function AOSInit() {
         }
       }
       if (needsRefresh) {
-        cleanupSelectAncestors(); // ล้างซ้ำกรณีมี DOM ใหม่
+        cleanupSelectAncestors();
         AOS.refreshHard();
       }
     });
