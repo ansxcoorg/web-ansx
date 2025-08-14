@@ -218,7 +218,8 @@
     "placeholder_1": "พิมพ์ข้อความของท่านที่นี่...",
     "placeholder_2": "หัวข้อของข้อความ",
     "placeholder_3": "ชื่อเต็มของท่าน",
-    "placeholder_4": "email@example.com"
+    "placeholder_4": "email@example.com",
+    "loading": "กำลังโหลด...."
   },
   "Policy": {
     "title": "นโยบายต่างๆ ของพวกเรา ",

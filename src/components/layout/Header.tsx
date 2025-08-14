@@ -73,16 +73,23 @@ export default function Header() {
           </Link>
 
           <nav className="hidden md:flex items-center space-x-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={`/${locale}${item.href}`}
-                className="text-sm font-bold text-gray-700 hover:text-red-600 transition-colors px-3 py-2 "
-              >
-                {item.name}
-              </Link>
-            ))}
-            {/* <DarkModeToggle /> */}
+            {navItems.map((item) => {
+              const isActive = pathname === `/${locale}${item.href}`;
+              return (
+                <Link
+                  key={item.name}
+                  href={`/${locale}${item.href}`}
+                  className={`text-sm font-bold px-3 py-2 transition-colors
+          ${
+            isActive
+              ? "text-red-600 border-b-2 border-red-600"
+              : "text-gray-700 hover:text-red-600"
+          }`}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
             <LocalSelect defaultValue={locale} label="Language" />
           </nav>
           <Sheet>
