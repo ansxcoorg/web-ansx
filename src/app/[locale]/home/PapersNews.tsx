@@ -158,7 +158,7 @@ export default function PapersNews() {
                       fill
                       className={[
                         "object-cover transition-all duration-500 ease-out",
-                        isActive ? "blur-0 opacity-100" : "blur-[2px] opacity-70",
+                        isActive ? "blur-0 opacity-100" : "blur-[1px] opacity-75",
                       ].join(" ")}
                     />
                   </div>

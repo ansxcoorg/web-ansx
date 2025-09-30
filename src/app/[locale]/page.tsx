@@ -43,8 +43,8 @@ export default function Home() {
         <section className="container mx-auto px-4 py-14">
           <h2
             className="
-                       mx-auto max-w-3xl md:max-w-4xl px-4
-                       text-3xl md:text-4xl font-bold leading-snug md:leading-tight tracking-tight
+                       mx-auto max-w-4xl md:max-w-4xl px-4 
+                       text-4xl md:text-4xl font-bold leading-snug md:leading-tight tracking-tight
                        mb-8 text-center
                        bg-[linear-gradient(90deg,#760115_0%,#BA0020_31.38%,#E13035_43.31%,#5E0E4D_86.62%)]
                        bg-clip-text text-transparent

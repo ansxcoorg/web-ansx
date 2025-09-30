@@ -28,7 +28,6 @@ export default function AOSInit() {
       document.querySelectorAll<HTMLElement>("[data-aos]").forEach((el) => {
         if (hasRadixSelectInside(el)) {
           el.removeAttribute("data-aos");
-          // กัน transform ที่อาจถูก AOS ใส่ไว้ก่อนหน้า
           el.style.transform = "";
           el.style.transition = "";
         }

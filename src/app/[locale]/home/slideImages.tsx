@@ -64,7 +64,7 @@ export default function SlideImages() {
                 className="w-full h-full object-cover rounded-5xl"
                 style={{
                   width: "100%",   
-                  maxHeight: "559px",
+                  maxHeight: "550px",
                   objectFit: "cover", 
                 }}
               />
@@ -77,7 +77,7 @@ export default function SlideImages() {
           className="absolute inset-0 flex items-center justify-center mt-60 hidden md:flex"
         >
           <div className="text-center text-white max-w-4xl px-4 w-full">
-            <div className="bg-white rounded-lg shadow-lg p-3 w-full">
+            <div className="bg-white rounded-3xl shadow-lg p-3 w-full shadow-dark-600/15">
               <div className="flex space-x-4">
                 <input
                   type="text"
@@ -88,7 +88,8 @@ export default function SlideImages() {
                 />
                 <Button
                   type="submit"
-                  className="bg-red-600 text-white hover:bg-red-700"
+                  className=" h-10 items-center gap-2  bg-red-600 px-5 text-white hover:bg-red-700 rounded-3xl"
+                  
                 >
                   {t("tracking")}
                 </Button>

@@ -246,9 +246,9 @@ export default function PricingPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      
       <h1 className="text-3xl font-bold mb-6">{t("service_price")}</h1>
-
-      <div className="mb-8 bg-red-50 border border-red-100 rounded-lg p-6">
+      <div className="mb-8 rounded-2xl border border-red-100/70 bg-gradient-to-br from-red-50 to-white p-6 shadow-sm hover:shadow-md transition-shadow">
         <h2 className="text-xl font-semibold mb-3 text-red-600 flex items-center">
           <Package className="h-5 w-5 mr-2" />
           {t("cod_service")}

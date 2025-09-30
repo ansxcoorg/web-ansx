@@ -390,7 +390,7 @@ export default function ContactPage() {
                 <Separator className="my-6" />
 
                 <h4 className="text-lg font-semibold mb-3">{t("follow_us")}</h4>
-                <div className="flex space-x-24">
+                <div className="flex space-x-5">
                   <Link
                     href="https://www.facebook.com/AnousithExpress"
                     target="_blank"
@@ -399,7 +399,7 @@ export default function ContactPage() {
                     <Button
                       variant="outline"
                       size="icon"
-                      className="rounded-full border-gray-300 hover:bg-red-50 hover:border-red-200"
+                      className="group inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-gray-700 ring-1 ring-gray-200 transition-all hover:-translate-y-0.5 hover:text-blue-600 hover:shadow-md"
                     >
                       <FaFacebookF className="h-6 w-6" />
                     </Button>
@@ -413,7 +413,7 @@ export default function ContactPage() {
                     <Button
                       variant="outline"
                       size="icon"
-                      className="rounded-full border-gray-300 hover:bg-red-50 hover:border-red-200"
+                      className="group inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-gray-700 ring-1 ring-gray-200 transition-all hover:-translate-y-0.5 hover:text-black hover:shadow-md"
                     >
                       <SiTiktok className="h-6 w-6" />
                     </Button>
