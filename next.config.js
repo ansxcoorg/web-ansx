@@ -1,6 +1,6 @@
-import createNextIntlPlugin from "next-intl/plugin"
+import createNextIntlPlugin from "next-intl/plugin";
 
-const withNextIntl = createNextIntlPlugin()
+const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -10,11 +10,19 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "storage.googleapis.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "ext.same-assets.com",
+        port: "",
+        pathname: "/**",
       },
     ],
-    domains: ['ext.same-assets.com'],
   },
 
-}
 
-export default withNextIntl(nextConfig)
+};
+
+export default withNextIntl(nextConfig);
