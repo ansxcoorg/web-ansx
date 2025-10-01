@@ -11,7 +11,6 @@ import { currency } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import SelectProvinces from "@/components/ui/selectProvinces";
 import { useLocale, useTranslations } from "next-intl";
 
@@ -33,12 +32,12 @@ export default function PricingPage() {
   const [getWeight, setGetWeight] = useState("");
   const [priceItem, setPriceItem] = useState<number | null>(null);
   const [selectedProvinceFrom, setSelectedProvinceFrom] = useState<{
-    value: number | undefined;
+    value: string | undefined;
     name: string | null;
   }>({ value: undefined, name: null });
 
   const [selectedProvinceTo, setSelectedProvinceTo] = useState<{
-    value: number | undefined;
+    value: string | undefined;
     name: string | null;
   }>({ value: undefined, name: null });
 
@@ -207,8 +206,8 @@ export default function PricingPage() {
     }
 
     const transferToProvince = stateToSouthernEarth(
-      selectedProvinceFrom.value,
-      selectedProvinceTo.value
+      Number(selectedProvinceFrom.value),
+      Number(selectedProvinceTo.value)
     );
 
     const calculatedPrice = calculator({
@@ -421,14 +420,14 @@ export default function PricingPage() {
                 <SelectProvinces
                   all={true}
                   value={
-                    selectedProvinceFrom.value ||
+                    selectedProvinceFrom.value?.toString() ||
                     t("select_province_placeholder")
                   }
                   onChange={(selected) => {
                     if (selected) {
                       setSelectedProvinceFrom({
                         value: selected.value,
-                        name: selected.provinceName,
+                        name: selected.provinceName || null,
                       });
                     } else {
                       setSelectedProvinceFrom({ value: undefined, name: null });
@@ -441,13 +440,13 @@ export default function PricingPage() {
                 <SelectProvinces
                   all={true}
                   value={
-                    selectedProvinceTo.value || t("select_province_placeholder")
+                    selectedProvinceTo.value?.toString() || t("select_province_placeholder")
                   }
                   onChange={(selected) => {
                     if (selected) {
                       setSelectedProvinceTo({
                         value: selected.value,
-                        name: selected.provinceName,
+                        name: selected.provinceName || null,
                       });
                     } else {
                       setSelectedProvinceTo({ value: undefined, name: null });

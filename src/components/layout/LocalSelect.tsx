@@ -1,5 +1,6 @@
 import Flag from "react-world-flags";
 
+import React from "react";
 import {
   Select,
   SelectContent,
@@ -55,10 +56,6 @@ export default function LocalSelect({ defaultValue, label }: Props) {
           {routing.locales.map((lang) => (
             <SelectItem key={lang} value={lang}>
               <div className="flex items-center">
-                <Flag
-                  code={getCountryCode(lang)}
-                  style={{ width: 24, height: 16, marginRight: 8 }}
-                />
                 <span>{lang.toUpperCase()}</span>
               </div>
             </SelectItem>

@@ -7,7 +7,6 @@ import {
   Noto_Sans_SC,
   Sarabun,
 } from "next/font/google";
-import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Locale, routing } from "@/i18n/routing";
@@ -24,6 +23,11 @@ const notoSansLao = Noto_Sans_Lao({
   weight: ["400", "700"],
   subsets: ["lao"],
   variable: "--font-noto-sans-lao",
+});
+const notoSansSC = Noto_Sans_SC({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-noto-sans-sc",
 });
 const sarabun = Sarabun({
   weight: ["400", "700"],
@@ -49,7 +53,7 @@ export default async function RootLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { locale: Locale };
+  params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
   // LA|US|TH|CH|VN|KR

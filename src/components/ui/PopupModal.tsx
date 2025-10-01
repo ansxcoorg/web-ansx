@@ -6,18 +6,22 @@ import { DialogHeader } from "./dialog";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { useTranslations } from "next-intl";
 
-export default function PopupModal({
-  isOpen,
-  onClose,
-  item,
-  formatDate,
-}: {
-  isOpen: any;
-  onClose: any;
-  item: any | null; 
-  formatDate: any;
-}) {
-   const t = useTranslations("news");
+interface ModalItem {
+  image?: string;
+  catalog?: {
+    title?: string;
+  };
+  title?: string;
+}
+
+interface PopupModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  item: ModalItem | null;
+  formatDate: (date: Date) => string;
+}
+
+export default function PopupModal({ isOpen, onClose, item, formatDate }: PopupModalProps) {
   if (!item) return null;
  
 
@@ -42,7 +46,7 @@ export default function PopupModal({
           {/* Header */}
           <div className="text-center mb-4">
             <h2 className="text-4xl font-extrabold text-gray-800 mb-2">
-              📢 {t("Announcement")}
+              📢 ປະກາດຂ່າວສານ
             </h2>
           </div>
 
