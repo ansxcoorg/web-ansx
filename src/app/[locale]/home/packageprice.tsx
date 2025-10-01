@@ -8,10 +8,15 @@ import { currency } from "@/lib/utils";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 
+interface PackageItem {
+  title: string;
+  packagePrice: number;
+}
+
 export default function PackagePrice() {
   const t = useTranslations("pricing");
   const locale = useLocale();
-  const [showAll, setShowAll] = useState<any[]>();
+  const [showAll, setShowAll] = useState<PackageItem[]>([]);
   const [fetchData, { data }] = useLazyQuery(Schema.packagesPrice, {
     fetchPolicy: "cache-and-network",
   });

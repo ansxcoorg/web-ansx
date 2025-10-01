@@ -1,4 +1,5 @@
 
+import React from "react";
 import {
   Select,
   SelectContent,
@@ -22,10 +23,7 @@ export default function LocalSelect({ defaultValue, label }: Props) {
   const params = useParams();
 
   const handleChange = (value: string) => {
-    router.replace(
-      { pathname, params },
-      { locale: value as Locale }
-    );
+    router.replace(pathname, { locale: value as Locale });
   };
 
   const getCountryCode = (lang: string) => {
@@ -58,10 +56,6 @@ export default function LocalSelect({ defaultValue, label }: Props) {
           {routing.locales.map((lang) => (
             <SelectItem key={lang} value={lang}>
               <div className="flex items-center">
-                <Flag
-                  code={getCountryCode(lang)}
-                  style={{ width: 24, height: 16, marginRight: 8 }}
-                />
                 <span>{lang.toUpperCase()}</span>
               </div>
             </SelectItem>

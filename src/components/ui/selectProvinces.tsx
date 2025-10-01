@@ -16,18 +16,24 @@ interface provinces {
   provinceName: string;
 }
 
+interface SelectItem {
+  value: string;
+  label: string;
+  provinceName?: string;
+}
+
 export default function SelectProvinces({
   onChange,
   disabled,
   value,
   all,
 }: {
-  onChange?: (res: any) => void;
+  onChange?: (res: SelectItem | null) => void;
   disabled?: boolean;
   value?: string;
   all?: boolean;
 }) {
-  const [items, setItems] = useState<any[]>([]);
+  const [items, setItems] = useState<SelectItem[]>([]);
   const [fetchData, { data, loading }] = useLazyQuery(Schema.provinces, {
     fetchPolicy: "network-only",
   });

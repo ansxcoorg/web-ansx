@@ -39,7 +39,7 @@ interface newsItem {
 export default function NewsPage() {
   const t = useTranslations("news");
   const locale = useLocale();
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState<newsItem | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
@@ -79,7 +79,7 @@ export default function NewsPage() {
     window.history.replaceState({}, "", newUrl);
   }, [page]);
 
-  const openModal = (news) => {
+  const openModal = (news: newsItem) => {
     setSelectedItem(news);
     setIsOpen(true);
   };

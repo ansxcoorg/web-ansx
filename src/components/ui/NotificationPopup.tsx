@@ -15,8 +15,12 @@ import Schema from "../../apollo/index";
 import Link from "next/link";
 import { useLocale } from "next-intl";
 
+interface NotificationItem {
+  image?: string;
+}
+
 export default function NotificationPopup() {
-  const [items, setItems] = useState<any[]>([]);
+  const [items, setItems] = useState<NotificationItem[]>([]);
   const [showPopup, setShowPopup] = useState(false);
   const pathname = usePathname();
   const locale = useLocale();

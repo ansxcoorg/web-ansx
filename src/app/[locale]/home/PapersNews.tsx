@@ -11,15 +11,24 @@ import { Button } from "@/components/ui/button";
 import { useLocale, useTranslations } from "next-intl";
 import PopupModal from "@/components/ui/PopupModal";
 
+interface NewsItem {
+  image?: string;
+  createdAt?: string | Date;
+  catalog?: {
+    title?: string;
+  };
+  title?: string;
+}
+
 export default function PapersNews() {
   const t = useTranslations("news");
   const locale = useLocale();
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState<NewsItem | null>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [itemsNew, setItemsNew] = useState<any[]>([]);
+  const [itemsNew, setItemsNew] = useState<NewsItem[]>([]);
   const [fetchData, { data, loading }] = useLazyQuery(Schema.news);
 
-  const openModal = (item) => {
+  const openModal = (item: NewsItem) => {
     setSelectedItem(item);
     setIsOpen(true);
   };
@@ -61,7 +70,7 @@ export default function PapersNews() {
             </div>
             <CardContent className="p-4">
               <p className="text-sm text-gray-500 mb-2">
-                {formatDate(item?.createdAt) || "---"}
+                {item?.createdAt ? formatDate(new Date(item.createdAt)) : "---"}
               </p>
               <h3 className="text-lg font-semibold mb-2">
                 {item?.catalog?.title || t("no_title")}

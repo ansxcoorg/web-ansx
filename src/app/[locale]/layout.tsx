@@ -7,12 +7,10 @@ import {
   Noto_Sans_SC,
   Sarabun,
 } from "next/font/google";
-import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Locale, routing } from "@/i18n/routing";
 import { ToastContainer } from "react-toastify";
-import "./globals.css";
 import ClientBody from "./ClientBody";
 import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
@@ -25,7 +23,7 @@ const notoSansLao = Noto_Sans_Lao({
 });
 const notoSansSC = Noto_Sans_SC({
   weight: ["400", "700"],
-  subsets: ["latin", "chinese"],
+  subsets: ["latin"],
   variable: "--font-noto-sans-sc",
 });
 const sarabun = Sarabun({
