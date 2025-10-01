@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "GENERATE_SOURCEMAP=false next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -29,7 +29,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.5.2",
-    "framer-motion": "^12.23.22",
+    "framer-motion": "^12.23.12",
     "graphql": "^16.10.0",
     "lodash": "^4.17.21",
     "lucide-react": "^0.475.0",
@@ -55,11 +55,10 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@netlify/plugin-nextjs": "^4.41.3",
-    "@types/lodash": "^4.17.20",
+    "@types/lodash": "^4.17.16",
     "@types/node": "^20",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
-    "@types/react-world-flags": "^1.6.0",
     "eslint": "^9",
     "eslint-config-next": "15.1.7",
     "netlify-cli": "^16.1.0",

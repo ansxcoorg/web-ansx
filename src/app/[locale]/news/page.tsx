@@ -34,7 +34,8 @@ interface newsItem {
 export default function NewsPage() {
   const t = useTranslations("news");
   const locale = useLocale();
-  const [selectedItem, setSelectedItem] = useState<newsItem | null>(null);
+
+  const [selectedItem, setSelectedItem] = useState<any | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const searchParams = useSearchParams();
@@ -80,15 +81,8 @@ export default function NewsPage() {
     window.history.replaceState({}, "", newUrl);
   }, [page]);
 
-  const openModal = (news: newsItem) => {
-    setSelectedItem(news);
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setSelectedItem(null);
-    setIsOpen(false);
-  };
+  const openModal = (news: any) => { setSelectedItem(news); setIsOpen(true); };
+  const closeModal = () => { setSelectedItem(null); setIsOpen(false); };
 
   // ------- Auto Slide + Animation (Featured) -------
   const [activeIndex, setActiveIndex] = useState(0);
