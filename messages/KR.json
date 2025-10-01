@@ -80,7 +80,13 @@
       "express_shipping": "특급 배송 요금에 대한 자세한 사항은 저희에게 직접 문의하십시오",
       "bulk_shipping": "대량 배송을 위한 특별 프로모션에 대해서는 저희에게 문의하십시오",
       "vat_included": "모든 가격은 부가가치세(VAT)가 포함된 가격입니다"
-    }
+    },
+    "width_must_be_over_40": "너비는 40cm보다 커야 합니다.",
+    "width_must_be_under_350": "너비는 350cm보다 작아야 합니다.",
+    "weight_must_be_over_1": "무게는 1kg보다 커야 합니다.",
+    "weight_must_be_under_80": "무게는 80kg보다 작아야 합니다.",
+    "no_results": "결과를 찾을 수 없습니다",
+    "try_another_keyword": "다른 키워드를 시도해 주세요"
   },
   "footer": {
     "company_name": "Anousith Express",
@@ -121,7 +127,9 @@
     "load_more": "더 많은 지점 로드",
     "branch_open": "정상 운영",
     "branch_closed": "임시 휴업",
-    "view_map": "지도 보기"
+    "view_map": "지도 보기",
+    "zoom_in": "확대",
+    "Navigate": "길 안내"
   },
   "about": {
     "about_us_title": "회사 소개",
@@ -208,14 +216,16 @@
     "placeholder_1": "여기에 메시지를 입력하세요...",
     "placeholder_2": "메시지 제목",
     "placeholder_3": "전체 이름",
-    "placeholder_4": "email@example.com"
+    "placeholder_4": "email@example.com",
+    "loading": "로딩 중....",
+    "enter_message_alert": "이름과 메시지를 입력해 주세요"
   },
   "Policy": {
     "title": "저희의 정책",
     "title2": "Anousith Logistic Co., Ltd.",
     "description": "배송 관련 약관",
     "things_to_know": "서비스를 사용하기 전에 알아야 할 사항:",
-    "0": "다른 지방으로 배송 시, 기본 요금 6,500키프, 오늘 배송하여 내일 도착",
+    "0": "다른 지방으로 배송 시, 기본 요금 7,000 키프, 오늘 배송하여 내일 도착",
     "1": "비엔티안 시내 배송 시 요금 5,000키프, 당일 배송",
     "2": "도시 외곽 지역: 추가 5,000키프/물품",
     "3": "픽업 서비스: 무료",

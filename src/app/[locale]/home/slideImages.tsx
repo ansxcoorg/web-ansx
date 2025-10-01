@@ -63,32 +63,36 @@ export default function SlideImages() {
                 alt="post-slider"
                 className="w-full h-full object-cover rounded-5xl"
                 style={{
-                  width: "100%",   
-                  maxHeight: "759px",
-                  objectFit: "cover", 
+                  width: "100%",
+                  maxHeight: "550px",
+                  objectFit: "cover",
                 }}
               />
             </div>
           </CarouselItem>
         ))}
         <form
-          action="https://app.anousith.express/landing/search_tracking/search_item"
+          action="https://app.anousith.express/nextday/item_bill/search_item"
           method="get"
           className="absolute inset-0 flex items-center justify-center mt-60 hidden md:flex"
         >
           <div className="text-center text-white max-w-4xl px-4 w-full">
-            <div className="bg-white rounded-lg shadow-lg p-3 w-full">
+            <div className="bg-white rounded-3xl shadow-lg p-3 w-full shadow-dark-600/15">
               <div className="flex space-x-4">
                 <input
                   type="text"
+                  name="_bill_detail"
                   placeholder={t("tracking_placeholder")}
                   className="w-full p-2 text-black rounded-md outline-none ring-0 focus:ring-0 focus:outline-none"
                   value={trackingNumber}
                   onChange={(e) => setTrackingNumber(e.target.value)}
                 />
+
+                <input type="hidden" name="n_home" value="2" />
+
                 <Button
                   type="submit"
-                  className="bg-red-600 text-white hover:bg-red-700"
+                  className="h-10 items-center gap-2 bg-red-600 px-5 text-white hover:bg-red-700 rounded-3xl"
                 >
                   {t("tracking")}
                 </Button>
@@ -98,7 +102,6 @@ export default function SlideImages() {
         </form>
       </CarouselContent>
 
-      {/* Indicators (จุดแสดงสถานะสไลด์) */}
       <div className="absolute bottom-4 left-0 right-0 flex justify-center">
         <div className="flex space-x-2">
           {slideImg.map((_, index) => (

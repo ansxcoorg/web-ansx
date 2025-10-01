@@ -1,12 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  Search,
-  Package,
-  Box,
-  ArrowRight,
-} from "lucide-react";
+import { Search, Package, Box, ArrowRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -160,9 +155,47 @@ export default function PricingPage() {
 
     const width = parseInt(getWidth);
     const weight = parseInt(getWeight);
+    {
+      /* increase the if condition for more validations */
+    }
+    if (width < 40) {
+      toast.error(t("width_must_be_over_40"), {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        className: "custom-toast",
+      });
+      return;
+    }
 
-    if (width < 40 || width > 350 || weight < 1 || weight > 80) {
-      toast.error(t("invalid_size_or_weight"), {
+    if (width > 350) {
+      toast.error(t("width_must_be_under_350"), {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        className: "custom-toast",
+      });
+      return;
+    }
+
+    if (weight < 1) {
+      toast.error(t("weight_must_be_over_1"), {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        className: "custom-toast",
+      });
+      return;
+    }
+
+    if (weight > 80) {
+      toast.error(t("weight_must_be_under_80"), {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -213,9 +246,9 @@ export default function PricingPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      
       <h1 className="text-3xl font-bold mb-6">{t("service_price")}</h1>
-
-      <div className="mb-8 bg-red-50 border border-red-100 rounded-lg p-6">
+      <div className="mb-8 rounded-2xl border border-red-100/70 bg-gradient-to-br from-red-50 to-white p-6 shadow-sm hover:shadow-md transition-shadow">
         <h2 className="text-xl font-semibold mb-3 text-red-600 flex items-center">
           <Package className="h-5 w-5 mr-2" />
           {t("cod_service")}
@@ -228,21 +261,8 @@ export default function PricingPage() {
         </Link>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-4 mb-8">
-        <div className="relative flex-grow">
-          <Input
-            type="search"
-            placeholder={t("search_price")}
-            className="w-full bg-gray-50 pr-10"
-            value={searchQuery}
-            onChange={(e) => updateSearchQuery(e.target.value)}
-          />
-          <Search className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
-        </div>
-      </div>
-
       <Tabs defaultValue="standard" className="mb-8">
-        <TabsList className="w-full grid grid-cols-2 mb-4">
+        <TabsList className="w-full grid grid-cols-2 ">
           <TabsTrigger
             value="standard"
             className="w-full text-center hover:text-red-600"
@@ -257,41 +277,123 @@ export default function PricingPage() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="standard">
-          <div className="overflow-x-auto">
-            <table className="pricing-table">
-              <thead>
-                <tr>
-                  <th className="w-10">#</th>
-                  <th>{t("column_name")}</th>
-                  <th className="text-right">{t("column_price")}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredItemsPrice?.map((value, index) => (
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{value?.title}</td>
-                    <td className="price text-right">
-                      {currency(value?.packagePrice)} {t("currency")}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          {/* Search Card */}
+          <div className="container mx-auto px-4 py-6">
+            <div className="rounded-xl border bg-white shadow-sm">
+              <div className="p-4 md:p-5">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <h3 className="text-lg font-semibold">
+                      {t("express_delivery")}
+                    </h3>
+                    <p className="text-sm text-gray-500">{t("search_price")}</p>
+                  </div>
+                  {/* Display amount of table */}
+                  <span className="inline-flex items-center rounded-full bg-red-50 px-3 py-1 text-xs font-medium text-red-700">
+                    {t("display")} {filteredItemsPrice?.length ?? 0}/
+                    {totalPrice}
+                  </span>
+                </div>
 
-            <div className="text-center mt-8">
-              <p className="text-gray-500 mb-4">
-                {t("display")} {filteredItemsPrice?.length}{" "}
-                {t("in")} {totalPrice} {t("column_name")}
-              </p>
-              <Button variant="outline" onClick={loadMoreBranches}>
-                {t("load_more_branches")}
-              </Button>
+                {/* Search input */}
+                <div className="mt-4 relative">
+                  <Input
+                    type="search"
+                    placeholder={t("search_price")}
+                    className="w-full bg-gray-50 pr-10 focus:bg-white"
+                    value={searchQuery}
+                    onChange={(e) => updateSearchQuery(e.target.value)}
+                  />
+                  <Search className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Table Card */}
+          <div className="container mx-auto px-4">
+            <div className="rounded-xl border bg-white shadow-sm overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead className="bg-gray-50 text-gray-700 sticky top-0 z-10">
+                    <tr>
+                      <th className="w-14 px-4 py-3 text-left font-medium"></th>
+                      <th className="px-4 py-3 text-left font-medium">
+                        {t("column_name")}
+                      </th>
+                      <th className="px-4 py-3 text-right font-medium">
+                        {t("column_price")}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {(filteredItemsPrice?.length ?? 0) > 0 ? (
+                      filteredItemsPrice!.map((value, index) => (
+                        <tr
+                          key={`${value.id}-${index}`}
+                          className="group relative transition-colors odd:bg-white even:bg-gray-50/60 hover:bg-red-50/60 "
+                        >
+                          {/* left-stick while hover */}
+                          <td className="px-4 py-3 text-gray-500">
+                            <span className="absolute left-0 top-0 h-full w-1 bg-red-500/70 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            {index + 1}
+                          </td>
+
+                          <td className="px-4 py-3">
+                            <div className="font-medium text-gray-900">
+                              {value.title}
+                            </div>
+                          </td>
+
+                          <td className="px-4 py-3 text-right">
+                            <span className="font-semibold text-gray-900">
+                              {currency(value.packagePrice)} {t("currency")}
+                            </span>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      // Empty state
+                      <tr>
+                        <td colSpan={3} className="px-6 py-12">
+                          <div className="flex flex-col items-center justify-center text-center">
+                            <div className="mb-2 rounded-full bg-gray-100 p-3">
+                              <Search className="h-5 w-5 text-gray-500" />
+                            </div>
+                            <p className="text-sm font-medium text-gray-800">
+                              {t("no_results", { fallback: "No results" })}
+                            </p>
+                            <p className="mt-1 text-xs text-gray-500">
+                              {t("try_another_keyword") ??
+                                "Try another keyword."}
+                            </p>
+                          </div>
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* load more */}
+              <div className="flex flex-col items-center gap-3 border-t bg-gray-50 px-4 py-4 md:flex-row md:justify-between">
+                <p className="text-xs text-gray-500">
+                  {t("display")} {filteredItemsPrice?.length ?? 0} {t("in")}{" "}
+                  {totalPrice} {t("column_name")}
+                </p>
+                <Button
+                  variant="outline"
+                  onClick={loadMoreBranches}
+                  className="w-full md:w-auto"
+                >
+                  {t("load_more_branches")}
+                </Button>
+              </div>
             </div>
           </div>
         </TabsContent>
-        <TabsContent value="price">
-          <div className="bg-red-100 p-8 rounded-lg shadow-md max-w-xl mx-auto">
+        <TabsContent value="price" className="mt-6">
+           <div className="bg-red-100 p-8 rounded-lg shadow-md max-w-xl mx-auto" data-aos-skip>
             <h2 className="text-2xl font-semibold text-red-700 mb-4 text-center">
               {t("calculate_service_fee")}
             </h2>
@@ -303,6 +405,19 @@ export default function PricingPage() {
             <div className="flex justify-center space-x-4 mb-4">
               <div className="flex flex-col items-center">
                 <h2 className="mb-4">{t("select_province_from")}</h2>
+              </div>
+
+              <div className="flex flex-col items-center text-red-600">
+                <ArrowRight className="h-6 w-6 mb-8" />
+              </div>
+
+              <div className="flex flex-col items-center">
+                <h2 className="mb-4">{t("select_province_to")}</h2>
+              </div>
+            </div>
+            <div className="flex flex-row justify-center space-x-4 mb-4 w-full" >
+              
+              <div className="flex-1">
                 <SelectProvinces
                   all={true}
                   value={
@@ -322,12 +437,7 @@ export default function PricingPage() {
                 />
               </div>
 
-              <div className="flex flex-col items-center text-red-600">
-                <ArrowRight className="h-6 w-6 mb-8" />
-              </div>
-
-              <div className="flex flex-col items-center">
-                <h2 className="mb-4">{t("select_province_to")}</h2>
+              <div className="flex-1">
                 <SelectProvinces
                   all={true}
                   value={
@@ -346,6 +456,7 @@ export default function PricingPage() {
                 />
               </div>
             </div>
+
             <div className="flex items-center space-x-4 mb-4">
               <input
                 type="number"

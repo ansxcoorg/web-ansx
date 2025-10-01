@@ -82,7 +82,13 @@
       "express_shipping": "Đối với giá cước giao hàng nhanh, vui lòng liên hệ trực tiếp với chúng tôi",
       "bulk_shipping": "Đối với việc vận chuyển hàng loạt, vui lòng liên hệ để có chương trình khuyến mãi đặc biệt",
       "vat_included": "Giá đã bao gồm thuế giá trị gia tăng (VAT)"
-    }
+    },
+    "width_must_be_over_40": "Chiều rộng phải lớn hơn 40 cm.",
+    "width_must_be_under_350": "Chiều rộng phải nhỏ hơn 350 cm.",
+    "weight_must_be_over_1": "Trọng lượng phải lớn hơn 1 kg.",
+    "weight_must_be_under_80": "Trọng lượng phải nhỏ hơn 80 kg.",
+    "no_results": "Không tìm thấy kết quả",
+    "try_another_keyword": "Vui lòng thử từ khóa khác"
   },
   "footer": {
     "company_name": "Anousith Express",
@@ -123,7 +129,9 @@
     "load_more": "Tải thêm chi nhánh",
     "branch_open": "Mở cửa bình thường",
     "branch_closed": "Đóng cửa tạm thời",
-    "view_map": "Xem bản đồ"
+    "view_map": "Xem bản đồ",
+    "zoom_in": "Phóng to",
+    "Navigate": "Điều hướng"
   },
   "about": {
     "about_us_title": "Về chúng tôi",
@@ -210,14 +218,16 @@
     "placeholder_1": "Nhập tin nhắn của bạn tại đây...",
     "placeholder_2": "Chủ đề của tin nhắn",
     "placeholder_3": "Tên đầy đủ của bạn",
-    "placeholder_4": "email@example.com"
+    "placeholder_4": "email@example.com",
+    "loading": "Đang tải....",
+    "enter_message_alert": "Vui lòng nhập tên và tin nhắn của bạn"
   },
   "Policy": {
     "title": "Chính sách của chúng tôi",
     "title2": "Công ty TNHH Anousith Logistic",
     "description": "Các điều khoản và điều kiện vận chuyển",
     "things_to_know": "Những điều bạn cần biết trước khi sử dụng dịch vụ:",
-    "0": "Phí dịch vụ bắt đầu từ 6,500 kip cho các đơn hàng gửi giữa các huyện, giao từ hôm nay đến ngày mai.",
+    "0": "Phí dịch vụ bắt đầu từ 7,000 kip cho các đơn hàng gửi giữa các huyện, giao từ hôm nay đến ngày mai.",
     "1": "Phí dịch vụ 5,000 kip cho các đơn hàng trong thủ đô Vientiane, giao trong ngày.",
     "2": "Đối với khu vực xa thành phố: Thêm 5,000 kip/món hàng.",
     "3": "Phí nhận hàng tận nơi: Miễn phí.",
