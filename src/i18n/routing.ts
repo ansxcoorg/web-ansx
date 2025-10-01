@@ -3,9 +3,11 @@ import { createNavigation } from "next-intl/navigation";
 
 export const routing = defineRouting({
   // A list of all locales that are supported
-  locales: ["Lao", "Us", "Thai", "China" , "VietNam" , "Korea"],
+  locales: ["LA", "US", "TH", "CN" , "VN" , "KR"],
+
+  // LA|US|TH|CH|VN|KR
   // Used when no locale matches
-  defaultLocale: "Lao",
+  defaultLocale: "LA",
 });
 
 // Lightweight wrappers around Next.js' navigation APIs

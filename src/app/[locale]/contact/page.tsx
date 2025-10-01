@@ -20,13 +20,21 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { FaFacebookF, FaSpinner } from "react-icons/fa6";
 import { SiTiktok } from "react-icons/si";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { useTranslations } from "next-intl";
 import { useLazyQuery, useMutation } from "@apollo/client";
 import Schema from "../../../apollo/index";
 
+// Function to open the chat box in the contact page  
+const openFloatingChat = () => {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event("ansx:openChat"));
+  }
+};
+
 export default function ContactPage() {
   const t = useTranslations("contact");
+
   const [fetchGmail] = useMutation(Schema.sendGmail);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -144,8 +152,9 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 -mt-20 relative z-10">
           <Card className="shadow-md border-none hover:shadow-lg hover:scale-105 transition-transform duration-300">
             <CardContent className="p-6 flex flex-col items-center text-center">
-              <div className="bg-red-100 rounded-full p-4 mb-4">
-                <Phone className="h-6 w-6 text-red-600" />
+              <div className="relative inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-4 group bg-red-100">
+                <span className="absolute inset-0 bg-red-600 top-full group-hover:top-0 transition-all duration-500 ease-in-out z-0 rounded-full" />
+                <Phone className="relative z-10 h-6 w-6 text-red-600 group-hover:text-white transition-all duration-500 group-hover:rotate-[360deg]" />
               </div>
               <h3 className="text-xl font-bold mb-2">{t("call_us")}</h3>
               <p className="text-gray-600 mb-2">{t("call_us_24_7")}</p>
@@ -156,8 +165,9 @@ export default function ContactPage() {
 
           <Card className="shadow-md border-none hover:shadow-lg hover:scale-105 transition-transform duration-300">
             <CardContent className="p-6 flex flex-col items-center text-center">
-              <div className="bg-red-100 rounded-full p-4 mb-4">
-                <Mail className="h-6 w-6 text-red-600" />
+              <div className="relative inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-4 group bg-red-100">
+                <span className="absolute inset-0 bg-red-600 top-full group-hover:top-0 transition-all duration-500 ease-in-out z-0 rounded-full" />
+                <Mail className="relative z-10 h-6 w-6 text-red-600 group-hover:text-white transition-all duration-500 group-hover:rotate-[360deg]" />
               </div>
               <h3 className="text-xl font-bold mb-2">{t("email_us")}</h3>
               <p className="text-gray-600 mb-2">{t("response_time")}</p>
@@ -167,8 +177,9 @@ export default function ContactPage() {
 
           <Card className="shadow-md border-none hover:shadow-lg hover:scale-105 transition-transform duration-300">
             <CardContent className="p-6 flex flex-col items-center text-center">
-              <div className="bg-red-100 rounded-full p-4 mb-4">
-                <Clock className="h-6 w-6 text-red-600" />
+              <div className="relative inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-4 group bg-red-100">
+                <span className="absolute inset-0 bg-red-600 top-full group-hover:top-0 transition-all duration-500 ease-in-out z-0 rounded-full" />
+                <Clock className="relative z-10 h-6 w-6 text-red-600 group-hover:text-white transition-all duration-500 group-hover:rotate-[360deg]" />
               </div>
               <h3 className="text-xl font-bold mb-2">{t("working_hours")}</h3>
               <p className="text-gray-600 mb-2">{t("working_hours_details")}</p>
@@ -379,7 +390,7 @@ export default function ContactPage() {
                 <Separator className="my-6" />
 
                 <h4 className="text-lg font-semibold mb-3">{t("follow_us")}</h4>
-                <div className="flex space-x-4">
+                <div className="flex space-x-5">
                   <Link
                     href="https://www.facebook.com/AnousithExpress"
                     target="_blank"
@@ -388,7 +399,7 @@ export default function ContactPage() {
                     <Button
                       variant="outline"
                       size="icon"
-                      className="rounded-full border-gray-300 hover:bg-red-50 hover:border-red-200"
+                      className="group inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-gray-700 ring-1 ring-gray-200 transition-all hover:-translate-y-0.5 hover:text-blue-600 hover:shadow-md"
                     >
                       <FaFacebookF className="h-6 w-6" />
                     </Button>
@@ -402,7 +413,7 @@ export default function ContactPage() {
                     <Button
                       variant="outline"
                       size="icon"
-                      className="rounded-full border-gray-300 hover:bg-red-50 hover:border-red-200"
+                      className="group inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-gray-700 ring-1 ring-gray-200 transition-all hover:-translate-y-0.5 hover:text-black hover:shadow-md"
                     >
                       <SiTiktok className="h-6 w-6" />
                     </Button>
@@ -415,7 +426,7 @@ export default function ContactPage() {
       </section>
 
       <section className="bg-gray-50 py-12">
-        <div className="container mx-auto px-4 hover:shadow-lg hover:scale-105 transition-transform duration-300">
+        <div className="container mx-auto px-4 hover:drop-shadow-lg hover:scale-105 transition-transform duration-300">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-2xl font-bold mb-4">
@@ -423,13 +434,14 @@ export default function ContactPage() {
               </h2>
               <p className="text-gray-600 mb-4">{t("text_1")}</p>
               <p className="text-gray-600 mb-6">{t("text_2")}</p>
-              <Button
-                className="bg-red-600 hover:bg-red-700"
-                onClick={handleChat}
+              {/* open chat box in contact page by openFloatingChat */}
+              <button
+                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded flex items-center"
+                onClick={openFloatingChat}
               >
                 <MessageSquare className="h-4 w-4 mr-2" />
                 {t("contact_us")}
-              </Button>
+              </button>
             </div>
             <div className="relative h-72 md:h-96 rounded-lg overflow-hidden">
               <Image
@@ -442,7 +454,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
       <section className="container mx-auto px-4 py-12">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">

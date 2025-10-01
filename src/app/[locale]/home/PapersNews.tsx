@@ -5,7 +5,7 @@ import { useLazyQuery } from "@apollo/client";
 import Image from "next/image";
 import Link from "next/link";
 import Schema from "../../../apollo/index";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { formatDate } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useLocale, useTranslations } from "next-intl";
@@ -39,6 +39,15 @@ export default function PapersNews() {
   };
 
   useEffect(() => {
+    fetchData({ variables: { where: {}, limit: 6 } });
+  }, [fetchData]);
+
+  useEffect(() => {
+    if (data) setItemsNew(data?.communities?.data || []);
+  }, [data]);
+
+  /* === Auto-slide === */
+  useEffect(() => {
     fetchData({
       variables: {
         where: {},
@@ -52,6 +61,7 @@ export default function PapersNews() {
       setItemsNew(data?.communities?.data || []);
     }
   }, [data]);
+
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -88,17 +98,17 @@ export default function PapersNews() {
           </Card>
         ))}
       </div>
-      <div className="text-center mt-8">
+
+      {/* View All */}
+      <div className="mt-8 text-center">
         <Link href={`/${locale}/news?page=1`}>
-          <Button
-            variant="outline"
-            className="border-red-600 text-red-600 hover:bg-red-50"
-          >
+          <Button variant="outline" className="border-red-600 text-red-600 hover:bg-red-50">
             {t("view_all")}
           </Button>
         </Link>
       </div>
 
+      {/* Modal */}
       <PopupModal
         isOpen={isOpen}
         onClose={closeModal}

@@ -21,6 +21,8 @@ export default function Header() {
   const t = useTranslations("Header");
   const locale = useLocale();
 
+  console.log("locale" , locale)
+
   const navItems = [
     { name: t("news"), href: "/news" },
     { name: t("branches"), href: "/branches" },
@@ -38,7 +40,7 @@ export default function Header() {
   }, [pathname]);
 
   return (
-    <header className="bg-gray-200 sticky top-0 z-40 w-full border-b border-gray-200">
+    <header className="bg-white/80 sticky top-0 z-40 w-full border-b border-gray-200">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {loading && (
@@ -73,16 +75,23 @@ export default function Header() {
           </Link>
 
           <nav className="hidden md:flex items-center space-x-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={`/${locale}${item.href}`}
-                className="text-sm font-bold text-gray-700 hover:text-red-600 transition-colors px-3 py-2 "
-              >
-                {item.name}
-              </Link>
-            ))}
-            {/* <DarkModeToggle /> */}
+            {navItems.map((item) => {
+              const isActive = pathname === `/${locale}${item.href}`;
+              return (
+                <Link
+                  key={item.name}
+                  href={`/${locale}${item.href}`}
+                  className={`text-sm font-bold px-3 py-2 transition-colors
+          ${
+            isActive
+              ? "text-red-600 border-b-2 border-red-600"
+              : "text-gray-700 hover:text-red-600"
+          }`}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
             <LocalSelect defaultValue={locale} label="Language" />
           </nav>
           <Sheet>

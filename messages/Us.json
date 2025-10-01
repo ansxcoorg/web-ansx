@@ -1,15 +1,15 @@
 {
-  "Header":{
+  "Header": {
     "home": "home",
     "about": "about",
     "contact": "contact",
     "news": "news",
     "branches": "branches",
     "pricing": "pricing",
-    "jobs" : "jobs",
-    "notice" : "notice",
-    "policy" : "policy",
-    "tracking_placeholder" : "Tracking number or phone number..."
+    "jobs": "jobs",
+    "notice": "notice",
+    "policy": "policy",
+    "tracking_placeholder": "Tracking number or phone number..."
   },
   "HomePage": {
     "feature_title": "Key Features of Our Service",
@@ -28,8 +28,8 @@
     "contact_us": "Contact Us",
     "find_branch": "Find a Branch Nearby"
   },
-  "SlideIMages":{
-    "tracking_placeholder" : "Tracking number or phone number...",
+  "SlideIMages": {
+    "tracking_placeholder": "Tracking number or phone number...",
     "tracking": "Track Parcel"
   },
   "news": {
@@ -39,9 +39,10 @@
     "no_description": "No description available.",
     "date_placeholder": "---",
     "news_activities": "News & Activities",
-    "News not found" : "News not found",
-    "Searching for news" : "Searching for news...",
-    "Read more" : "Read more"
+    "News not found": "News not found",
+    "Searching for news": "Searching for news...",
+    "Read more": "Read more",
+    "Announcement": "Announcement"
   },
   "pricing": {
     "title": "Service Pricing",
@@ -52,8 +53,8 @@
     "display": "Showing",
     "in": "of",
     "branches": "branches",
-    "select_province_and_enter_weight" : "Please select origin and destination province, and enter weight and dimensions.",
-    "invalid_size_or_weight" : "Invalid size or weight.",
+    "select_province_and_enter_weight": "Please select origin and destination province, and enter weight and dimensions.",
+    "invalid_size_or_weight": "Invalid size or weight.",
     "service_price": "Service Pricing",
     "cod_service": "Cash on Delivery (COD) Service",
     "cod_description": "COD service fee is only 1,000 KIP per delivery, with money transfer within 1-2 business days.",
@@ -80,7 +81,13 @@
       "express_shipping": "For express shipping rates, please contact us directly.",
       "bulk_shipping": "For bulk shipping, contact us for special promotions.",
       "vat_included": "All prices include VAT."
-    }
+    },
+    "width_must_be_over_40": "Width must be greater than 40 cm.",
+    "width_must_be_under_350": "Width must be less than 350 cm.",
+    "weight_must_be_over_1": "Weight must be greater than 1 kg.",
+    "weight_must_be_under_80": "Weight must be less than 80 kg.",
+    "no_results": "No results found",
+    "try_another_keyword": "Please try another keyword"
   },
   "footer": {
     "company_name": "Anousith Express",
@@ -89,7 +96,7 @@
     "phone": "Phone: +856 20 97285066",
     "hotline": "Hotline: 1355",
     "email": "anousithlogistic@gmail.com",
-    "link" : "Quick Links",
+    "link": "Quick Links",
     "news": "News & Reports",
     "branches": "All Branches",
     "pricing": "Service Fees",
@@ -97,15 +104,15 @@
     "jobs": "Join Our Team",
     "contact": "Contact Us",
     "policy": "Policies",
-    "Mobile App" : "Mobile App",
+    "Mobile App": "Mobile App",
     "mobile_app": "Download our mobile app",
     "follow_us": "Follow the latest news and services",
     "terms": "Terms of Service",
     "privacy": "Privacy Policy",
-    "More Information" :  "More Information",
-    "more" : "Anousith Express | All rights reserved | Design by ANS TECH"
+    "More Information": "More Information",
+    "more": "Anousith Express | All rights reserved | Design by ANS TECH"
   },
-  "branch":{
+  "branch": {
     "map_error": "An error occurred on the map",
     "loading": "Loading....",
     "branch_map": "Branch Map",
@@ -121,9 +128,11 @@
     "load_more": "Load more branches",
     "branch_open": "Open Regularly",
     "branch_closed": "Temporarily Closed",
-    "view_map": "View Map"
+    "view_map": "View Map",
+    "zoom_in": "Zoom In",
+    "Navigate": "Navigate"
   },
-  "about":{
+  "about": {
     "about_us_title": "About Us",
     "about_us_description": "Anousith Express - Fast, Safe, and Reliable Delivery Service Across Laos and Internationally",
     "history_title": "History",
@@ -156,11 +165,11 @@
     "point4_title": "Customer-Centered",
     "point4_description": "Excellent 24/7 customer service and a user-friendly mobile app."
   },
-  "jops":{
+  "jops": {
     "announcement_signup_title": "Announcement for Recruitment",
     "signup_now": "Sign Up Now"
   },
-  "contact":{
+  "contact": {
     "contact_us_title": "Contact Us",
     "contact_us_description": "We are here to assist you with all your shipping needs.",
     "call_us": "Call Us",
@@ -188,6 +197,9 @@
     "address": "Podsaad Village, Jantabouly District, Vientiane Capital, Lao PDR",
     "follow_us": "Follow Us",
     "customer_service_24_7": "Customer Service 24/7",
+    "chat": "Chat",
+    "no_messages": "No messages yet",
+    "sending": "Sending...",
     "contact_us": "Chat with Us Now",
     "text_1": "We understand that your logistics needs never stop, and our customer service team is the same.",
     "text_2": "We are available to assist you 24 hours a day, 7 days a week. Whether you need to track a parcel, have questions about our services, or need any help, we are here to assist you.",
@@ -204,32 +216,34 @@
     "placeholder_1": "Type your message here...",
     "placeholder_2": "Subject of the message",
     "placeholder_3": "Your full name",
-    "placeholder_4": "email@example.com"
+    "placeholder_4": "email@example.com",
+    "loading": "Loading....",
+    "enter_message_alert": "Please enter your name and message"
   },
   "Policy": {
     "things_to_know": "Things to know before using the service:",
-    "title" : "Our Various Policies",
-    "title2" : "Anousith Logistic Co., Ltd.",
-    "description" :  "Terms and Conditions in Shipping",
-    "0":  "Service fee starts at 6,500 LAK for inter-provincial delivery, sent today, received tomorrow.",
-    "1":  "Service fee 5,000 LAK within Vientiane Capital, same-day delivery.",
-    "2":  "For remote areas in the city: Additional 5,000 LAK per package.",
-    "3":  "Pickup service: Free.",
-    "4":  "The company will provide compensation for damages of goods up to 500,000 LAK per package only.",
-    "Packaging of Products" : "1. Proper Packaging of Products",
-    "5" : "1.1. Type of plastic bags or sealed plastic bags: Suitable for products like flat sheets, soft fabrics that are not prone to damage when handled or during transportation. The bag should be sealed tightly every time.",
-    "6" : "1.2. Suitable for products that require special care and products that are at risk of breaking, cracking, or easy to damage, and should be additionally wrapped in bubble foam to prevent impact damage during transportation that could lead to easy damage.",
-    "Definitions" : "Definitions",
-    "7" : "ຂໍ້ຈຳກັດຄວາມ",
-    "8" : "2.1. \"We\", \"Our\", or \"Ours\" refers to Anousith Logistics Co., Ltd., employees, subcontractors, or agents.",
-    "9" : "2.2. \"You\" or \"Your\" refers to the shipper, equipment sender, and the name listed as the sender on the shipment document.",
-    "10" : "2.3. \"Shipper\" refers to the person listed as the sender on the shipment document and also the contractor in the shipment document.",
-    "11" : "2.4. \"Sender\" refers to the person sending the parcel to us, who may not be the shipper.",
-    "12" : "2.5. \"Consignee\" refers to the person listed as the consignee on the shipment document.",
-    "13" : "2.6. \"Receiver\" refers to the person or recipient of the parcel. He/she may be the consignee or another individual at the consignee's address or office address.",
-    "14" : "2.7. “ພັດສຸດ” ເຫົາຄືບັນຈຸພາຍໃນ / ຫ່ອຫຸມທັງຫມົດທີ່ສົ່ງເຫົາເຫົາແລະ ຮັບເຫົາເຫົາໃນການຂົນສົ່ງໃນເຫົາໃບສົ່ງສິນຄ້າ",
-    "15" : "2.8. “ໃບສົ່ງສິນຄ້າ” ເຫົາຄືໃບກາຕາບາສົ່ງ ຫຼື ເອກະສານອື່ນທີ່ທີ່ກັບໃນຮູບແບບກະທົບເຈກະຕິຫຼື ອິລັກທຣອນິກທີ່ກ່ຽວກັບພັດສຸດ",
-    "16" : "2.9. “ຂໍ້ຕົກລົງ ແລະ ເງື່ອນຄ່າ” ເຫົາຄືຂໍ້ຕົກລົງ ແລະ ເງື່ອນຄ່າມາຕຣານຫຼື ປະກອບກັບມາຕຣານທີ່ການແກ້ໄຂ ຫຼື ເພິ່ງປະກອບກັບຄວາມຮັບມອບເຮົາ",
-    "17" : "2.10. “ວັນທຳການ” ເຫົາຄືວັນຈັນທຸງວັນສຸກຈາກວັນພັກພາຍຫຼືມິດວົງມາດມີຫວັບມາສົກົາຫຼັກນຳນິຄົດ."
+    "title": "Our Various Policies",
+    "title2": "Anousith Logistic Co., Ltd.",
+    "description": "Terms and Conditions in Shipping",
+    "0": "Service fee starts at 7,000 LAK for inter-provincial delivery, sent today, received tomorrow.",
+    "1": "Service fee 5,000 LAK within Vientiane Capital, same-day delivery.",
+    "2": "For remote areas in the city: Additional 5,000 LAK per package.",
+    "3": "Pickup service: Free.",
+    "4": "The company will provide compensation for damages of goods up to 500,000 LAK per package only.",
+    "Packaging of Products": "1. Proper Packaging of Products",
+    "5": "1.1. Type of plastic bags or sealed plastic bags: Suitable for products like flat sheets, soft fabrics that are not prone to damage when handled or during transportation. The bag should be sealed tightly every time.",
+    "6": "1.2. Suitable for products that require special care and products that are at risk of breaking, cracking, or easy to damage, and should be additionally wrapped in bubble foam to prevent impact damage during transportation that could lead to easy damage.",
+    "Definitions": "Definitions",
+    "7": "ຂໍ້ຈຳກັດຄວາມ",
+    "8": "2.1. \"We\", \"Our\", or \"Ours\" refers to Anousith Logistics Co., Ltd., employees, subcontractors, or agents.",
+    "9": "2.2. \"You\" or \"Your\" refers to the shipper, equipment sender, and the name listed as the sender on the shipment document.",
+    "10": "2.3. \"Shipper\" refers to the person listed as the sender on the shipment document and also the contractor in the shipment document.",
+    "11": "2.4. \"Sender\" refers to the person sending the parcel to us, who may not be the shipper.",
+    "12": "2.5. \"Consignee\" refers to the person listed as the consignee on the shipment document.",
+    "13": "2.6. \"Receiver\" refers to the person or recipient of the parcel. He/she may be the consignee or another individual at the consignee's address or office address.",
+    "14": "2.7. “ພັດສຸດ” ເຫົາຄືບັນຈຸພາຍໃນ / ຫ່ອຫຸມທັງຫມົດທີ່ສົ່ງເຫົາເຫົາແລະ ຮັບເຫົາເຫົາໃນການຂົນສົ່ງໃນເຫົາໃບສົ່ງສິນຄ້າ",
+    "15": "2.8. “ໃບສົ່ງສິນຄ້າ” ເຫົາຄືໃບກາຕາບາສົ່ງ ຫຼື ເອກະສານອື່ນທີ່ທີ່ກັບໃນຮູບແບບກະທົບເຈກະຕິຫຼື ອິລັກທຣອນິກທີ່ກ່ຽວກັບພັດສຸດ",
+    "16": "2.9. “ຂໍ້ຕົກລົງ ແລະ ເງື່ອນຄ່າ” ເຫົາຄືຂໍ້ຕົກລົງ ແລະ ເງື່ອນຄ່າມາຕຣານຫຼື ປະກອບກັບມາຕຣານທີ່ການແກ້ໄຂ ຫຼື ເພິ່ງປະກອບກັບຄວາມຮັບມອບເຮົາ",
+    "17": "2.10. “ວັນທຳການ” ເຫົາຄືວັນຈັນທຸງວັນສຸກຈາກວັນພັກພາຍຫຼືມິດວົງມາດມີຫວັບມາສົກົາຫຼັກນຳນິຄົດ."
   }
 }

@@ -1,5 +1,4 @@
 {
-
   "Header": {
     "home": "首页",
     "about": "关于我们",
@@ -10,7 +9,7 @@
     "jobs": "职位",
     "notice": "公告",
     "policy": "政策",
-    "tracking_placeholder" : "快递单号或电话号码..."
+    "tracking_placeholder": "快递单号或电话号码..."
   },
   "HomePage": {
     "feature_title": "服务亮点",
@@ -29,19 +28,21 @@
     "contact_us": "联系我们",
     "find_branch": "查找附近分店"
   },
-  "SlideIMages":{
-    "tracking_placeholder" : "快递单号或电话号码...",
+  "SlideIMages": {
+    "tracking_placeholder": "快递单号或电话号码...",
     "tracking": "包裹追踪"
   },
   "news": {
     "read_more": "阅读更多",
     "view_all": "查看所有新闻",
     "no_title": "没有标题",
+    "news_activities": "新闻与活动",
     "no_description": "没有可用的描述。",
     "date_placeholder": "---",
-    "News not found" : "未找到新闻",
-    "Searching for news" : "正在搜索新闻...",
-    "Read more" : "阅读更多"
+    "News not found": "未找到新闻",
+    "Searching for news": "正在搜索新闻...",
+    "Read more": "阅读更多",
+    "Announcement": "公告"
   },
   "pricing": {
     "title": "服务价格",
@@ -53,8 +54,8 @@
     "display": "显示",
     "in": "共",
     "branches": "分支",
-    "select_province_and_enter_weight" : "请选择起始省和目的省，并输入重量和尺寸。",
-    "invalid_size_or_weight" : "无效的尺寸或重量。",
+    "select_province_and_enter_weight": "请选择起始省和目的省，并输入重量和尺寸。",
+    "invalid_size_or_weight": "无效的尺寸或重量。",
     "cod_service": "货到付款 (COD) 服务",
     "cod_description": "货到付款服务费仅 1,000 基普/次, 1-2 个工作日内转账。",
     "register_service": "注册服务",
@@ -79,7 +80,13 @@
       "express_shipping": "特快配送价格请直接联系我们。",
       "bulk_shipping": "大宗货物运输，请联系获取特别优惠。",
       "vat_included": "所有价格均已包含增值税 (VAT)。"
-    }
+    },
+    "width_must_be_over_40": "宽度必须大于40厘米。",
+    "width_must_be_under_350": "宽度必须小于350厘米。",
+    "weight_must_be_over_1": "重量必须大于1公斤。",
+    "weight_must_be_under_80": "重量必须小于80公斤。",
+    "no_results": "未找到结果",
+    "try_another_keyword": "请尝试其他关键词"
   },
   "footer": {
     "company_name": "Anousith Express",
@@ -88,7 +95,7 @@
     "phone": "电话：+856 20 97285066",
     "hotline": "热线: 1355",
     "email": "anousithlogistic@gmail.com",
-    "link" : "快速链接",
+    "link": "快速链接",
     "news": "新闻与报告",
     "branches": "所有分支",
     "pricing": "服务费用",
@@ -96,15 +103,15 @@
     "jobs": "加入我们",
     "contact": "联系我们",
     "policy": "政策",
-    "Mobile App" : "手机应用",
+    "Mobile App": "手机应用",
     "mobile_app": "下载我们的手机应用",
     "follow_us": "跟踪最新的新闻和服务",
     "terms": "服务条款",
     "privacy": "隐私政策",
-    "More Information" :  " 更多信息",
-    "more" : "Anousith Express | 版权所有 | 设计由 ANS TECH"
+    "More Information": " 更多信息",
+    "more": "Anousith Express | 版权所有 | 设计由 ANS TECH"
   },
-  "branch":{
+  "branch": {
     "map_error": "地图出现错误",
     "loading": "正在加载....",
     "branch_map": "分支地图",
@@ -120,9 +127,11 @@
     "load_more": "加载更多分支",
     "branch_open": "常规营业",
     "branch_closed": "暂时关闭",
-    "view_map": "查看地图"
+    "view_map": "查看地图",
+    "zoom_in": "放大",
+    "Navigate": "导航"
   },
-  "about":{
+  "about": {
     "about_us_title": "关于我们",
     "about_us_description": "Anousith Express - 在老挝和国际之间提供快速、安全和可靠的送货服务",
     "history_title": "历史",
@@ -155,11 +164,11 @@
     "point4_title": "客户为中心",
     "point4_description": "卓越的24/7客户服务和易于使用的移动应用。"
   },
-  "jops":{
+  "jops": {
     "announcement_signup_title": "招聘公告",
     "signup_now": "立即报名"
   },
-  "contact":{
+  "contact": {
     "contact_us_title": "联系我们",
     "contact_us_description": "我们随时为您提供运输服务上的帮助。",
     "call_us": "打电话给我们",
@@ -187,6 +196,9 @@
     "address": "Puda Village, Jantabouly District, Vientiane Capital, Laos",
     "follow_us": "关注我们",
     "customer_service_24_7": "客户服务 24/7",
+    "chat": "聊天",
+    "no_messages": "暂无消息",
+    "sending": "发送中",
     "contact_us": "立即与我们聊天",
     "text_1": "我们理解您的物流需求永不停歇，我们的客户服务团队也是如此。",
     "text_2": "我们全天候提供服务, 7天无休。无论您需要跟踪包裹, 询问我们的服务，还是需要任何帮助，我们都在这里为您提供支持。",
@@ -203,20 +215,22 @@
     "placeholder_1": "在这里输入您的信息...",
     "placeholder_2": "消息的主题",
     "placeholder_3": "您的全名",
-    "placeholder_4": "email@example.com"
+    "placeholder_4": "email@example.com",
+    "loading": "正在加载....",
+    "enter_message_alert": "请输入姓名和留言"
   },
   "Policy": {
-    "title" : "我们公司的不同政策",
-    "title2" : "阿努斯迪物流有限公司",
-    "description" : "运输的条款和条件",
+    "title": "我们公司的不同政策",
+    "title2": "阿努斯迪物流有限公司",
+    "description": "运输的条款和条件",
     "things_to_know": "使用服务前须知：",
-    "0":  "跨省快递服务费起价 6,500 基普，当天寄送，次日到达。",
-    "1":  "万象市内快递服务费 5,000 基普，当天送达。",
-    "2":  "城市偏远地区：每件包裹加收 5,000 基普。",
-    "3":  "上门取件：免费。",
-    "4":  "公司仅赔偿损坏货物最高 500,000 基普/包裹。",
-    "Packaging of Products" : "1. 适合的产品包装",
-    "5" : "1.1. 塑料袋类型或带封口的塑料袋: 适合用于薄片类产品，柔软的衣物，在搬运或运输过程中不会造成损坏，且每次都应密封袋口。",
-    "6" : "1.2. 适用于需要特别保护的商品类型以及容易破损、破裂、容易损坏的商品，且应再用泡沫保护层包裹，避免运输过程中对商品造成损坏。"
+    "0": "跨省快递服务费起价 7,000 基普，当天寄送，次日到达。",
+    "1": "万象市内快递服务费 5,000 基普，当天送达。",
+    "2": "城市偏远地区：每件包裹加收 5,000 基普。",
+    "3": "上门取件：免费。",
+    "4": "公司仅赔偿损坏货物最高 500,000 基普/包裹。",
+    "Packaging of Products": "1. 适合的产品包装",
+    "5": "1.1. 塑料袋类型或带封口的塑料袋: 适合用于薄片类产品，柔软的衣物，在搬运或运输过程中不会造成损坏，且每次都应密封袋口。",
+    "6": "1.2. 适用于需要特别保护的商品类型以及容易破损、破裂、容易损坏的商品，且应再用泡沫保护层包裹，避免运输过程中对商品造成损坏。"
   }
 }

@@ -40,16 +40,26 @@ export default function Home() {
           <SlideImages />
         </section>
 
-        <section className="container mx-auto px-4 py-12">
-          <h2 className="text-2xl font-bold mb-8 text-center">
+        <section className="container mx-auto px-4 py-14">
+          <h2
+            className="
+                       mx-auto max-w-4xl md:max-w-4xl px-4 
+                       text-4xl md:text-4xl font-bold leading-snug md:leading-tight tracking-tight
+                       mb-8 text-center
+                       bg-[linear-gradient(90deg,#760115_0%,#BA0020_31.38%,#E13035_43.31%,#5E0E4D_86.62%)]
+                       bg-clip-text text-transparent
+                       break-words
+                       "
+          >
             {t("feature_title")}
           </h2>
-         
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-white text-black theme-chinese:bg-red-500 theme-chinese:text-yellow-300">
             <Card className="border-none shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300">
               <CardContent className="p-6 flex flex-col items-center text-center">
-                <div className="rounded-full bg-red-100 p-4 mb-4">
-                  <Truck className="h-8 w-8 text-red-600" />
+                <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-full overflow-hidden mb-4 group bg-red-100">
+                  <span className="absolute inset-0 bg-red-600 top-full group-hover:top-0 transition-all duration-500 ease-in-out z-0 rounded-full" />
+                  <Truck className="relative z-10 h-8 w-8 text-red-600 group-hover:text-white transition-all duration-500 group-hover:rotate-[360deg]" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">
                   {t("feature_shipping")}
@@ -59,10 +69,12 @@ export default function Home() {
                 </p>
               </CardContent>
             </Card>
+
             <Card className="border-none shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300">
               <CardContent className="p-6 flex flex-col items-center text-center">
-                <div className="rounded-full bg-red-100 p-4 mb-4">
-                  <Clock className="h-8 w-8 text-red-600" />
+                <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-full overflow-hidden mb-4 group bg-red-100">
+                  <span className="absolute inset-0 bg-red-600 top-full group-hover:top-0 transition-all duration-500 ease-in-out z-0 rounded-full" />
+                  <Clock className="relative z-10 h-8 w-8 text-red-600 group-hover:text-white transition-all duration-500 group-hover:rotate-[360deg]" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">
                   {t("feature_express")}
@@ -72,10 +84,12 @@ export default function Home() {
                 </p>
               </CardContent>
             </Card>
+
             <Card className="border-none shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300">
               <CardContent className="p-6 flex flex-col items-center text-center">
-                <div className="rounded-full bg-red-100 p-4 mb-4">
-                  <Package className="h-8 w-8 text-red-600" />
+                <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-full overflow-hidden mb-4 group bg-red-100">
+                  <span className="absolute inset-0 bg-red-600 top-full group-hover:top-0 transition-all duration-500 ease-in-out z-0 rounded-full" />
+                  <Package className="relative z-10 h-8 w-8 text-red-600 group-hover:text-white transition-all duration-500 group-hover:rotate-[360deg]" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">
                   {t("feature_cod")}
@@ -83,10 +97,12 @@ export default function Home() {
                 <p className="text-gray-600 text-sm">{t("cod_description")}</p>
               </CardContent>
             </Card>
+
             <Card className="border-none shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300">
               <CardContent className="p-6 flex flex-col items-center text-center">
-                <div className="rounded-full bg-red-100 p-4 mb-4">
-                  <Navigation className="h-8 w-8 text-red-600" />
+                <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-full overflow-hidden mb-4 group bg-red-100">
+                  <span className="absolute inset-0 bg-red-600 top-full group-hover:top-0 transition-all duration-500 ease-in-out z-0 rounded-full" />
+                  <Navigation className="relative z-10 h-8 w-8 text-red-600 group-hover:text-white transition-all duration-500 group-hover:rotate-[360deg]" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">
                   {t("feature_tracking")}
@@ -99,9 +115,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="bg-red-600 py-12">
+        <section className="bg-gradient-to-r from-red-700 via-red-600 to-red-700 text-white py-12 animate-gradient-x bg-[length:200%_200%] py-12">
           <div className="container mx-auto px-4">
-            <h2 className="text-2xl text-white font-bold mb-8">
+            <h2 className="text-3xl text-white font-bold mb-8">
               {t("news_activities")}
             </h2>
             <PapersNews />
@@ -110,20 +126,21 @@ export default function Home() {
 
         <section className="container mx-auto px-4 py-12">
           <h2 className="text-2xl font-bold mb-8">{t("main_pricing")}</h2>
+
           <PackagePrice />
         </section>
 
-        <section className="bg-red-600 text-white py-12 hero-gradient">
+        <section className="bg-gradient-to-r from-red-600 via-gray-500 to-red-600 text-white py-12 animate-gradient-x bg-[length:200%_200%]">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-6">{t("hero_title")}</h2>
             <p className="mb-8 max-w-2xl mx-auto">{t("hero_description")}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-white text-red-600 hover:bg-gray-100">
+              <Button className="bg-white text-red-600 hover:bg-gray-100 hover:scale-[1.02] transition-all duration-300 ease-in-out cursor-pointer rounded-md ">
                 <PhoneCall className="mr-2 h-4 w-4" />
                 {t("contact_us")}
               </Button>
               <Link href={`/${locale}/branches`}>
-                <Button className="bg-white text-red-600 hover:bg-gray-100">
+                <Button className="bg-white text-red-600 hover:bg-gray-100  hover:scale-[1.02] transition-all duration-300 ease-in-out cursor-pointer rounded-md ">
                   <MapPin className="mr-2 h-4 w-4" />
                   {t("find_branch")}
                 </Button>

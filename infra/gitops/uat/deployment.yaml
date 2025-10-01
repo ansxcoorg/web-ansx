@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-ansx
+  namespace: ans-uat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-ansx
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: web-ansx
+    spec:
+      containers:
+        - name: web-ansx
+          image: registry.gitlab.com/logitans/logitans-dashboard-portal:4469f692
+          ports:
+            - containerPort: 3000
+          livenessProbe:
+            tcpSocket:
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "250m"
+            limits:
+              memory: "2048Mi"
+              cpu: "1000m"
+          volumeMounts:
+            - name: localtime
+              mountPath: /etc/localtime
+            # - name: logs-volume
+            #   mountPath: /app/logs
+          envFrom:
+            - configMapRef:
+                name: web-ansx-conf
+      imagePullSecrets:
+        # - name: ghcr-secret
+        - name: gitlab-secret
+      volumes:
+        - name: localtime
+          hostPath:
+            path: /etc/localtime

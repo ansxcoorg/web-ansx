@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export default class Schema {
+export default class Schema { 
   static branches = gql`
     query Branches($skip: Int, $limit: Int, $where: BranchWhereInput) {
       branches(skip: $skip, limit: $limit, where: $where) {
@@ -13,7 +13,7 @@ export default class Schema {
           branch_address
           address_info
           map_lat
-          map_lng
+          map_lng 
           public
           region
         }

@@ -124,7 +124,7 @@ export default function BranchesPage() {
                 : "bg-gray-200 text-gray-700"
             }`}
           >
-            {t("central_region")}
+            {t("central_region")} 
           </button>
           <button
             onClick={() => setSelectedRegion("NORTHERN")}

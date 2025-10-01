@@ -4,6 +4,7 @@ import { X } from "lucide-react";
 import Image from "next/image";
 import { DialogHeader } from "./dialog";
 import { DialogClose } from "@radix-ui/react-dialog";
+import { useTranslations } from "next-intl";
 
 interface ModalItem {
   image?: string;
@@ -22,6 +23,8 @@ interface PopupModalProps {
 
 export default function PopupModal({ isOpen, onClose, item, formatDate }: PopupModalProps) {
   if (!item) return null;
+ 
+
 
   return (
     <Dialog
