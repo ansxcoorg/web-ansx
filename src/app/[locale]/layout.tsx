@@ -12,7 +12,6 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Locale, routing } from "@/i18n/routing";
 import { ToastContainer } from "react-toastify";
-import "./globals.css";
 import ClientBody from "./ClientBody";
 import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
