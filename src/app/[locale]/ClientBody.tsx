@@ -16,9 +16,9 @@ import { LoadScript } from "@react-google-maps/api";
 import ThemeProvider from "@/components/ui/ThemeProvider";
 
 // const API_URL = "http://localhost:4000/graphql";
-//const API_URL = "http://192.168.0.36:4000/graphql";
+const API_URL = "http://192.168.0.36:4000/graphql";
 
- const API_URL = "https://dash.api.anousith-express.com/graphql";
+//  const API_URL = "https://dash.api.anousith-express.com/graphql";
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("USER_KEY");
