@@ -165,8 +165,37 @@
     "point4_description": "卓越的24/7客户服务和易于使用的移动应用。"
   },
   "jops": {
+    "announcement_badge": "正在招聘 • Anousith Express",
     "announcement_signup_title": "招聘公告",
-    "signup_now": "立即报名"
+    "hero_desc": "加入我们高效、注重质量且以服务为本的物流团队。多个岗位开放中——几分钟即可完成申请。",
+    "btn_facebook": "Facebook",
+    "btn_view_open_roles": "查看开放职位",
+
+    "feature_env_title": "良好的工作环境",
+    "feature_env_desc": "团队协作、专业氛围、欢迎新想法",
+    "feature_growth_title": "职业发展机会",
+    "feature_growth_desc": "清晰的培养与培训路径，与公司共同成长",
+    "feature_benefits_title": "完善的福利",
+    "feature_benefits_desc": "标准福利并根据岗位提供额外权益",
+
+    "intro_title": "招聘公告",
+    "intro_desc": "Anousith Express 为业务扩张招聘多个岗位。如果你责任心强、服务意识佳并乐于学习，我们期待与你相遇！",
+    "intro_li_1": "具备团队协作与良好沟通",
+    "intro_li_2": "适应力强，乐于学习新工具",
+    "intro_li_3": "自律并善于时间管理",
+    "intro_li_4": "具有高度责任感",
+
+    "open_roles_title": "开放职位",
+    "open_roles_subtitle": "来自招聘中心的实时更新",
+    "apply_now_button": "立即申请",
+    "signup_now": "立即申请",
+
+    "empty_title": "当前暂无开放职位",
+    "empty_desc": "请稍后再来查看，或点击“立即申请”提交个人信息",
+
+    "catalog_fallback": "Anousith Express",
+    "job_image_alt": "职位图片",
+    "ansx_careers_alt": "ANSX Careers"
   },
   "contact": {
     "contact_us_title": "联系我们",

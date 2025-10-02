@@ -64,7 +64,7 @@ export default function NewsPage() {
   useEffect(() => {
     fetchData({
       variables: {
-        where: {},
+        where: {isPublic: 0},
         limit,
         skip: (page - 1) * limit,
       },
