@@ -1,9 +1,6 @@
 // components/PopupModal.jsx
-import { Dialog, DialogTitle } from "@headlessui/react";
+import { Dialog } from "@headlessui/react";
 import { X } from "lucide-react";
-import Image from "next/image";
-import { DialogHeader } from "./dialog";
-import { DialogClose } from "@radix-ui/react-dialog";
 import { useTranslations } from "next-intl";
 
 export default function PopupModal({
@@ -14,40 +11,36 @@ export default function PopupModal({
 }: {
   isOpen: any;
   onClose: any;
-  item: any | null; 
+  item: any | null;
   formatDate: any;
 }) {
-   const t = useTranslations("news");
+  const t = useTranslations("news");
   if (!item) return null;
- 
-
 
   return (
     <Dialog
       open={isOpen}
       onClose={onClose}
-      className="fixed z-50 inset-0 overflow-y-auto font-lao"
+      className="popup-modal fixed z-50 inset-0 overflow-y-auto font-lao"
     >
-      <div className="flex items-center justify-center min-h-screen p-6 bg-black/40 backdrop-blur-sm">
-        <Dialog.Panel className="relative bg-white rounded-3xl p-10 max-w-5xl w-full shadow-2xl animate-fade-in-up transition-all duration-300">
-          {/* Close button */}
+      <div className="flex items-center justify-center min-h-screen p-4 bg-black/40 backdrop-blur-sm">
+        <Dialog.Panel className="relative bg-white rounded-2xl p-6 max-w-xl w-full shadow-xl animate-fade-in-up transition-all duration-300">
+
           <button
             onClick={onClose}
-            className="absolute top-5 right-5 text-gray-400 hover:text-gray-700 transition-colors duration-200"
+            className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700 transition"
             aria-label="Close"
           >
-            ✖
+            <X size={18} />
           </button>
 
-          {/* Header */}
           <div className="text-center mb-4">
-            <h2 className="text-4xl font-extrabold text-gray-800 mb-2">
+            <h2 className="text-2xl font-bold text-gray-800">
               📢 {t("Announcement")}
             </h2>
           </div>
 
-          {/* Image */}
-          <div className="relative w-full mb-8 overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
+          <div className="relative w-full mb-5 overflow-hidden rounded-xl border border-gray-200 shadow-sm">
             <img
               src={`https://storage.googleapis.com/ansx/website/images/${item?.image}`}
               alt="photo"
@@ -55,12 +48,11 @@ export default function PopupModal({
             />
           </div>
 
-          {/* Content */}
           <div className="text-center">
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">
               {item?.catalog?.title}
             </h3>
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-base text-gray-700 leading-relaxed">
               {item?.title}
             </p>
           </div>

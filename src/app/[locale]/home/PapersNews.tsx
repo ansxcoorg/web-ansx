@@ -42,10 +42,21 @@ export default function PapersNews() {
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
-  const scrollTo = useCallback((i: number) => emblaApi?.scrollTo(i), [emblaApi]);
+  const scrollTo = useCallback(
+    (i: number) => emblaApi?.scrollTo(i),
+    [emblaApi]
+  );
 
-  const openModal = (item: any) => { setSelectedItem(item); setIsOpen(true); };
-  const closeModal = () => { setSelectedItem(null); setIsOpen(false); };
+  const openModal = (item: any) => {
+    console.log('openModal clicked', item);  
+    setSelectedItem(item);
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedItem(null);
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     fetchData({ variables: { where: {}, limit: 6 } });
@@ -70,13 +81,14 @@ export default function PapersNews() {
     if (!emblaApi || itemsNew.length <= 1) return;
     stop();
     // Animayion suto slide
-    const prefersReduce = typeof window !== "undefined" &&
+    const prefersReduce =
+      typeof window !== "undefined" &&
       window.matchMedia &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReduce) return;
 
     timerRef.current = setInterval(() => {
-      if (document.hidden) return; // stop 
+      if (document.hidden) return; // stop
       emblaApi.scrollNext();
     }, AUTOPLAY_MS);
   }, [emblaApi, itemsNew.length, stop]);
@@ -86,7 +98,7 @@ export default function PapersNews() {
     if (!emblaApi) return;
     start();
     emblaApi.on("pointerDown", stop); // slide -> stop
-    emblaApi.on("settle", start);     // end -> start auto slind
+    emblaApi.on("settle", start); // end -> start auto slind
     return () => {
       stop();
 
@@ -103,7 +115,6 @@ export default function PapersNews() {
 
   return (
     <div>
-
       <div className="mb-4 flex items-right justify-end gap-2">
         <Button
           onClick={scrollPrev}
@@ -158,7 +169,9 @@ export default function PapersNews() {
                       fill
                       className={[
                         "object-cover transition-all duration-500 ease-out",
-                        isActive ? "blur-0 opacity-100" : "blur-[1px] opacity-75",
+                        isActive
+                          ? "blur-0 opacity-100"
+                          : "blur-[1px] opacity-75",
                       ].join(" ")}
                     />
                   </div>
@@ -215,7 +228,10 @@ export default function PapersNews() {
       {/* View All */}
       <div className="mt-8 text-center">
         <Link href={`/${locale}/news?page=1`}>
-          <Button variant="outline" className="border-red-600 text-red-600 hover:bg-red-50">
+          <Button
+            variant="outline"
+            className="border-red-600 text-red-600 hover:bg-red-50"
+          >
             {t("view_all")}
           </Button>
         </Link>

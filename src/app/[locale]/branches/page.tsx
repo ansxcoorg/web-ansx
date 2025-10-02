@@ -12,23 +12,23 @@ import Schema from "../../../apollo/index";
 import { useLazyQuery } from "@apollo/client";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
+import Icon_gif from "./img/Location_branch.gif";
 
 interface itemBranches {
   id_branch: number;
-  branch_name : string;
-  public : number;
-  address_info : string;
-  map_lat : string ;
-  map_lng : string;
-  region : string;
-  mainBranches : number;
-  isDeleted : number;
-  branch_address : string;
-
+  branch_name: string;
+  public: number;
+  address_info: string;
+  map_lat: string;
+  map_lng: string;
+  region: string;
+  mainBranches: number;
+  isDeleted: number;
+  branch_address: string;
 }
 
 export default function BranchesPage() {
-   const t = useTranslations("branch");
+  const t = useTranslations("branch");
   const [searchQuery, setSearchQuery] = useState("");
   const [itemBranches, setItemBranches] = useState<itemBranches[]>([]);
   const [totalBranches, setTotalBranches] = useState<number>(0);
@@ -124,7 +124,7 @@ export default function BranchesPage() {
                 : "bg-gray-200 text-gray-700"
             }`}
           >
-            {t("central_region")} 
+            {t("central_region")}
           </button>
           <button
             onClick={() => setSelectedRegion("NORTHERN")}
@@ -134,7 +134,7 @@ export default function BranchesPage() {
                 : "bg-gray-200 text-gray-700"
             }`}
           >
-             {t("northern_region")}
+            {t("northern_region")}
           </button>
           <button
             onClick={() => setSelectedRegion("SOUTHERN")}
@@ -144,7 +144,7 @@ export default function BranchesPage() {
                 : "bg-gray-200 text-gray-700"
             }`}
           >
-             {t("southern_region")}
+            {t("southern_region")}
           </button>
         </div>
 
@@ -157,7 +157,7 @@ export default function BranchesPage() {
               value={searchQuery}
               onChange={(e) => updateSearchQuery(e.target.value)}
             />
-            <Search className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+            <Search className="absolute right-3 inset-y-0 my-auto h-5 w-5 text-gray-500 pointer-events-none" />
           </div>
         </div>
       </div>
@@ -172,14 +172,17 @@ export default function BranchesPage() {
             >
               <CardContent className="p-6">
                 <div className="flex items-start mb-4">
-                  <div className="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center mr-4 flex-shrink-0">
-                    <Image
-                      src="https://ext.same-assets.com/4210099945/4268394336.png"
-                      alt="Branch icon"
-                      width={28}
-                      height={28}
-                    />
-                  </div>
+                  {/* <div className="h-13 w-13 rounded-full bg-gray-50 flex items-center justify-center mr-4 flex-shrink-0"> */}
+                  <img
+                    src={Icon_gif.src}
+                    alt="Branch icon"
+                    width={40}
+                    height={40}
+                    className="object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  {/*      </div> */}
                   <div>
                     <h3 className="text-lg font-semibold mb-1">
                       {branch.branch_name}
@@ -200,7 +203,9 @@ export default function BranchesPage() {
                         <span className="mr-1">
                           {branch.public === 1 ? "✅" : "❌"}
                         </span>
-                        {branch.public === 1 ? t("branch_open") : t("branch_closed")}
+                        {branch.public === 1
+                          ? t("branch_open")
+                          : t("branch_closed")}
                       </Button>
                       <Button
                         variant="ghost"
@@ -226,10 +231,11 @@ export default function BranchesPage() {
 
       <div className="text-center mt-8">
         <p className="text-gray-500 mb-4">
-        {t("display")} {filteredBranches.length} {t("in")} {totalBranches} {t("branches")}
+          {t("display")} {filteredBranches.length} {t("in")} {totalBranches}{" "}
+          {t("branches")}
         </p>
         <Button variant="outline" onClick={loadMoreBranches}>
-        {t("load_more")}
+          {t("load_more")}
         </Button>
       </div>
     </div>

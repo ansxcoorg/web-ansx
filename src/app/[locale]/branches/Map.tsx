@@ -59,23 +59,38 @@ const BranchMap = ({ branches, center, zoom }: BranchMapProps) => {
   // SVG icon (white default, red on hover/selected)
   const getSvgMarker = (logoDataUrl: string, variant: "white" | "red") => {
     const fill =
-      variant === "white" ? "rgba(255,255,255,0.7)" : "rgba(220, 38, 38, 0.7)"; // red-600/70
+      variant === "white" ? "rgba(255,255,255,0.7)" : "rgba(220, 38, 38, 0.9)"; // red-600/70
     return {
-      url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
-        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="80" viewBox="0 0 60 80">
-          <defs>
-            <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-              <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#aaa" />
-            </filter>
-          </defs>
-          <path d="M30 0C13.5 0 0 13.5 0 30c0 20 30 50 30 50s30-30 30-50C60 13.5 46.5 0 30 0z"
-            fill="${fill}" filter="url(#shadow)"/>
-          <image href="${logoDataUrl}" x="18" y="18" width="24" height="24"/>
-        </svg>
-      `)}`,
-      scaledSize: new google.maps.Size(48, 65),
-      anchor: new google.maps.Point(24, 65),
-    };
+  url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="80" viewBox="0 0 60 80">
+      <defs>
+        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+          <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#aaa" />
+        </filter>
+      </defs>
+
+      <!-- Pin Shape with white border -->
+      <path d="M30 0C13.5 0 0 13.5 0 30c0 20 30 50 30 50s30-30 30-50C60 13.5 46.5 0 30 0z"
+        fill="${fill}" 
+        stroke="white" 
+        stroke-width="1"
+        filter="url(#shadow)"/>
+
+      <!-- Circle background inside -->
+      <circle 
+        cx="30" cy="30" r="19" 
+        fill="#f9fafb" 
+        stroke="white" 
+        stroke-width="2"
+      /> 
+
+      <!-- Logo in center -->
+      <image href="${logoDataUrl}" x="18" y="18" width="24" height="24"/>
+    </svg>
+  `)}`,
+  scaledSize: new google.maps.Size(48, 65),
+  anchor: new google.maps.Point(24, 65),
+};
   };
 
   return (

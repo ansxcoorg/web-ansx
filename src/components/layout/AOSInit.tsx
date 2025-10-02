@@ -24,9 +24,59 @@ export default function AOSInit() {
       );
     };
 
+    const hasDialogInside = (root: Element | Document | null) => {
+      if (!root || !(root as Element).querySelector) return false;
+      return Boolean(
+        (root as Element).querySelector(
+          [
+            '[role="dialog"]',
+            '[aria-modal="true"]',
+            '.modal',
+            '.modal-dialog',
+            '.modal-content',
+            '.popup-modal',
+            '[data-radix-dialog-root]',
+            '[data-radix-dialog-content]',
+            '[data-radix-dialog-overlay]',
+            '[data-radix-portal]'
+          ].join(",")
+        )
+      );
+    };
+
+    const isDialogElement = (el: Element | null) => {
+      if (!el) return false;
+      return Boolean(
+        el.closest(
+          [
+            '[role="dialog"]',
+            '[aria-modal="true"]',
+            '.modal',
+            '.modal-dialog',
+            '.modal-content',
+            '.popup-modal',
+            '[data-radix-dialog-root]',
+            '[data-radix-dialog-content]',
+            '[data-radix-dialog-overlay]',
+            '[data-radix-portal]'
+          ].join(",")
+        )
+      );
+    };
+
     const cleanupSelectAncestors = () => {
       document.querySelectorAll<HTMLElement>("[data-aos]").forEach((el) => {
         if (hasRadixSelectInside(el)) {
+          el.removeAttribute("data-aos");
+          el.style.transform = "";
+          el.style.transition = "";
+        }
+      });
+    };
+
+    const cleanupDialogAncestors = () => {
+      document.querySelectorAll<HTMLElement>("[data-aos]").forEach((el) => {
+        if (hasDialogInside(el) || isDialogElement(el)) {
           el.removeAttribute("data-aos");
           el.style.transform = "";
           el.style.transition = "";
@@ -40,8 +90,10 @@ export default function AOSInit() {
       );
 
       nodes.forEach((el) => {
-        // 0) if AOS will be ancestor of Select
-        if (el.hasAttribute("data-aos") && hasRadixSelectInside(el)) {
+        if (
+          el.hasAttribute("data-aos") &&
+          (hasRadixSelectInside(el) || hasDialogInside(el))
+        ) {
           el.removeAttribute("data-aos");
           el.style.transform = "";
           el.style.transition = "";
@@ -50,6 +102,10 @@ export default function AOSInit() {
 
         // 1) skip select
         if (hasRadixSelectInside(el)) return;
+        // 1.1) skip if this element is a dialog/inside dialog
+        if (isDialogElement(el)) return;
+        // 1.2) skip if it contains dialog nodes inside
+        if (hasDialogInside(el)) return;
 
         // 2) opt‑out manual
         if (el.closest("[data-aos-skip], .aos-ignore")) return;
@@ -99,6 +155,8 @@ export default function AOSInit() {
         // 7) skip paper-news
         if (el.closest(".papers-news")) return;
 
+        
+
         // ---- Animation AOS ----
         el.setAttribute("data-aos", "fade-up");
         el.setAttribute("data-aos-easing", "ease-out-cubic");
@@ -109,6 +167,7 @@ export default function AOSInit() {
 
     applyAOSAttr();
     cleanupSelectAncestors(); //  clear
+    cleanupDialogAncestors();
 
     AOS.init({ duration: 600, easing: "ease-out", offset: 24, once: true });
     AOS.refreshHard();
@@ -119,6 +178,10 @@ export default function AOSInit() {
         if (m.type === "childList") {
           m.addedNodes.forEach((node) => {
             if (node.nodeType === 1) {
+              const el = node as Element;
+              if (isDialogElement(el) || hasDialogInside(el)) {
+                cleanupDialogAncestors();
+              }
               applyAOSAttr(node as ParentNode);
               needsRefresh = true;
             }
@@ -127,6 +190,7 @@ export default function AOSInit() {
       }
       if (needsRefresh) {
         cleanupSelectAncestors();
+        cleanupDialogAncestors();
         AOS.refreshHard();
       }
     });

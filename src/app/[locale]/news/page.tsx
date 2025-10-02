@@ -2,7 +2,13 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import { Search, Calendar, User, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Search,
+  Calendar,
+  User,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -21,7 +27,9 @@ import { useLocale, useTranslations } from "next-intl";
 import PopupModal from "@/components/ui/PopupModal";
 import clsx from "clsx";
 
-interface Catalog { title: string; }
+interface Catalog {
+  title: string;
+}
 interface newsItem {
   id: string;
   image: string;
@@ -81,14 +89,22 @@ export default function NewsPage() {
     window.history.replaceState({}, "", newUrl);
   }, [page]);
 
-  const openModal = (news: any) => { setSelectedItem(news); setIsOpen(true); };
-  const closeModal = () => { setSelectedItem(null); setIsOpen(false); };
+  const openModal = (news: any) => {
+    setSelectedItem(news);
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    setSelectedItem(null);
+    setIsOpen(false);
+  };
 
   // ------- Auto Slide + Animation (Featured) -------
   const [activeIndex, setActiveIndex] = useState(0);
   const AUTOPLAY_MS = 2500;
 
-  useEffect(() => { setActiveIndex(0); }, [newsItems]);
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [newsItems]);
 
   useEffect(() => {
     if (!newsItems.length) return;
@@ -156,11 +172,17 @@ export default function NewsPage() {
       <style jsx global>{`
         /* Subtle rise + fade for hero transition */
         .fade-rise {
-          animation: fadeRise 480ms cubic-bezier(.2,.8,.2,1) both;
+          animation: fadeRise 480ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
         }
         @keyframes fadeRise {
-          from { opacity: 0; transform: translateY(8px) scale(.995); }
-          to   { opacity: 1; transform: translateY(0)    scale(1); }
+          from {
+            opacity: 0;
+            transform: translateY(8px) scale(0.995);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
         }
 
         /* Shimmer overlay on hero image */
@@ -168,14 +190,18 @@ export default function NewsPage() {
           content: "";
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg, rgba(0,0,0,0) 20%, rgba(0,0,0,.35) 75%);
+          background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0) 20%,
+            rgba(0, 0, 0, 0.35) 75%
+          );
           pointer-events: none;
         }
 
         /* Nice focus ring for buttons/links */
         .focus-ring:focus-visible {
           outline: none;
-          box-shadow: 0 0 0 3px rgba(239,68,68,.35);
+          box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.35);
         }
       `}</style>
 
@@ -187,9 +213,7 @@ export default function NewsPage() {
               <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
                 {t("news_activities")}
               </h1>
-              <p className="text-white/90 mt-1">
-                {t("Searching for news")}
-              </p>
+              <p className="text-white/90 mt-1">{t("Searching for news")}</p>
             </div>
             <div className="w-full md:w-96">
               <div className="relative">
@@ -200,7 +224,7 @@ export default function NewsPage() {
                   value={rawQuery}
                   onChange={(e) => setRawQuery(e.target.value)}
                 />
-                <Search className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+                <Search className="absolute right-3 inset-y-0 my-auto h-5 w-5 text-gray-500 pointer-events-none" />
               </div>
             </div>
           </div>
@@ -262,7 +286,9 @@ export default function NewsPage() {
                         onClick={() => setActiveIndex(i)}
                         className={clsx(
                           "h-2.5 w-2.5 rounded-full transition",
-                          i === activeIndex ? "bg-white" : "bg-white/60 hover:bg-white/80"
+                          i === activeIndex
+                            ? "bg-white"
+                            : "bg-white/60 hover:bg-white/80"
                         )}
                       />
                     ))}
@@ -287,7 +313,9 @@ export default function NewsPage() {
                       <>
                         <span className="mx-2">•</span>
                         <User className="h-4 w-4 mr-1" />
-                        <span className="truncate">{activeItem.catalog.title}</span>
+                        <span className="truncate">
+                          {activeItem.catalog.title}
+                        </span>
                       </>
                     )}
                   </div>
@@ -345,7 +373,9 @@ export default function NewsPage() {
                   <CardContent className="p-4">
                     <div className="flex items-center text-xs text-gray-500 mb-2">
                       <Calendar className="h-3.5 w-3.5 mr-1" />
-                      <span className="truncate">{formatDate(news.createdAt || news.date)}</span>
+                      <span className="truncate">
+                        {formatDate(news.createdAt || news.date)}
+                      </span>
                     </div>
                     <h3 className="text-base font-semibold mb-2 line-clamp-2">
                       {news.title}
@@ -369,9 +399,7 @@ export default function NewsPage() {
         {/* Empty state for filtered results */}
         {!loading && filteredItems?.length === 0 && (
           <div className="m-5 text-center py-12 bg-gray-50 rounded-2xl">
-            <p className="text-gray-600">
-              {t("News not found")}
-            </p>
+            <p className="text-gray-600">{t("News not found")}</p>
           </div>
         )}
 
