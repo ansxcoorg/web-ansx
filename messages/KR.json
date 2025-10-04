@@ -165,8 +165,37 @@
     "point4_description": "24/7 고객 서비스와 사용이 편리한 모바일 앱 제공"
   },
   "jops": {
-    "announcement_signup_title": "모집 공고",
-    "signup_now": "지금 신청하기"
+    "announcement_badge": "채용 중 • Anousith Express",
+    "announcement_signup_title": "채용 공고",
+    "hero_desc": "속도와 품질, 서비스 마인드로 움직이는 물류 팀과 함께 성장하세요. 다수 포지션 채용 중 — 몇 분 만에 지원 가능합니다.",
+    "btn_facebook": "Facebook",
+    "btn_view_open_roles": "모집 공고 보기",
+
+    "feature_env_title": "좋은 근무 환경",
+    "feature_env_desc": "팀워크, 프로페셔널한 분위기, 새로운 아이디어 환영",
+    "feature_growth_title": "커리어 성장",
+    "feature_growth_desc": "명확한 개발·교육 로드맵으로 함께 성장",
+    "feature_benefits_title": "복지 혜택",
+    "feature_benefits_desc": "표준 복지와 포지션별 추가 혜택",
+
+    "intro_title": "채용 안내",
+    "intro_desc": "Anousith Express는 사업 확장을 위해 다양한 포지션을 채용합니다. 책임감 있고, 서비스 마인드가 있으며, 배우기를 즐기는 분을 찾고 있습니다!",
+    "intro_li_1": "팀워크와 커뮤니케이션 역량",
+    "intro_li_2": "빠른 적응력과 학습 능력",
+    "intro_li_3": "규율과 시간 관리 능력",
+    "intro_li_4": "높은 책임감",
+
+    "open_roles_title": "채용 중인 포지션",
+    "open_roles_subtitle": "채용 센터의 실시간 업데이트",
+    "apply_now_button": "지금 지원",
+    "signup_now": "지금 지원",
+
+    "empty_title": "현재 채용 중인 포지션이 없습니다",
+    "empty_desc": "곧 다시 확인하시거나 “지금 지원”을 통해 프로필을 남겨주세요",
+
+    "catalog_fallback": "Anousith Express",
+    "job_image_alt": "채용 포지션 이미지",
+    "ansx_careers_alt": "ANSX Careers"
   },
   "contact": {
     "contact_us_title": "연락처",
