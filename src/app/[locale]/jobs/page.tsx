@@ -110,7 +110,7 @@ export default function Jobs() {
 
             <div className="mt-6 flex flex-wrap gap-3">
               <a
-                href="https://www.facebook.com/AnousithExpress"
+                href="https://www.facebook.com/p/Anousith-Express-Job-in-laos-100057423400156/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg bg-blue-600/80 px-4 py-2 text-white text-sm font-semibold shadow hover:bg-blue-700 transition"
@@ -178,23 +178,11 @@ export default function Jobs() {
         </Card>
       </section>
 
-      <section className="mt-12 rounded-3xl border border-neutral-200 bg-white p-6 md:p-10 shadow-sm transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-        <h2 className="text-2xl font-bold md:text-3xl">{t("intro_title")}</h2>
-        <p className="mt-3 max-w-3xl text-neutral-700">{t("intro_desc")}</p>
-        <ul className="mt-4 grid list-disc gap-2 pl-6 text-neutral-700 md:grid-cols-2">
-          <li>{t("intro_li_1")}</li>
-          <li>{t("intro_li_2")}</li>
-          <li>{t("intro_li_3")}</li>
-          <li>{t("intro_li_4")}</li>
-        </ul>
-      </section>
-
       <section id="open-roles" className="mt-12">
         <div className="mb-5 flex items-end justify-between">
           <div>
             <h3 className="text-2xl font-bold">{t("open_roles_title")}</h3>
             <p className="text-sm text-neutral-600">
-              {t("open_roles_subtitle")}
             </p>
           </div>
           <Link
@@ -227,7 +215,7 @@ export default function Jobs() {
           <Card className="rounded-2xl border border-neutral-200 bg-white text-center shadow-sm">
             <CardContent className="p-10">
               <h4 className="text-lg font-semibold">{t("empty_title")}</h4>
-              <p className="mt-2 text-neutral-600">{t("empty_desc")}</p>
+              {/* <p className="mt-2 text-neutral-600">{t("empty_desc")}</p> */}
               <div className="mt-5">
                 <Link
                   href="https://job.anousith.express/index"
@@ -242,7 +230,7 @@ export default function Jobs() {
         )}
 
         {!loading && hasJobs && (
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-3">
             {itemsJobs.map((value, index) => {
               const imgSrc = getImgSrc(value);
               return (
@@ -306,12 +294,12 @@ export default function Jobs() {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative max-w-[80vw] max-h-[80vh] rounded-xl overflow-hidden shadow-2xl"
+            className="relative max-w-[80vw] max-h-[85vh] rounded-xl overflow-hidden shadow-2xl"
           >
             <img
               src={getImgSrc(activeItem)}
               alt={activeItem?.title || t("job_image_alt")}
-              className="max-w-full max-h-[80vh] object-contain rounded-xl select-none"
+              className="max-w-full max-h-[85vh] object-contain rounded-xl select-none"
             />
             <button
               onClick={closeLightbox}

@@ -24,7 +24,7 @@
     "news_activities": "新闻与活动",
     "main_pricing": "主要服务价格",
     "hero_title": "让我们帮助您运输货物",
-    "hero_description": "快速、安全、实惠的服务。全国拥有400多家分店, 随时为您服务。",
+    "hero_description": "我们致力于提供快速、安全、可靠的运输服务，确保您的包裹安全、准时地送达目的地，满足您的需求。",
     "contact_us": "联系我们",
     "find_branch": "查找附近分店"
   },
@@ -135,7 +135,7 @@
     "about_us_title": "关于我们",
     "about_us_description": "Anousith Express - 在老挝和国际之间提供快速、安全和可靠的送货服务",
     "history_title": "历史",
-    "start": "从在万象仅有的5个分支开始, 我们迅速扩展, 现在在全国拥有超过400+个分支，覆盖老挝的每个省，并与全球网络连接。",
+    "start": "从在万象仅有的5个分支开始, 我们迅速扩展, 现在在全国拥有超过700+个分支，覆盖老挝的每个省，并与全球网络连接。",
     "service": "凭借经验丰富的团队和先进的技术, 我们已成为老挝物流和运输服务的领导者, 每月处理超过100万笔交易。",
     "history_description": "Anousith Express 于2015年成立, 旨在为老挝的企业和个人提供高质量、便捷且价格合理的快递服务。",
     "mission_title": "使命、愿景和价值",
@@ -178,20 +178,11 @@
     "feature_benefits_title": "完善的福利",
     "feature_benefits_desc": "标准福利并根据岗位提供额外权益",
 
-    "intro_title": "招聘公告",
-    "intro_desc": "Anousith Express 为业务扩张招聘多个岗位。如果你责任心强、服务意识佳并乐于学习，我们期待与你相遇！",
-    "intro_li_1": "具备团队协作与良好沟通",
-    "intro_li_2": "适应力强，乐于学习新工具",
-    "intro_li_3": "自律并善于时间管理",
-    "intro_li_4": "具有高度责任感",
-
     "open_roles_title": "开放职位",
-    "open_roles_subtitle": "来自招聘中心的实时更新",
     "apply_now_button": "立即申请",
     "signup_now": "立即申请",
 
     "empty_title": "当前暂无开放职位",
-    "empty_desc": "请稍后再来查看，或点击“立即申请”提交个人信息",
 
     "catalog_fallback": "Anousith Express",
     "job_image_alt": "职位图片",

@@ -24,7 +24,7 @@
     "news_activities": "News & Activities",
     "main_pricing": "Main Service Pricing",
     "hero_title": "Let us help you with your shipping",
-    "hero_description": "Fast, secure, and affordable services. Over 400 branches nationwide, ready to serve you.",
+    "hero_description": "We are committed to providing fast, safe, and reliable delivery to ensure your parcels arrive securely and on time, just the way you need them.",
     "contact_us": "Contact Us",
     "find_branch": "Find a Branch Nearby"
   },
@@ -136,7 +136,7 @@
     "about_us_title": "About Us",
     "about_us_description": "Anousith Express - Fast, Safe, and Reliable Delivery Service Across Laos and Internationally",
     "history_title": "History",
-    "start": "Starting with only 5 branches in Vientiane, we have rapidly expanded and now have a network of over 400+ branches nationwide, covering every province in Laos and connecting with global networks.",
+    "start": "Starting with only 5 branches in Vientiane, we have rapidly expanded and now have a network of over 700+ branches nationwide, covering every province in Laos and connecting with global networks.",
     "service": "With a team of experienced professionals and cutting-edge technology, we have become one of the leaders in logistics and transportation services in Laos, handling over 1 million transactions per month.",
     "history_description": "Anousith Express was founded in 2015 with the aim to provide high-quality, convenient, and reasonably priced delivery services for businesses and individuals across Laos.",
     "mission_title": "Mission, Vision, and Values",
@@ -157,7 +157,7 @@
     "management_team": "Management Team",
     "key_points_title": "Our Key Points",
     "point1_title": "Wide Network",
-    "point1_description": "Over 400+ branches nationwide in Laos, covering all provinces and major cities.",
+    "point1_description": "Over 700+ branches nationwide in Laos, covering all provinces and major cities.",
     "point2_title": "Fast Service",
     "point2_description": "Same-day delivery for the capital and 1-3 days for other provinces.",
     "point3_title": "Safe and Reliable",
@@ -166,7 +166,7 @@
     "point4_description": "Excellent 24/7 customer service and a user-friendly mobile app."
   },
   "jops": {
-    "announcement_badge": "We’re hiring • Anousith Express",
+    "announcement_badge": "We are hiring • Anousith Express",
     "announcement_signup_title": "Now Hiring",
     "hero_desc": "Grow with our fast, quality-driven, service-minded logistics team. Multiple roles open — apply in minutes.",
     "btn_facebook": "Facebook",
@@ -179,20 +179,11 @@
     "feature_benefits_title": "Comprehensive benefits",
     "feature_benefits_desc": "Standard benefits plus role-based perks",
 
-    "intro_title": "Job announcement",
-    "intro_desc": "Anousith Express is hiring across multiple roles to support our expansion. If you’re responsible, service-minded, and eager to learn, we want to meet you!",
-    "intro_li_1": "Team player with strong communication",
-    "intro_li_2": "Adaptable and quick to learn new tools",
-    "intro_li_3": "Disciplined with good time management",
-    "intro_li_4": "High sense of responsibility",
-
     "open_roles_title": "Open positions",
-    "open_roles_subtitle": "Live updates from our job center",
     "apply_now_button": "Apply now",
     "signup_now": "Apply now",
 
     "empty_title": "No open positions at the moment",
-    "empty_desc": "Please check back soon or click “Apply now” to leave your profile",
 
     "catalog_fallback": "Anousith Express",
     "job_image_alt": "Job image",

@@ -72,7 +72,7 @@ export default function SlideImages() {
           </CarouselItem>
         ))}
         <form
-          action="https://app.anousith.express/nextday/item_bill/search_item"
+          action={`https://app.anousith.express/landing/search_tracking/search_item?_bill_detail=${trackingNumber}&n_home=2`}
           method="get"
           className="absolute inset-0 flex items-center justify-center mt-60 hidden md:flex"
         >

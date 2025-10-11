@@ -24,7 +24,7 @@
     "news_activities": "Tin tức và hoạt động",
     "main_pricing": "Giá dịch vụ chính",
     "hero_title": "Hãy để chúng tôi giúp bạn vận chuyển hàng hóa",
-    "hero_description": "Dịch vụ nhanh chóng, an toàn và giá cả hợp lý với hơn 400 chi nhánh trên toàn quốc sẵn sàng phục vụ bạn",
+    "hero_description": "Chúng tôi cam kết mang đến dịch vụ vận chuyển nhanh chóng, an toàn và đáng tin cậy để đảm bảo hàng hóa của bạn được giao đến nơi một cách an toàn và đúng thời gian bạn mong muốn.",
     "contact_us": "Liên hệ chúng tôi",
     "find_branch": "Tìm chi nhánh gần nhất"
   },
@@ -137,7 +137,7 @@
     "about_us_title": "Về chúng tôi",
     "about_us_description": "Anousith Express - Dịch vụ vận chuyển nhanh chóng, an toàn và đáng tin cậy trên toàn quốc Lào và quốc tế",
     "history_title": "Lịch sử hình thành",
-    "start": "Bắt đầu từ việc chỉ có 5 chi nhánh tại Vientiane, chúng tôi đã mở rộng nhanh chóng với hơn 400+ chi nhánh hiện nay, bao phủ mọi tỉnh thành của Lào và kết nối với mạng lưới quốc tế.",
+    "start": "Bắt đầu từ việc chỉ có 5 chi nhánh tại Vientiane, chúng tôi đã mở rộng nhanh chóng với hơn 700+ chi nhánh hiện nay, bao phủ mọi tỉnh thành của Lào và kết nối với mạng lưới quốc tế.",
     "service": "Với đội ngũ nhân viên giàu kinh nghiệm và công nghệ hiện đại, chúng tôi đã trở thành một trong những nhà cung cấp dịch vụ vận chuyển và logistics hàng đầu tại Lào, phục vụ hơn 1 triệu đơn hàng mỗi tháng.",
     "history_description": "Anousith Express được thành lập vào năm 2015 với mục tiêu cung cấp dịch vụ vận chuyển chất lượng cao, tiện lợi và với giá cả hợp lý cho các doanh nghiệp và cá nhân trên toàn quốc Lào.",
     "mission_title": "Sứ mệnh, Tầm nhìn và Giá trị",
@@ -158,7 +158,7 @@
     "management_team": "Đội ngũ quản lý",
     "key_points_title": "Điểm mạnh của chúng tôi",
     "point1_title": "Mạng lưới rộng lớn",
-    "point1_description": "Có hơn 400+ chi nhánh trên toàn quốc Lào, phủ sóng mọi tỉnh thành và các thành phố lớn.",
+    "point1_description": "Có hơn 700+ chi nhánh trên toàn quốc Lào, phủ sóng mọi tỉnh thành và các thành phố lớn.",
     "point2_title": "Dịch vụ nhanh chóng",
     "point2_description": "Giao hàng trong ngày tại khu vực Vientiane và từ 1-3 ngày cho các khu vực khác.",
     "point3_title": "An toàn và đáng tin cậy",
@@ -180,20 +180,11 @@
     "feature_benefits_title": "Phúc lợi đầy đủ",
     "feature_benefits_desc": "Phúc lợi tiêu chuẩn và quyền lợi bổ sung theo vị trí",
 
-    "intro_title": "Thông báo tuyển dụng",
-    "intro_desc": "Anousith Express đang tuyển nhiều vị trí để đáp ứng sự mở rộng. Nếu bạn có tinh thần trách nhiệm, yêu thích dịch vụ và ham học hỏi, chúng tôi muốn gặp bạn!",
-    "intro_li_1": "Làm việc nhóm và giao tiếp tốt",
-    "intro_li_2": "Thích ứng nhanh, học công cụ mới",
-    "intro_li_3": "Kỷ luật và quản lý thời gian tốt",
-    "intro_li_4": "Có tinh thần trách nhiệm cao",
-
     "open_roles_title": "Vị trí đang tuyển",
-    "open_roles_subtitle": "Cập nhật theo thời gian thực từ trung tâm tuyển dụng",
     "apply_now_button": "Ứng tuyển ngay",
     "signup_now": "Ứng tuyển ngay",
 
     "empty_title": "Hiện chưa có vị trí trống",
-    "empty_desc": "Vui lòng quay lại sau hoặc nhấn “Ứng tuyển ngay” để gửi hồ sơ",
 
     "catalog_fallback": "Anousith Express",
     "job_image_alt": "Hình ảnh vị trí tuyển dụng",
