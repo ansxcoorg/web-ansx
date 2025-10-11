@@ -115,20 +115,31 @@ export default function BranchesPage() {
       <Separator className="my-8" />
 
       <div className="flex flex-col sm:flex-row items-center justify-between mb-4">
-        <div className="flex space-x-4">
+        <div className="flex flex-wrap justify-center sm:justify-start gap-3 sm:gap-4 w-full">
           <button
             onClick={() => setSelectedRegion("CENTRAL")}
-            className={`py-3 px-8  rounded-md ${
-              selectedRegion === "CENTRAL"
-                ? "bg-red-500 text-white"
-                : "bg-gray-200 text-gray-700"
-            }`}
+            className={`py-3 px-7 sm:px-8 rounded-md whitespace-nowrap leading-none 
+          text-[clamp(13px,3.4vw,15px)] 
+          max-[380px]:px-5 
+          max-[380px]:text-[13px]
+          max-[340px]:scale-[0.95]
+          transition-all duration-150 ${
+            selectedRegion === "CENTRAL"
+              ? "bg-red-500 text-white"
+              : "bg-gray-200 text-gray-700"
+          }`}
           >
             {t("central_region")}
           </button>
+
           <button
             onClick={() => setSelectedRegion("NORTHERN")}
-            className={`py-3 px-8  rounded-md ${
+            className={`py-3 px-7 sm:px-8 rounded-md whitespace-nowrap leading-none 
+            text-[clamp(13px,3.4vw,15px)] 
+            max-[380px]:px-5 
+            max-[380px]:text-[13px]
+            max-[340px]:scale-[0.95]
+            transition-all duration-150 ${
               selectedRegion === "NORTHERN"
                 ? "bg-red-500 text-white"
                 : "bg-gray-200 text-gray-700"
@@ -136,9 +147,15 @@ export default function BranchesPage() {
           >
             {t("northern_region")}
           </button>
+
           <button
             onClick={() => setSelectedRegion("SOUTHERN")}
-            className={`py-3 px-8 rounded-md ${
+            className={`py-3 px-7 sm:px-8 rounded-md whitespace-nowrap leading-none 
+            text-[clamp(13px,3.4vw,15px)] 
+            max-[380px]:px-5 
+            max-[380px]:text-[13px]
+            max-[340px]:scale-[0.95]
+            transition-all duration-150 ${
               selectedRegion === "SOUTHERN"
                 ? "bg-red-500 text-white"
                 : "bg-gray-200 text-gray-700"
@@ -148,7 +165,7 @@ export default function BranchesPage() {
           </button>
         </div>
 
-        <div className="ml-auto max-w-xl">
+        <div className="ml-auto max-w-xl mt-3 ">
           <div className="relative">
             <Input
               type="search"
