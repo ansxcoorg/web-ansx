@@ -213,7 +213,7 @@ export default function NewsPage() {
               <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
                 {t("news_activities")}
               </h1>
-              <p className="text-white/90 mt-1">{t("Searching for news")}</p>
+               
             </div>
             <div className="w-full md:w-96">
               <div className="relative">
