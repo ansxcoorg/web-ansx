@@ -48,7 +48,6 @@ export default function PapersNews() {
   );
 
   const openModal = (item: any) => {
-    console.log('openModal clicked', item);  
     setSelectedItem(item);
     setIsOpen(true);
   };
