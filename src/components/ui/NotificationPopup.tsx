@@ -57,33 +57,44 @@ export default function NotificationPopup() {
 
   return (
     <Dialog open={showPopup} onOpenChange={setShowPopup}>
-      <DialogContent className="max-w-3xl text-center bg-transparent p-8 border-0 outline-none font-lao ">
+      <DialogContent className="  text-center bg-transparent p-8 border-none shadow-none outline-none font-lao ">
         <DialogHeader>
           <DialogTitle className="text-white text-2xl">
-             📢 {t("Announcement")}
+            📢 {t("Announcement")}
           </DialogTitle>
-          <DialogClose className="absolute top-4 right-4 text-white hover:text-gray-300 border-0 outline-none">
+          <DialogClose className="absolute top-7 right-7 flex items-center justify-center w-9 h-9 rounded-full bg-white/20 text-white hover:bg-[#a0000c]/30 transition-all duration-200 outline-none shadow-md">
             ✖
           </DialogClose>
         </DialogHeader>
         {items.length > 0 && (
-          <>
-            <img
-              src={`https://storage.googleapis.com/ansx/website/images/${items[0]?.image}`}
-              alt="Image"
-              className="w-full h-auto object-cover"
-            />
-          </>
-        )}
-        <Button onClick={handleClosePopup} className="mt-4">
-          ກົດເພື່ອບໍ່ໃຫ້ແຈ້ງເຕືອນອີກ
-        </Button>
+          <div className="w-full flex flex-col items-center  ">
+            <div className="w-full">
+              <img
+                src={`https://storage.googleapis.com/ansx/website/images/${items[0]?.image}`}
+                alt="Announcement"
+                className="w-full max-w-md h-auto rounded-lg shadow-lg object-cover"
+              />
+            </div>
 
-        <Link href={`/${locale}/news`} className="w-full">
-          <Button className="mt-2 w-full bg-white text-danger border hover:bg-gray-100 rounded-lg p-2">
-            <span className="text-danger">ເບິ່ງແຈ້ງການເພີ່ມ</span>
-          </Button>
-        </Link>
+            <div className="w-full mt-3 space-y-2">
+              <Button
+                onClick={handleClosePopup}
+                className="w-full h-11 rounded-lg font-medium"
+              >
+                ກົດເພື່ອບໍ່ໃຫ້ແຈ້ງເຕືອນອີກ
+              </Button>
+
+              <Link href={`/${locale}/news`} className="w-full block">
+                <Button
+                  variant="outline"
+                  className="w-full h-11 rounded-lg font-medium bg-white text-[#b7010e] border-white hover:bg-white/90"
+                >
+                  <span className="text-[#b7010e]">ເບິ່ງແຈ້ງການເພີ່ມ</span>
+                </Button>
+              </Link>
+            </div>
+          </div>
+        )}
       </DialogContent>
     </Dialog>
   );
