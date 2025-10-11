@@ -20,8 +20,9 @@ export default function Header() {
   const router = useRouter();
   const t = useTranslations("Header");
   const locale = useLocale();
+  const [trackingNumber, setTrackingNumber] = useState("");
 
-  console.log("locale" , locale)
+  console.log("locale", locale);
 
   const navItems = [
     { name: t("news"), href: "/news" },
@@ -111,17 +112,20 @@ export default function Header() {
 
                 {/* Search Form */}
                 <form
-                  action="https://app.anousith.express/landing/search_tracking/search_item"
+                  action={`https://app.anousith.express/landing/search_tracking/search_item?_bill_detail=${trackingNumber}&n_home=2`}
                   method="get"
                   className="flex flex-col space-y-4"
                 >
                   <div className="relative">
                     <Input
-                      type="search"
-                      name="query"
+                      type="text"
+                      name="_bill_detail"
                       placeholder={t("tracking_placeholder")}
                       className="w-full bg-gray-100 rounded-lg p-3 pr-10 border border-gray-300 focus:ring-2 focus:ring-red-400 focus:outline-none"
+                      value={trackingNumber}
+                      onChange={(e) => setTrackingNumber(e.target.value)}
                     />
+
                     <button
                       type="submit"
                       className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-red-600 transition-colors"
