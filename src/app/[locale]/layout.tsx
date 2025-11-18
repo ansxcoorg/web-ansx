@@ -7,7 +7,6 @@ import {
   Noto_Sans_SC,
   Sarabun,
 } from "next/font/google";
-import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Locale, routing } from "@/i18n/routing";
