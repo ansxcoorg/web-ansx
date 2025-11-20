@@ -133,10 +133,8 @@
     "Clear_location":"清除位置",
     "Use_my_location":"使用我的位置",
     "alert_browser_not_support":"您的浏览器不支持定位功能。",
-    "alert_unable": "无法获取您的位置。"
-    
-    
-
+    "alert_unable": "无法获取您的位置。",
+    "locating":"正在定位…"
   },
   "about": {
     "about_us_title": "关于我们",

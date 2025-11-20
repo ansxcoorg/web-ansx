@@ -331,14 +331,14 @@ const BranchMap = ({ branches, center, zoom }: BranchMapProps) => {
           >
             <MapPin className="w-4 h-4 text-red-500" />
             {isLocating
-              ? "Locating..."
+              ? t("locating")
               : isTracking
               ? t("Clear_location")
               : t("Use_my_location")}
           </button>
         </div>
       </div>
-    </div>
+    </div>  
   );
 };
 

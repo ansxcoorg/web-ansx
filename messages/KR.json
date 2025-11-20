@@ -133,7 +133,8 @@
     "Clear_location":"위치 지우기",
     "Use_my_location":"내 위치 사용",
     "alert_browser_not_support":"브라우저가 위치 서비스를 지원하지 않습니다.",
-    "alert_unable": "현재 위치를 가져올 수 없습니다."
+    "alert_unable": "현재 위치를 가져올 수 없습니다.",
+    "locating":"위치를 찾는 중…"
   },
   "about": {
     "about_us_title": "회사 소개",

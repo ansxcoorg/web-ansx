@@ -131,7 +131,8 @@
     "branch_closed": "Đóng cửa tạm thời",
     "view_map": "Xem bản đồ",
     "zoom_in": "Phóng to",
-    "Navigate": "Điều hướng"
+    "Navigate": "Điều hướng",
+    "locating":"Đang xác định vị trí…"
   },
   "about": {
     "about_us_title": "Về chúng tôi",
