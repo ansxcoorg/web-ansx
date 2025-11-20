@@ -131,7 +131,11 @@
     "branch_closed": "ปิดชั่วคราว",
     "view_map": "ดูแผนที่",
     "zoom_in": "ซูมเข้า",
-    "Navigate": "นำทาง"
+    "Navigate": "นำทาง",
+    "Clear_location":"ลบตำแหน่ง",
+    "Use_my_location":"แสดงตำแหน่งของฉัน",
+    "alert_browser_not_support":"เบราว์เซอร์ของคุณไม่รองรับการระบุตำแหน่ง.",
+    "alert_unable": "ไม่สามารถรับตำแหน่งของคุณได้."
   },
   "about": {
     "about_us_title": "เกี่ยวกับเรา",

@@ -129,7 +129,11 @@
     "branch_closed": "ປິດຊົ່ວຄາວ",
     "view_map": "ເບິ່ງແຜນທີ່",
     "zoom_in": "ຊູມເຂົ້າ",
-    "Navigate": "ນຳທາງ"
+    "Navigate": "ນຳທາງ",
+    "Clear_location":"ລົບຕຳແໜ່ງ",
+    "Use_my_location":"ສະແດງຕຳແໜ່ງຂອງຂ້ອຍ",
+    "alert_browser_not_support":"ບຣາວເຊີຂອງທ່ານບໍ່ຮອງຮັບການລະບຸຕຳແໜ່ງ",
+    "alert_unable": "ບໍ່ສາມາດຮັບຕຳແໜ່ງຂອງທ່ານໄດ້."
   },
   "about": {
     "about_us_title": "ກ່ຽວກັບພວກເຮົາ",

@@ -108,7 +108,7 @@ export default function BranchesPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">{t("all_branches")}</h1>
+      <h1 className="text-3xl font-bold mb-2">{t("all_branches")}</h1>
 
       <Map branches={filteredBranches} center={mapCenter} zoom={mapZoom} />
 

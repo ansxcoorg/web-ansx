@@ -130,7 +130,11 @@
     "branch_closed": "Temporarily Closed",
     "view_map": "View Map",
     "zoom_in": "Zoom In",
-    "Navigate": "Navigate"
+    "Navigate": "Navigate",
+    "Clear_location":"Clear Location",
+    "Use_my_location":"Use My Location",
+    "alert_browser_not_support":"Trình duyệt của bạn không hỗ trợ định vị..",
+    "alert_unable": "Không thể lấy vị trí của bạn.."
   },
   "about": {
     "about_us_title": "About Us",

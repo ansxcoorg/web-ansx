@@ -1,7 +1,7 @@
 "use client";
 
 import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import logo from "../../[locale]/../../img/ans-logo.png";
 import { useTranslations } from "next-intl";
 import { Navigation, ZoomIn, MapPin } from "lucide-react";
@@ -21,14 +21,19 @@ interface BranchMapProps {
   zoom: number;
 }
 
+let logoCache: string | null = null;
+
 const loadLogoAsBase64 = async (url: string): Promise<string> => {
+  if (logoCache) return logoCache;
   const res = await fetch(url);
   const blob = await res.blob();
-  return await new Promise((resolve) => {
+  const base64 = await new Promise<string>((resolve) => {
     const reader = new FileReader();
     reader.onloadend = () => resolve(reader.result as string);
     reader.readAsDataURL(blob);
   });
+  logoCache = base64;
+  return base64;
 };
 
 const BranchMap = ({ branches, center, zoom }: BranchMapProps) => {
@@ -37,6 +42,11 @@ const BranchMap = ({ branches, center, zoom }: BranchMapProps) => {
   const [logoBase64, setLogoBase64] = useState<string | null>(null);
   const [hoveredMarkerId, setHoveredMarkerId] = useState<number | null>(null);
   const [selectedBranch, setSelectedBranch] = useState<Branch | null>(null);
+  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
+  const [isLocating, setIsLocating] = useState(false);
+  const [isTracking, setIsTracking] = useState(false);
+  const watchIdRef = useRef<number | null>(null);
+  const circleRef = useRef<google.maps.Circle | null>(null);
 
   const defaultCenter = { lat: 17.9757, lng: 102.6331 };
   const defaultZoom = 10;
@@ -44,6 +54,65 @@ const BranchMap = ({ branches, center, zoom }: BranchMapProps) => {
   useEffect(() => {
     loadLogoAsBase64(logo.src).then(setLogoBase64);
   }, []);
+
+  useEffect(() => {
+    return () => {
+      if (watchIdRef.current !== null) {
+        navigator.geolocation.clearWatch(watchIdRef.current);
+        watchIdRef.current = null;
+      }
+      if (circleRef.current) {
+        circleRef.current.setMap(null);
+        circleRef.current = null;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!map) return;
+
+    if (!userLocation || !isTracking) {
+      if (circleRef.current) {
+        circleRef.current.setMap(null);
+        circleRef.current = null;
+      }
+      return;
+    }
+
+    const updateCircleSize = () => {
+      const zoomLevel = map.getZoom() ?? 15;
+      const metersPerPixel =
+        (156543.03392 * Math.cos((userLocation.lat * Math.PI) / 180)) /
+        Math.pow(2, zoomLevel);
+      const targetPixelRadius = 100;
+      const dynamicRadius = targetPixelRadius * metersPerPixel;
+
+      if (!circleRef.current) {
+        circleRef.current = new google.maps.Circle({
+          map,
+          center: userLocation,
+          radius: dynamicRadius,
+          strokeColor: "#dc2626",
+          strokeOpacity: 0.8,
+          strokeWeight: 1.5,
+          fillColor: "#dc2626",
+          fillOpacity: 0.12,
+          clickable: false,
+        });
+      } else {
+        circleRef.current.setCenter(userLocation);
+        circleRef.current.setRadius(dynamicRadius);
+      }
+    };
+
+    updateCircleSize();
+
+    const zoomListener = map.addListener("zoom_changed", updateCircleSize);
+
+    return () => {
+      google.maps.event.removeListener(zoomListener);
+    };
+  }, [map, userLocation, isTracking]);
 
   const focusMap = (lat: number, lng: number, z = 16) => {
     if (!map) return;
@@ -56,10 +125,65 @@ const BranchMap = ({ branches, center, zoom }: BranchMapProps) => {
     focusMap(lat, lng, 15);
   };
 
-  // SVG icon (white default, red on hover/selected)
+  const stopTracking = () => {
+    if (watchIdRef.current !== null) {
+      navigator.geolocation.clearWatch(watchIdRef.current);
+      watchIdRef.current = null;
+    }
+    setIsTracking(false);
+    setUserLocation(null);
+    if (circleRef.current) {
+      circleRef.current.setMap(null);
+      circleRef.current = null;
+    }
+    const baseCenter = center || defaultCenter;
+    const baseZoom = zoom || defaultZoom;
+    focusMap(baseCenter.lat, baseCenter.lng, baseZoom);
+  };
+
+  const handleUseMyLocation = () => {
+    if (isTracking) {
+      stopTracking();
+      return;
+    }
+
+    if (!navigator.geolocation) {
+      alert(t("alert_browser_not_support"));
+      return;
+    }
+ 
+    setIsLocating(true);
+
+    const watchId = navigator.geolocation.watchPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        const loc = { lat, lng };
+        setUserLocation(loc);
+        /* console.log("Current position (watch):", { lat, lng }); */
+        if (!isTracking) {
+          focusMap(lat, lng, 15);
+          setIsTracking(true);
+          setIsLocating(false);
+        }
+      },
+      () => {
+        setIsLocating(false);
+        alert(t("alert_unable"));
+      },
+      {
+        enableHighAccuracy: true,
+        maximumAge: 5000,
+        timeout: 10000,
+      }
+    );
+
+    watchIdRef.current = watchId;
+  };
+
   const getSvgMarker = (logoDataUrl: string, variant: "white" | "red") => {
     const fill =
-      variant === "white" ? "rgba(255,255,255,0.7)" : "rgba(220, 38, 38, 0.9)"; // red-600/70
+      variant === "white" ? "rgba(220, 38, 38, 0.8)" : "rgba(220, 38, 38)"; 
     return {
   url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
     <svg xmlns="http://www.w3.org/2000/svg" width="60" height="80" viewBox="0 0 60 80">
@@ -88,22 +212,39 @@ const BranchMap = ({ branches, center, zoom }: BranchMapProps) => {
       <image href="${logoDataUrl}" x="18" y="18" width="24" height="24"/>
     </svg>
   `)}`,
-  scaledSize: new google.maps.Size(48, 65),
-  anchor: new google.maps.Point(24, 65),
-};
+      scaledSize: new google.maps.Size(42, 60),
+      anchor: new google.maps.Point(21, 60),
+    };
   };
+
+  const userIcon =
+    typeof google !== "undefined"
+      ? {
+          url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="10" fill="#dc2626"/>
+              <circle cx="20" cy="20" r="6" fill="white"/>
+              <circle cx="20" cy="20" r="4" fill="#dc2626"/>
+            </svg>
+          `)}`,
+          scaledSize: new google.maps.Size(24, 24),
+          anchor: new google.maps.Point(12, 12),
+        }
+      : undefined;
 
   return (
     <div className="mb-8 bg-gray-50 rounded-lg p-4 shadow-md">
-      <h2 className="text-2xl font-semibold mb-4">{t("branch_map")}</h2>
-      <div className="aspect-video bg-gray-200 rounded-lg relative">
+      <h2 className="text-xl font-semibold mb-4">{t("branch_map")}</h2>
+
+      <div className="relative w-full bg-gray-200 rounded-xl overflow-hidden h-[550px] sm:h-[650px]">
         <GoogleMap
           id="map"
           mapContainerStyle={containerStyle}
           center={center || defaultCenter}
           zoom={zoom || defaultZoom}
           onLoad={(mapInstance) => setMap(mapInstance)}
-          onClick={() => setSelectedBranch(null)} // click map to close info window
+          onClick={() => setSelectedBranch(null)}
         >
           {logoBase64 &&
             branches.map((branch) => {
@@ -119,7 +260,10 @@ const BranchMap = ({ branches, center, zoom }: BranchMapProps) => {
                   key={branch.id_branch}
                   position={{ lat, lng }}
                   title={branch.branch_name}
-                  icon={getSvgMarker(logoBase64, isHovered || isSelected ? "red" : "white")}
+                  icon={getSvgMarker(
+                    logoBase64,
+                    isHovered || isSelected ? "red" : "white"
+                  )}
                   onClick={() => handleMarkerClick(branch, lat, lng)}
                   onMouseOver={() => setHoveredMarkerId(branch.id_branch)}
                   onMouseOut={() => setHoveredMarkerId(null)}
@@ -127,7 +271,8 @@ const BranchMap = ({ branches, center, zoom }: BranchMapProps) => {
               );
             })}
 
-          {/* InfoWindow*/}
+          {userLocation && <Marker position={userLocation} icon={userIcon} />}
+
           {selectedBranch && (
             <InfoWindow
               position={{
@@ -137,7 +282,7 @@ const BranchMap = ({ branches, center, zoom }: BranchMapProps) => {
               onCloseClick={() => setSelectedBranch(null)}
               options={{ pixelOffset: new google.maps.Size(0, -5) }}
             >
-              <div className="max-w-[220px]">
+              <div className="max-w-[220px] text-xs sm:text-sm">
                 <div className="flex items-start gap-2 mb-2">
                   <div className="shrink-0 rounded-full bg-red-100 p-1.5">
                     <MapPin className="w-4 h-4 text-red-600" />
@@ -154,7 +299,7 @@ const BranchMap = ({ branches, center, zoom }: BranchMapProps) => {
                     href={`https://www.google.com/maps/dir/?api=1&destination=${selectedBranch.map_lat},${selectedBranch.map_lng}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center justify-center gap-1.5 rounded-md border border-red-200 bg-white px-3 py-2 text-sm text-red-600 hover:bg-red-50 transition"
+                    className="inline-flex items-center justify-center gap-1.5 rounded-md border border-red-200 bg-white px-3 py-2 text-xs sm:text-sm text-red-600 hover:bg-red-50 transition"
                   >
                     <Navigation className="w-4 h-4" />
                     {t("Navigate")}
@@ -177,6 +322,21 @@ const BranchMap = ({ branches, center, zoom }: BranchMapProps) => {
             </InfoWindow>
           )}
         </GoogleMap>
+
+        <div className="pointer-events-none absolute inset-0 flex items-end justify-center md:justify-start p-2 sm:p-3">
+          <button
+            type="button"
+            onClick={handleUseMyLocation}
+            className="pointer-events-auto inline-flex items-center justify-center gap-1.5 rounded-full bg-white/95 px-4 py-2 text-xs sm:text-sm font-semibold text-gray-800 shadow-md border border-gray-300 hover:bg-gray-100 active:scale-95 transition w-full max-w-[220px] md:w-auto"
+          >
+            <MapPin className="w-4 h-4 text-red-500" />
+            {isLocating
+              ? "Locating..."
+              : isTracking
+              ? t("Clear_location")
+              : t("Use_my_location")}
+          </button>
+        </div>
       </div>
     </div>
   );
