@@ -62,7 +62,7 @@ export default function ChatComponent({ onClose }: { onClose: () => void }) {
   } = useQuery(GET_MESSAGES, {
     variables: { sender: querySender, recipient: "Admin" },
     pollInterval: 3000,
-    skip: !querySender, // if without input will not query
+    skip: !querySender, 
   });
 
   const [sendMessage, { loading: mutationLoading, error: mutationError }] =
@@ -133,12 +133,11 @@ export default function ChatComponent({ onClose }: { onClose: () => void }) {
   }, [data?.getMessages, sendMessage]);
 
   return (
-    <div className="p-4 rounded-3xl border border-slate-200 bg-white/95 backdrop-blur-sm shadow-[0_6px_30px_rgba(0,0,0,0.06)] w-full max-w-md flex flex-col">
-      {/* Header */}
-      <div className="relative flex items-center justify-center h-12 mb-3 border-b border-slate-100 bg-white rounded-2xl">
+    <div className="p-4 rounded-3xl border border-slate-200 bg-white/95 backdrop-blur-sm shadow-[0_6px_30px_rgba(0,0,0,0.06)] w-full max-w-md flex flex-col fade-show ">
+      <div className="relative flex items-center justify-center h-12 mb-3 border-b border-slate-100 bg-white rounded-2xl ">
         <button
           onClick={onClose}
-          className="absolute left-2 p-2 rounded-full hover:bg-slate-100 text-slate-500"
+          className="absolute right-2 p-2 rounded-full hover:bg-slate-100 text-slate-500"
           aria-label="Close"
         >
           <X className="h-5 w-5" />
@@ -192,7 +191,6 @@ export default function ChatComponent({ onClose }: { onClose: () => void }) {
                       : "bg-red-600 text-white border-red-600" // User 
                   }`}
                 >
-                  {/* name of user */}
                   <div
                     className={`text-[10px] mb-1 ${
                       isAdmin ? "text-slate-400" : "text-white/80"
@@ -201,12 +199,10 @@ export default function ChatComponent({ onClose }: { onClose: () => void }) {
                     {msg.sender}
                   </div>
 
-                  {/* text message */}
                   <div className="whitespace-pre-wrap break-words">
                     {msg.text}
                   </div>
 
-                  {/* display time */}
                   <div
                     className={`mt-1 text-[10px] text-right ${
                       isAdmin ? "text-slate-400" : "text-white/80"

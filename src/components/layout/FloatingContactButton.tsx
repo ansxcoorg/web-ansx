@@ -7,11 +7,13 @@ import ChatComponent from "@/app/[locale]/contact/ChatComponent";
 import { FaApple, FaAndroid } from "react-icons/fa6";
 import ANS from "../../img/ans-logo.png";
 import ANS_Download from "../../img/IOS_ANDROID_DOWNLOAD.png";
+import CHAT_ANIMETION from "../../img/Chat_animetion.gif";
 
 export default function FloatingContactButton() {
   const t = useTranslations("contact");
   const [open, setOpen] = useState(false);
   const [showDownload, setShowDownload] = useState(false);
+  const [gifLoopKey, setGifLoopKey] = useState(0);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -36,6 +38,14 @@ export default function FloatingContactButton() {
     };
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setGifLoopKey((k) => k + 1);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       {!open && (
@@ -45,14 +55,13 @@ export default function FloatingContactButton() {
         >
           <div className="relative flex items-center">
             {!showDownload && (
-              <div className="relative flex h-[110px] w-[110px] items-center justify-center flip-right">
+              <div className="relative flex h-[110px] w-[110px] items-center justify-center fade-show">
                 <div
                   className="relative h-14 w-14 rounded-full flex items-center justify-center transition-all duration-500"
                   style={{
                     background:
                       "conic-gradient(from 180deg at 50% 50%, #ff3b30, #6b7280, #d1d5db, #ff3b30)",
-                    padding: "4.5px",
-                    boxShadow: "0 0 25px rgba(255, 59, 48, 0.4)",
+                    padding: "4px",
                   }}
                 >
                   <div className="flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-white">
@@ -69,19 +78,20 @@ export default function FloatingContactButton() {
                       key={i}
                       className="absolute left-1/2 top-1/2 inline-block"
                       style={{
-                        transform: `translate(-50%, -50%) rotate(${(360 / arr.length) * i
-                          }deg) translateY(-38px)`,
+                        transform: `translate(-50%, -50%) rotate(${
+                          (360 / arr.length) * i
+                        }deg) translateY(-38px)`,
                       }}
                     >
                       {char}
                     </span>
                   ))}
                 </div>
-              </div>
+              </div> 
             )}
 
             {showDownload && (
-              <div className="mr-3 flex items-center relative flip-right">
+              <div className="mr-3 flex items-center relative fade-show">
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -142,10 +152,15 @@ export default function FloatingContactButton() {
         aria-expanded={open}
         aria-pressed={open}
         className="fixed bottom-6 right-7 z-[70] flex items-center gap-2 px-5 py-2 rounded-full
-               border border-black/20 shadow-md text-white font-medium transition-all duration-300
-               active:scale-95 bg-red-700/90 hover:bg-red-600 "
+             border border-black/20 shadow-md text-white font-medium transition-all duration-300
+             active:scale-95 bg-red-700/90 hover:bg-red-600 "
       >
-        <MessageSquare className="h-5" />
+        <img
+          key={gifLoopKey}
+          src={`${CHAT_ANIMETION.src}?v=${gifLoopKey}`}
+          alt="chat animation"
+          className="h-6 w-6 object-contain scale-[2]"
+        />
         <span className="hidden sm:inline">{t("contact_us")}</span>
       </button>
 
@@ -158,7 +173,7 @@ export default function FloatingContactButton() {
           />
           <div className="fixed bottom-20 right-4 z-[60] w-[350px] max-w-[90vw]">
             <div
-              className="relative rounded-xl overflow-hidden shadow-2xl"
+              className="relative rounded-xl overflow-hidden  "
               onClick={(e) => e.stopPropagation()}
             >
               <button
@@ -166,7 +181,7 @@ export default function FloatingContactButton() {
                 className="absolute -top-3 -right-3 bg-white text-gray-700 rounded-full p-1 shadow-md"
                 aria-label="Close"
               >
-                <X className="h-4 w-4" />
+                {/* <X className="h-4 w-4" />   */}
               </button>
               <ChatComponent onClose={() => setOpen(false)} />
             </div>
