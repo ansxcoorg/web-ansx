@@ -50,40 +50,38 @@ export default function SlideImages() {
   }, [slideImg]);
 
   return (
-    <Carousel className="w-full relative">
-      <CarouselContent>
+    <Carousel className="relative w-full overflow-hidden">
+      <CarouselContent className="relative h-[240px] sm:h-[320px] md:h-[420px] lg:h-[520px]">
         {slideImg?.map((item, index) => (
-          <CarouselItem
-            key={index}
-            className={index === currentSlide ? "block" : "hidden"}
-          >
-            <div className="relative w-full h-full mx-auto flex items-center justify-center overflow-hidden">
+          <CarouselItem key={index} className="basis-full">
+            <div
+              className={`absolute inset-0 mx-auto flex h-full w-full items-center justify-center overflow-hidden transition-all duration-700 ease-in-out ${index === currentSlide
+                ? "opacity-100 scale-100"
+                : "pointer-events-none opacity-0 scale-105"
+                }`}
+            >
               <img
                 src={`https://storage.googleapis.com/ansx/website/images/${item?.image}`}
                 alt="post-slider"
-                className="w-full h-full object-cover rounded-5xl"
-                style={{
-                  width: "100%",
-                  maxHeight: "550px",
-                  objectFit: "cover",
-                }}
+                className="h-full w-full object-cover"
               />
             </div>
           </CarouselItem>
         ))}
+
         <form
           action="https://app.anousith.express/nextday/item_bill/search_item"
           method="get"
-          className="absolute inset-0 flex items-center justify-center mt-60 hidden md:flex"
+          className="pointer-events-none absolute inset-0 hidden items-center justify-center md:flex"
         >
-          <div className="text-center text-white max-w-4xl px-4 w-full">
-            <div className="bg-white rounded-3xl shadow-lg p-3 w-full shadow-dark-600/15">
+          <div className="pointer-events-auto mt-60 w-full max-w-4xl px-4 text-center text-white">
+            <div className="w-full rounded-3xl bg-white p-3 shadow-lg shadow-dark-600/15">
               <div className="flex space-x-4">
                 <input
                   type="text"
                   name="_bill_detail"
                   placeholder={t("tracking_placeholder")}
-                  className="w-full p-2 text-black rounded-md outline-none ring-0 focus:ring-0 focus:outline-none"
+                  className="w-full rounded-md p-2 text-black outline-none ring-0 focus:outline-none focus:ring-0"
                   value={trackingNumber}
                   onChange={(e) => setTrackingNumber(e.target.value)}
                 />
@@ -92,7 +90,7 @@ export default function SlideImages() {
 
                 <Button
                   type="submit"
-                  className="h-10 items-center gap-2 bg-red-600 px-5 text-white hover:bg-red-700 rounded-3xl"
+                  className="h-10 items-center gap-2 rounded-3xl bg-red-600 px-5 text-white hover:bg-red-700"
                 >
                   {t("tracking")}
                 </Button>
@@ -102,20 +100,26 @@ export default function SlideImages() {
         </form>
       </CarouselContent>
 
-      <div className="absolute bottom-4 left-0 right-0 flex justify-center">
-        <div className="flex space-x-2">
-          {slideImg.map((_, index) => (
-            <div
-              key={index}
-              className={`h-2 w-2 rounded-full transition-all duration-300 ${
-                index === currentSlide ? "bg-white scale-125" : "bg-white/50"
-              }`}
-            />
-          ))}
+      <div className="pointer-events-none absolute bottom-6 left-0 right-0 flex justify-center">
+        <div className="pointer-events-auto inline-flex items-center gap-2 rounded-full ">
+          {slideImg.map((_, index) => {
+            const isActive = index === currentSlide;
+
+            return (
+              <div
+                key={index}
+                className={[
+                  "h-2.5 rounded-full transition-all duration-300 ease-out shadow-sm",
+                  isActive
+                    ? "w-6 bg-white"
+                    : "w-2.5 bg-white/40 hover:bg-white/70"
+                ].join(" ")}
+              />
+            );
+          })}
         </div>
       </div>
 
-      {/* ปุ่ม Previous & Next */}
       <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2" />
       <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2" />
     </Carousel>

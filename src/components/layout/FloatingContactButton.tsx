@@ -51,7 +51,7 @@ export default function FloatingContactButton() {
                   style={{
                     background:
                       "conic-gradient(from 180deg at 50% 50%, #ff3b30, #6b7280, #d1d5db, #ff3b30)",
-                    padding: "2.5px",
+                    padding: "4.5px",
                     boxShadow: "0 0 25px rgba(255, 59, 48, 0.4)",
                   }}
                 >
@@ -69,9 +69,8 @@ export default function FloatingContactButton() {
                       key={i}
                       className="absolute left-1/2 top-1/2 inline-block"
                       style={{
-                        transform: `translate(-50%, -50%) rotate(${
-                          (360 / arr.length) * i
-                        }deg) translateY(-38px)`,
+                        transform: `translate(-50%, -50%) rotate(${(360 / arr.length) * i
+                          }deg) translateY(-38px)`,
                       }}
                     >
                       {char}
