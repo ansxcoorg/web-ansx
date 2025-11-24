@@ -9,6 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
@@ -23,6 +24,18 @@ export default function SlideImages() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [trackingNumber, setTrackingNumber] = useState("");
   const [fetchData, { data, loading }] = useLazyQuery(Schema.slideImg);
+
+  const handlePrev = () => {
+    setCurrentSlide((prev) =>
+      slideImg.length === 0 ? 0 : (prev - 1 + slideImg.length) % slideImg.length
+    );
+  };
+
+  const handleNext = () => {
+    setCurrentSlide((prev) =>
+      slideImg.length === 0 ? 0 : (prev + 1) % slideImg.length
+    );
+  };
 
   useEffect(() => {
     fetchData({
@@ -51,20 +64,22 @@ export default function SlideImages() {
 
   return (
     <Carousel className="relative w-full overflow-hidden">
-      <CarouselContent className="relative h-[240px] sm:h-[320px] md:h-[420px] lg:h-[520px]">
+      <CarouselContent className="relative h-[350px] sm:h-[440px] md:h-[480px] lg:h-[540px]">
         {slideImg?.map((item, index) => (
           <CarouselItem key={index} className="basis-full">
             <div
-              className={`absolute inset-0 mx-auto flex h-full w-full items-center justify-center overflow-hidden transition-all duration-700 ease-in-out ${index === currentSlide
-                ? "opacity-100 scale-100"
-                : "pointer-events-none opacity-0 scale-105"
-                }`}
+              className={`absolute inset-0 mx-auto flex h-full w-full items-center justify-center overflow-hidden transition-all duration-700 ease-in-out ${
+                index === currentSlide
+                  ? "opacity-100 scale-100"
+                  : "pointer-events-none opacity-0 scale-105"
+              }`}
             >
               <img
                 src={`https://storage.googleapis.com/ansx/website/images/${item?.image}`}
                 alt="post-slider"
                 className="h-full w-full object-cover"
               />
+              {/* <div className="absolute inset-0 bg-black/40 "></div> */}
             </div>
           </CarouselItem>
         ))}
@@ -112,7 +127,7 @@ export default function SlideImages() {
                   "h-2.5 rounded-full transition-all duration-300 ease-out shadow-sm",
                   isActive
                     ? "w-6 bg-white"
-                    : "w-2.5 bg-white/40 hover:bg-white/70"
+                    : "w-2.5 bg-white/40 hover:bg-white/70",
                 ].join(" ")}
               />
             );
@@ -120,8 +135,27 @@ export default function SlideImages() {
         </div>
       </div>
 
-      <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2" />
-      <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2" />
+      <button
+        type="button"
+        className="absolute left-4 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-md shadow-lg hover:bg-black/60 transition"
+        onClick={(e) => {
+          e.stopPropagation();
+          handlePrev();
+        }}
+      >
+        <ChevronLeft className="h-4 w-4" />
+      </button>
+
+      <button
+        type="button"
+        className="absolute right-4 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-md shadow-lg hover:bg-black/60 transition"
+        onClick={(e) => {
+          e.stopPropagation();
+          handleNext();
+        }}
+      >
+        <ChevronRight className="h-4 w-4" />
+      </button>
     </Carousel>
   );
 }

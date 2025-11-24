@@ -134,14 +134,21 @@ export default function Home() {
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-6">{t("hero_title")}</h2>
             <p className="mb-8 max-w-2xl mx-auto">{t("hero_description")}</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-white text-red-600 hover:bg-gray-100 hover:scale-[1.02] transition-all duration-300 ease-in-out cursor-pointer rounded-md ">
-                <PhoneCall className="mr-2 h-4 w-4" />
-                {t("contact_us")}
-              </Button>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto">
+              <Link href={`/${locale}/contact`}>
+                <Button
+                  className="w-full flex items-center justify-center gap-2 bg-white text-red-600  hover:bg-gray-100 hover:scale-[1.02]  transition-all duration-300 ease-in-out cursor-pointer rounded-md"
+                >
+                  <PhoneCall className="h-5 w-5" />
+                  {t("contact_us")}
+                </Button>
+              </Link>
+
               <Link href={`/${locale}/branches`}>
-                <Button className="bg-white text-red-600 hover:bg-gray-100  hover:scale-[1.02] transition-all duration-300 ease-in-out cursor-pointer rounded-md ">
-                  <MapPin className="mr-2 h-4 w-4" />
+                <Button
+                  className="w-full flex items-center justify-center gap-2 bg-white text-red-600  hover:bg-gray-100 hover:scale-[1.02]  transition-all duration-300 ease-in-out cursor-pointer rounded-md"
+                >
+                  <MapPin className="h-5 w-5" />
                   {t("find_branch")}
                 </Button>
               </Link>
