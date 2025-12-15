@@ -42,7 +42,10 @@ const BranchMap = ({ branches, center, zoom }: BranchMapProps) => {
   const [logoBase64, setLogoBase64] = useState<string | null>(null);
   const [hoveredMarkerId, setHoveredMarkerId] = useState<number | null>(null);
   const [selectedBranch, setSelectedBranch] = useState<Branch | null>(null);
-  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
+  const [userLocation, setUserLocation] = useState<{
+    lat: number;
+    lng: number;
+  } | null>(null);
   const [isLocating, setIsLocating] = useState(false);
   const [isTracking, setIsTracking] = useState(false);
   const watchIdRef = useRef<number | null>(null);
@@ -151,7 +154,7 @@ const BranchMap = ({ branches, center, zoom }: BranchMapProps) => {
       alert(t("alert_browser_not_support"));
       return;
     }
- 
+
     setIsLocating(true);
 
     const watchId = navigator.geolocation.watchPosition(
@@ -183,9 +186,9 @@ const BranchMap = ({ branches, center, zoom }: BranchMapProps) => {
 
   const getSvgMarker = (logoDataUrl: string, variant: "white" | "red") => {
     const fill =
-      variant === "white" ? "rgba(220, 38, 38, 0.8)" : "rgba(220, 38, 38)"; 
+      variant === "white" ? "rgba(220, 38, 38, 0.8)" : "rgba(220, 38, 38)";
     return {
-  url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
+      url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
     <svg xmlns="http://www.w3.org/2000/svg" width="60" height="80" viewBox="0 0 60 80">
       <defs>
         <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
@@ -245,6 +248,15 @@ const BranchMap = ({ branches, center, zoom }: BranchMapProps) => {
           zoom={zoom || defaultZoom}
           onLoad={(mapInstance) => setMap(mapInstance)}
           onClick={() => setSelectedBranch(null)}
+          options={{
+            gestureHandling: "greedy",  
+            scrollwheel: true, 
+            zoomControl: true,
+            draggable: true,
+            fullscreenControl: false,
+            mapTypeControl: false,
+            streetViewControl: false,
+          }}
         >
           {logoBase64 &&
             branches.map((branch) => {
@@ -338,7 +350,7 @@ const BranchMap = ({ branches, center, zoom }: BranchMapProps) => {
           </button>
         </div>
       </div>
-    </div>  
+    </div>
   );
 };
 
